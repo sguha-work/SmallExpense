@@ -1,70 +1,84 @@
 <ion-content padding id="page2" style="background-color:#2E7A3C;">
-  <h1 id="home-heading1" style="color:#000000;">
-    Add Expense
-  </h1>
-  <div id="home-markdown1" class="show-list-numbers-and-dots">
-    <p style="color:#000000;">
-      <strong>
+    <h1 id="home-heading1" style="color:#000000;">
+        Add Expense
+    </h1>
+    <div id="home-markdown1" class="show-list-numbers-and-dots">
+        <p style="color:#000000;">
+            <strong>
         Tap to select type of expens
       </strong>
-    </p>
-  </div>
-  <ion-list id="home-list1">
-    <ion-item color="positive" id="home-list-item1">
-      Travel
-      <ion-icon name="car" item-right></ion-icon>
+        </p>
+    </div>
+
+    <ion-item class="activity" color="positive" id="home-list-item1">
+        Travel
+        <ion-icon name="car" item-right></ion-icon>
     </ion-item>
-    <ion-item color="positive" id="home-list-item2">
-      Tiffin
-      <ion-icon name="cafe" item-right></ion-icon>
+
+    <ion-item class="activity" color="positive" id="home-list-item2">
+        Tiffin
+        <ion-icon name="cafe" item-right></ion-icon>
     </ion-item>
-    <ion-item color="positive" id="home-list-item3">
-      Medic
-      <ion-icon name="medkit" item-right></ion-icon>
+    <ion-item class="activity" color="positive" id="home-list-item3">
+        Medic
+        <ion-icon name="medkit" item-right></ion-icon>
     </ion-item>
-    <ion-item color="positive" id="home-list-item4">
-      Smoking
-      <ion-icon name="no-smoking" item-right></ion-icon>
+    <ion-item class="activity" color="positive" id="home-list-item4">
+        Smoking
+        <ion-icon name="no-smoking" item-right></ion-icon>
     </ion-item>
-    <ion-item color="positive" id="home-list-item5">
-      Lunch / Dinner
-      <ion-icon name="restaurant" item-right></ion-icon>
+    <ion-item class="activity" color="positive" id="home-list-item5">
+        Lunch / Dinner
+        <ion-icon name="restaurant" item-right></ion-icon>
     </ion-item>
-  </ion-list>
-  <div class="spacer" style="width:300px;height:38px;" id="home-spacer1"></div>
-  <div id="home-markdown4" class="show-list-numbers-and-dots">
-    <p style="color:#000000;">
-      <strong>
-        Enter amount
-      </strong>
-    </p>
-  </div>
-  <form id="home-form1">
-    <ion-item id="home-input1">
-      <ion-label>
-        Input
-      </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+    <ion-item class="activity" color="positive" id="home-list-item5">
+        Lunch / Dinner
+        <ion-icon name="restaurant" item-right></ion-icon>
     </ion-item>
-    <button id="home-button1" ion-button color="positive" block>
-      1
+
+
+
+
+    <ion-item id="home-input1" class="homeInputStyle">
+        <ion-input type="text" ng-readonly placeholder="Enter amount"></ion-input>
+    </ion-item>
+    <button id="home-button1" class="btn_number" ion-button color="positive" block>
+      0
     </button>
-    <div class="spacer" style="width:300px;height:38px;" id="home-spacer2"></div>
+    <button id="home-button1" class="btn_number" ion-button color="positive" block>
+      1
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      2
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      3
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      4
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      5
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      6
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      7
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      8
+    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
+      9
+    </button>
     <div id="home-markdown5" class="show-list-numbers-and-dots">
-      <p style="color:#000000;">
-        <strong>
+        <p style="color:#000000;">
+            <strong>
           Enter description if you want
         </strong>
-      </p>
+        </p>
     </div>
     <ion-item id="home-textarea1">
-      <ion-label>
-        Text
-      </ion-label>
-      <ion-textarea placeholder=""></ion-textarea>
+        <ion-label>
+            Text
+        </ion-label>
+        <ion-textarea placeholder=""></ion-textarea>
     </ion-item>
     <button id="home-button2" ion-button color="positive" block>
       Tap me to submit
     </button>
-  </form>
+
 </ion-content>
