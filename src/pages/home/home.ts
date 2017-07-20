@@ -75,30 +75,22 @@ export class HomePage implements AfterViewInit {
   }
 
   public submitInput() {
-    // $cordovaFile.writeFile( 'file.txt', "hello", {'append':false} ).then( function(result) {
-    //         // Success!
-    // }, function(err) {
-    //   // An error occured. Show a message to the user
+    // alert("submitting");
+    // this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{
+    //   alert("success directory");
+    //   this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt", "hello").then(() => {
+    //     alert("success file");
+    //     this.file.readAsText(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt").then((data) =>{
+    //       alert(data);
+    //     }, () => {
+    //       alert("failed to read");
+    //     });
+    //   }, ()=>{
+    //     alert("failed file");
+    //   })
+    // }, ()=> {
+    //   alert("error directory");
     // });
-    // $cordovaFile.readFile("fi;e.txt").then(function(result){
-    //   alert(result);
-    // });
-    alert("submitting");
-    this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{
-      alert("success directory");
-      this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt", "hello").then(() => {
-        alert("success file");
-        this.file.readAsText(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt").then((data) =>{
-          alert(data);
-        }, () => {
-          alert("failed to read");
-        });
-      }, ()=>{
-        alert("failed file");
-      })
-    }, ()=> {
-      alert("error directory");
-    });
     
   }
 

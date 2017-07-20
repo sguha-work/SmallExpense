@@ -464,31 +464,22 @@ var HomePage = (function () {
         this.model.description = "";
     };
     HomePage.prototype.submitInput = function () {
-        var _this = this;
-        // $cordovaFile.writeFile( 'file.txt', "hello", {'append':false} ).then( function(result) {
-        //         // Success!
-        // }, function(err) {
-        //   // An error occured. Show a message to the user
+        // alert("submitting");
+        // this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{
+        //   alert("success directory");
+        //   this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt", "hello").then(() => {
+        //     alert("success file");
+        //     this.file.readAsText(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt").then((data) =>{
+        //       alert(data);
+        //     }, () => {
+        //       alert("failed to read");
+        //     });
+        //   }, ()=>{
+        //     alert("failed file");
+        //   })
+        // }, ()=> {
+        //   alert("error directory");
         // });
-        // $cordovaFile.readFile("fi;e.txt").then(function(result){
-        //   alert(result);
-        // });
-        alert("submitting");
-        this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(function () {
-            alert("success directory");
-            _this.file.writeFile(_this.file.dataDirectory + "/SmallExpenseTracker", "hello.txt", "hello").then(function () {
-                alert("success file");
-                _this.file.readAsText(_this.file.dataDirectory + "/SmallExpenseTracker", "hello.txt").then(function (data) {
-                    alert(data);
-                }, function () {
-                    alert("failed to read");
-                });
-            }, function () {
-                alert("failed file");
-            });
-        }, function () {
-            alert("error directory");
-        });
     };
     HomePage.prototype.ngAfterViewInit = function () {
     };
@@ -498,9 +489,10 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Small Expense Tracker\n\n    </h1>\n\n    <h4 id="home-heading1" style="color:#000000;">\n\n        Add an expense\n\n    </h4>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expense\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" onclick="return false;" [(ngModel)]="model.amount" readonly="true" placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap number to enter amount\n\n      </strong>\n\n        </p>\n\n    </div>\n\n    <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>\n\n      {{number.label}}\n\n    </button>\n\n    <button (click)="resetInputs()" ion-button color="assertive" block>\n\n      Tap me to reset\n\n    </button>\n\n    <ion-item id="home-textarea1">\n\n        <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>\n\n    </ion-item>\n\n    <button (click)="submitInput()" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__services_tag_service__["a" /* TagService */], __WEBPACK_IMPORTED_MODULE_5__services_number_service__["a" /* NumberService */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_tag_service__["a" /* TagService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_tag_service__["a" /* TagService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__services_number_service__["a" /* NumberService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_number_service__["a" /* NumberService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */]) === "function" && _d || Object])
 ], HomePage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=home.js.map
 
 /***/ })
