@@ -25199,6 +25199,12 @@ ion-navbar.toolbar {
   }
 }
 
+page-home .active {
+  color: red;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
 page-home .activity {
   width: 48%;
   float: left;

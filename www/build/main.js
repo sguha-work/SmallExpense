@@ -316,7 +316,9 @@ TabsControllerPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_tag_service__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_tag_service__ = __webpack_require__(263);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -329,10 +331,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = (function () {
     function HomePage(navCtrl) {
         this.navCtrl = navCtrl;
-        this.tagService = new __WEBPACK_IMPORTED_MODULE_2__services_tag_service__["a" /* TagService */]();
+        this.tagService = new __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */]();
         this.loadTags();
     }
     HomePage.prototype.loadTags = function () {
@@ -343,13 +346,17 @@ var HomePage = (function () {
             alert("Erro occured");
         });
     };
+    HomePage.prototype.tagClicked = function (event) {
+        __WEBPACK_IMPORTED_MODULE_2_jquery__("ion-item[data-item='tag']").removeClass('active');
+        __WEBPACK_IMPORTED_MODULE_2_jquery__(event.currentTarget).addClass('active');
+    };
     HomePage.prototype.ngAfterViewInit = function () {
     };
     return HomePage;
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Add Expense\n\n    </h1>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expens\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item *ngFor="let tag of tagData" class="activity" color="positive" id="home-list-item1">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n    <!-- <ion-item class="activity" color="positive" id="home-list-item1">\n\n        Travel\n\n        <ion-icon name="car" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item class="activity" color="positive" id="home-list-item2">\n\n        Tiffin\n\n        <ion-icon name="cafe" item-right></ion-icon>\n\n    </ion-item>\n\n    <ion-item class="activity" color="positive" id="home-list-item3">\n\n        Medic\n\n        <ion-icon name="medkit" item-right></ion-icon>\n\n    </ion-item>\n\n    <ion-item class="activity" color="positive" id="home-list-item4">\n\n        Smoking\n\n        <ion-icon name="no-smoking" item-right></ion-icon>\n\n    </ion-item>\n\n    <ion-item class="activity" color="positive" id="home-list-item5">\n\n        Lunch / Dinner\n\n        <ion-icon name="restaurant" item-right></ion-icon>\n\n    </ion-item>\n\n    <ion-item class="activity" color="positive" id="home-list-item5">\n\n        Lunch / Dinner\n\n        <ion-icon name="restaurant" item-right></ion-icon>\n\n    </ion-item> -->\n\n\n\n\n\n\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" ng-readonly placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      0\n\n    </button>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      1\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      2\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      3\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      4\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      5\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      6\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      7\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      8\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      9\n\n    </button>\n\n\n\n    <ion-item id="home-textarea1">\n\n        <ion-label>\n\n            Enter description if you want\n\n        </ion-label>\n\n        <ion-textarea placeholder=""></ion-textarea>\n\n    </ion-item>\n\n    <button id="home-button2" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Add Expense\n\n    </h1>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expens\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" ng-readonly placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      0\n\n    </button>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      1\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      2\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      3\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      4\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      5\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      6\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      7\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      8\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      9\n\n    </button>\n\n\n\n    <ion-item id="home-textarea1">\n\n        <ion-label>\n\n            Enter description if you want\n\n        </ion-label>\n\n        <ion-textarea placeholder=""></ion-textarea>\n\n    </ion-item>\n\n    <button id="home-button2" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object])
 ], HomePage);

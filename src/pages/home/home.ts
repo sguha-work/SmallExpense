@@ -28,6 +28,11 @@ export class HomePage implements AfterViewInit {
     });
   }
 
+  public tagClicked(event) {
+    $("ion-item[data-item='tag']").removeClass('active');
+    $(event.currentTarget).addClass('active');
+  }
+
   ngAfterViewInit() {
     
   }

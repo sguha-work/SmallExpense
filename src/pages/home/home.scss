@@ -1,4 +1,9 @@
 page-home {
+    .active {
+        color: red;
+        font-weight: bold;
+        opacity: 0.5;
+    }
     .activity {
         width: 48%;
         float: left;
