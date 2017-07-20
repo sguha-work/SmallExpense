@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Injectable} from '@angular/core';
@@ -13,7 +12,9 @@ export class TagService {
    }
     public getTagData() :Promise<Tag[]> {
         var promise = this.http.get("data/tag.data.json").toPromise()
-            .then(response => response.json() as Tag[])
+            .then((response) => {
+                return response.json() as Tag[];
+            })
             .catch(this.errorHandler);
         return promise;    
     }

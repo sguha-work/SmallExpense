@@ -53,7 +53,9 @@ var TagService = (function () {
     }
     TagService.prototype.getTagData = function () {
         var promise = this.http.get("data/tag.data.json").toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) {
+            return response.json();
+        })
             .catch(this.errorHandler);
         return promise;
     };
@@ -64,9 +66,10 @@ var TagService = (function () {
 }());
 TagService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], TagService);
 
+var _a;
 //# sourceMappingURL=tag.service.js.map
 
 /***/ }),
@@ -374,9 +377,10 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Add Expense\n\n    </h1>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expens\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" ng-readonly placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      0\n\n    </button>\n\n    <button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      1\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      2\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      3\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      4\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      5\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      6\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      7\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      8\n\n    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>\n\n      9\n\n    </button>\n\n\n\n    <ion-item id="home-textarea1">\n\n        <ion-label>\n\n            Enter description if you want\n\n        </ion-label>\n\n        <ion-textarea placeholder=""></ion-textarea>\n\n    </ion-item>\n\n    <button id="home-button2" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */]) === "function" && _b || Object])
 ], HomePage);
 
+var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ })
