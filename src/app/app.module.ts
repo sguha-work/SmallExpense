@@ -11,6 +11,7 @@ import { NumberService } from './../services/number.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {HttpModule} from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
     NumberService

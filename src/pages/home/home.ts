@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-
+import { File } from '@ionic-native/file';
 import { TagService } from './../../services/tag.service';
 import { NumberService } from './../../services/number.service';
 
@@ -17,7 +17,7 @@ export class HomePage implements AfterViewInit {
   public tagData: any;
   public numberData: any;
   private model: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService) {
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: File) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -72,6 +72,34 @@ export class HomePage implements AfterViewInit {
     $("ion-item[data-item='tag']").removeClass('active');
     this.model.reason = "";
     this.model.description = "";
+  }
+
+  public submitInput() {
+    // $cordovaFile.writeFile( 'file.txt', "hello", {'append':false} ).then( function(result) {
+    //         // Success!
+    // }, function(err) {
+    //   // An error occured. Show a message to the user
+    // });
+    // $cordovaFile.readFile("fi;e.txt").then(function(result){
+    //   alert(result);
+    // });
+    alert("submitting");
+    this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{
+      alert("success directory");
+      this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt", "hello").then(() => {
+        alert("success file");
+        this.file.readAsText(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt").then((data) =>{
+          alert(data);
+        }, () => {
+          alert("failed to read");
+        });
+      }, ()=>{
+        alert("failed file");
+      })
+    }, ()=> {
+      alert("error directory");
+    });
+    
   }
 
   ngAfterViewInit() {
