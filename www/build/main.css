@@ -25199,6 +25199,14 @@ ion-navbar.toolbar {
   }
 }
 
+page-home h1 {
+  text-align: center;
+}
+
+page-home h4 {
+  text-align: center;
+}
+
 page-home .active {
   color: red;
   font-weight: bold;
@@ -25225,4 +25233,8 @@ page-home .homeInputStyle {
   margin-bottom: 2%;
   width: 98%;
   margin-left: 1%;
+}
+
+page-home .button-md-assertive {
+  background-color: #ef473a;
 }

@@ -40,8 +40,8 @@ export class HomePage implements AfterViewInit {
     this.tagService.getTagData().then((data)=>{
       this.tagData = data;
     }, ()=>{
-      alert("Erro occured");
-    });
+      alert("Error occured");
+    }); 
   }
 
   private checkAndPrepareDescription(): void {
@@ -65,6 +65,13 @@ export class HomePage implements AfterViewInit {
     }
     this.model.amount = (this.model.amount*10)+parseInt($(event.currentTarget).text());
     this.checkAndPrepareDescription();
+  }
+
+  public resetInputs(): void {
+    this.model.amount = "";
+    $("ion-item[data-item='tag']").removeClass('active');
+    this.model.reason = "";
+    this.model.description = "";
   }
 
   ngAfterViewInit() {

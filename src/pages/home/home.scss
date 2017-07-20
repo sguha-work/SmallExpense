@@ -1,4 +1,10 @@
 page-home {
+    h1 {
+        text-align: center;
+    }
+    h4 {
+        text-align: center;
+    }
     .active {
         color: red;
         font-weight: bold;
@@ -22,5 +28,8 @@ page-home {
         margin-bottom: 2%;
         width: 98%;
         margin-left: 1%;
+    }
+    .button-md-assertive {
+        background-color: #ef473a;
     }
 }

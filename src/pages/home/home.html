@@ -1,11 +1,14 @@
 <ion-content padding id="page2" style="background-color:#2E7A3C;">
     <h1 id="home-heading1" style="color:#000000;">
-        Add Expense
+        Small Expense Tracker
     </h1>
+    <h4 id="home-heading1" style="color:#000000;">
+        Add an expense
+    </h4>
     <div id="home-markdown1" class="show-list-numbers-and-dots">
         <p style="color:#000000;">
             <strong>
-        Tap to select type of expens
+        Tap to select type of expense
       </strong>
         </p>
     </div>
@@ -17,16 +20,25 @@
     </ion-item>
 
     <ion-item id="home-input1" class="homeInputStyle">
-        <ion-input type="text" [(ngModel)]="model.amount" ng-readonly placeholder="Enter amount"></ion-input>
+        <ion-input type="text" onclick="return false;" [(ngModel)]="model.amount" readonly="true" placeholder="Enter amount"></ion-input>
     </ion-item>
+    <div id="home-markdown1" class="show-list-numbers-and-dots">
+        <p style="color:#000000;">
+            <strong>
+        Tap number to enter amount
+      </strong>
+        </p>
+    </div>
     <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>
       {{number.label}}
     </button>
-
+    <button (click)="resetInputs()" ion-button color="assertive" block>
+      Tap me to reset
+    </button>
     <ion-item id="home-textarea1">
         <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>
     </ion-item>
-    <button id="home-button2" ion-button color="positive" block>
+    <button (click)="submitInput()" ion-button color="positive" block>
       Tap me to submit
     </button>
 
