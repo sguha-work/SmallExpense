@@ -12,11 +12,11 @@ import { TagService } from './../../services/tag.service';
 
 export class HomePage implements AfterViewInit {
 
-  private tagService: TagService;
+  //private tagService: TagService;
   public tagData: any;
   
-  constructor(public navCtrl: NavController) {
-    this.tagService = new TagService();
+  constructor(public navCtrl: NavController, private tagService: TagService) {
+   // this.tagService = new TagService();
     this.loadTags();
   }
 
