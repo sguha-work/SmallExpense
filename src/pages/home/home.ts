@@ -13,21 +13,22 @@ import { TagService } from './../../services/tag.service';
 export class HomePage implements AfterViewInit {
 
   private tagService: TagService;
-
+  public tagData: any;
   
   constructor(public navCtrl: NavController) {
     this.tagService = new TagService();
+    this.loadTags();
   }
 
   private loadTags() {
     this.tagService.getTagData().then((data)=>{
-      console.log(data);
+      this.tagData = data;
     }, ()=>{
       alert("Erro occured");
     });
   }
 
   ngAfterViewInit() {
-    this.loadTags();
+    
   }
 }

@@ -1,23 +1,22 @@
-[
-    {
+[{
         "name": "Travel",
-        "icon": "ion-ios-car"
+        "icon": "car"
     },
     {
         "name": "Tea/Coffee",
-        "icon": "ion-ios-cafe"
+        "icon": "cafe"
     },
     {
         "name": "Medic",
-        "icon": "ion-ios-medkit"
+        "icon": "medkit"
     },
     {
         "name": "lunch/Dinner",
-        "icon": "ion-ios-restaurant"
+        "icon": "restaurant"
     },
     {
         "name": "Smoking",
-        "icon": "ion-ios-no-smoking"
+        "icon": "no-smoking"
     },
     {
         "name": "Misc",
