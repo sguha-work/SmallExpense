@@ -17,36 +17,14 @@
     </ion-item>
 
     <ion-item id="home-input1" class="homeInputStyle">
-        <ion-input type="text" ng-readonly placeholder="Enter amount"></ion-input>
+        <ion-input type="text" [(ngModel)]="model.amount" ng-readonly placeholder="Enter amount"></ion-input>
     </ion-item>
-    <button id="home-button1" class="btn_number" ion-button color="positive" block>
-      0
-    </button>
-    <button id="home-button1" class="btn_number" ion-button color="positive" block>
-      1
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      2
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      3
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      4
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      5
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      6
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      7
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      8
-    </button><button id="home-button1" class="btn_number" ion-button color="positive" block>
-      9
+    <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>
+      {{number.label}}
     </button>
 
     <ion-item id="home-textarea1">
-        <ion-label>
-            Enter description if you want
-        </ion-label>
-        <ion-textarea placeholder=""></ion-textarea>
+        <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>
     </ion-item>
     <button id="home-button2" ion-button color="positive" block>
       Tap me to submit
