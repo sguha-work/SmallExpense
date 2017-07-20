@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import { File } from '@ionic-native/file';
+import { FileHandeler } from './../../services/filehandeler.service';
 import { TagService } from './../../services/tag.service';
 import { NumberService } from './../../services/number.service';
 
@@ -17,7 +17,7 @@ export class HomePage implements AfterViewInit {
   public tagData: any;
   public numberData: any;
   private model: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: File) {
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -50,6 +50,13 @@ export class HomePage implements AfterViewInit {
       this.model.description = "Spent Rs "+this.model.amount+" in " + this.model.reason + " on " + date;
       this.model.time = Date.now();
     }
+  }
+
+  private gateDate(): string {
+    let today = new Date();
+    let dateString: string;
+    dateString = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
+    return dateString;
   }
 
   public tagClicked(event): void {
@@ -91,6 +98,11 @@ export class HomePage implements AfterViewInit {
     // }, ()=> {
     //   alert("error directory");
     // });
+    this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), this.gateDate()).then(() => {
+      alert("Succesfully submitted data");
+    }, () => {
+      alert("Data submit failed");
+    });
     
   }
 

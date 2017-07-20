@@ -8,11 +8,13 @@ import { MonthPage } from '../pages/month/month';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
+import { FileHandeler } from './../services/filehandeler.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +42,8 @@ import {HttpModule} from '@angular/http';
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
-    NumberService
+    NumberService,
+    FileHandeler
   ]
 })
 export class AppModule {}

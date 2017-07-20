@@ -9,17 +9,22 @@ export class FileHandeler {
     }
     private checkAndCreateDirectory() {
         this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{},()=>{
-            alert("Directory building failed");
+            alert("Initial directory building failed");
         });
     }
     public writeFile(fileName: string, data: string, directoryName?: string): Promise<any> {
         let promise;
         if(typeof directoryName === "undefined") {
             promise = this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", fileName, data);
+            return promise;
         } else {
-            promise = this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker"+directoryName, fileName, data);
+            return this.file.createDir(this.file.dataDirectory, directoryName, false).then(()=>{
+                promise = this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker"+directoryName, fileName, data);
+                return promise;
+            }, ()=>{
+                alert("Directory building failed");
+            });
+            
         }
-        
-        return promise;
     }
 }
