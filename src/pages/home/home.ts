@@ -52,7 +52,7 @@ export class HomePage implements AfterViewInit {
     }
   }
 
-  private gateDate(): string {
+  private getDate(): string {
     let today = new Date();
     let dateString: string;
     dateString = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
@@ -98,7 +98,7 @@ export class HomePage implements AfterViewInit {
     // }, ()=> {
     //   alert("error directory");
     // });
-    this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), this.gateDate()).then(() => {
+    this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), "data", this.getDate()).then(() => {
       alert("Succesfully submitted data");
     }, () => {
       alert("Data submit failed");
