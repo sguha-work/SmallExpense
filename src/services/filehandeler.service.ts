@@ -52,7 +52,9 @@ export class FileHandeler {
                 return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, this.getCurrentDataFileName()).then((res) => {
                     //alert("file already exists, merging");
                     let dataNew = JSON.parse(res);
-                    dataNew[Date.now()] = JSON.parse(data);alert(data);alert(JSON.stringify(dataNew));
+                    dataNew[Date.now()] = JSON.parse(data);
+                    //alert(data);
+                    //alert(JSON.stringify(dataNew));
                     return this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
                         //alert("writing done "+fileName);
                         return true;
@@ -63,7 +65,8 @@ export class FileHandeler {
                 }).catch(() => {
                     //alert("file not exists, creating");
                     let dataNew = {};
-                    dataNew[Date.now()] = JSON.parse(data);alert(JSON.stringify(dataNew));
+                    dataNew[Date.now()] = JSON.parse(data);
+                    //alert(JSON.stringify(dataNew));
                     return this.file.writeFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
                         //alert("writing done "+fileName);
                         return true;

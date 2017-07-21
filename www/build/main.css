@@ -25238,3 +25238,10 @@ page-home .homeInputStyle {
 page-home .button-md-assertive {
   background-color: #ef473a;
 }
+
+page-today table,
+page-today th,
+page-today td {
+  border: 1px solid black;
+  text-align: center;
+}
