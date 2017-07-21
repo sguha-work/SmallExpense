@@ -126,8 +126,9 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -141,50 +142,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TodayPage = (function () {
-    function TodayPage(navCtrl, file) {
+    function TodayPage(navCtrl, file, common) {
         this.navCtrl = navCtrl;
         this.file = file;
+        this.common = common;
         this.model = {};
         this.model.date = this.file.getCurrentDataFileName();
     }
     TodayPage.prototype.ngAfterViewInit = function () {
         this.getTodaysData();
     };
-    TodayPage.prototype.convertTimeStampToTime = function (timeStamp) {
-        var date = new Date(parseInt(timeStamp));
-        // Hours part from the timestamp
-        var hours = date.getHours();
-        var hoursString;
-        if (hours > 12) {
-            hours = hours - 12;
-            hoursString = " PM";
-        }
-        else {
-            hoursString = " AM";
-        }
-        // Minutes part from the timestamp
-        var minutes = "0" + date.getMinutes();
-        // Will display time in 10:30:23 format
-        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + hoursString;
-        return formattedTime;
-    };
     TodayPage.prototype.getTodaysData = function () {
         var _this = this;
         this.model.dataArray = [];
         this.file.readFile(this.file.getCurrentDataFileName()).then(function (res) {
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("h4").hide();
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("table").show();
-            var data = JSON.parse(res);
-            var keys = Object.keys(data);
-            for (var index in keys) {
-                data[keys[index]].time = _this.convertTimeStampToTime(data[keys[index]].time);
-                _this.model.dataArray.push(data[keys[index]]);
-            }
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
+            _this.model.dataArray = _this.common.prepareArrayFromRawData(res);
         }).catch(function () {
             _this.model.dataArray = [];
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("h4").show();
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("table").hide();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
         });
     };
     return TodayPage;
@@ -193,7 +173,7 @@ TodayPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-today',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Today\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <h1>Here are the list of toda\'s expenses</h1>\n    <h4 style="display: none">No expenses found for today ({{model.date}})</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Time</th>\n            <th>Reason</th>\n            <th>Amount</th>\n            <th>Description</th>\n            <th>Action</th>\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:15%">{{data.time}}</td>\n            <td style="width:15%">{{data.reason}}</td>\n            <td style="width:15%">{{data.amount}}</td>\n            <td style="width:40%">{{data.description}}</td>\n            <td style="width:15%"></td>\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]])
 ], TodayPage);
 
 //# sourceMappingURL=today.js.map
@@ -371,6 +351,57 @@ SettingsPage = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Common; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var Common = (function () {
+    function Common() {
+    }
+    Common.prototype.convertTimeStampToTime = function (timeStamp) {
+        var date = new Date(parseInt(timeStamp));
+        var hours = date.getHours();
+        var hoursString;
+        if (hours > 12) {
+            hours = hours - 12;
+            hoursString = " PM";
+        }
+        else {
+            hoursString = " AM";
+        }
+        var minutes = "0" + date.getMinutes();
+        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + hoursString;
+        return formattedTime;
+    };
+    Common.prototype.prepareArrayFromRawData = function (rawData) {
+        var data = JSON.parse(rawData);
+        var keys = Object.keys(data);
+        var dataArray = [];
+        for (var index in keys) {
+            data[keys[index]].time = this.convertTimeStampToTime(data[keys[index]].time);
+            dataArray.push(data[keys[index]]);
+        }
+        return dataArray;
+    };
+    return Common;
+}());
+Common = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
+], Common);
+
+//# sourceMappingURL=common.service.js.map
+
+/***/ }),
+
+/***/ 202:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonthPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
@@ -402,13 +433,13 @@ MonthPage = __decorate([
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(222);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -416,7 +447,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -424,11 +455,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_today_today__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_month_month__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_controller_tabs_controller__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_month_month__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_controller_tabs_controller__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_tag_service__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_number_service__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_filehandeler_service__ = __webpack_require__(49);
@@ -437,12 +468,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_file__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_http__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_common_service__ = __webpack_require__(201);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -495,7 +528,8 @@ AppModule = __decorate([
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
             __WEBPACK_IMPORTED_MODULE_8__services_tag_service__["a" /* TagService */],
             __WEBPACK_IMPORTED_MODULE_9__services_number_service__["a" /* NumberService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_filehandeler_service__["a" /* FileHandeler */]
+            __WEBPACK_IMPORTED_MODULE_10__services_filehandeler_service__["a" /* FileHandeler */],
+            __WEBPACK_IMPORTED_MODULE_16__services_common_service__["a" /* Common */]
         ]
     })
 ], AppModule);
@@ -504,7 +538,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 262:
+/***/ 263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -575,7 +609,7 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 272:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -584,7 +618,7 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__today_today__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__month_month__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__month_month__ = __webpack_require__(202);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -746,5 +780,5 @@ FileHandeler = __decorate([
 
 /***/ })
 
-},[202]);
+},[203]);
 //# sourceMappingURL=main.js.map

@@ -16,6 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
 
+import { Common } from './../services/common.service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -46,7 +48,8 @@ import {HttpModule} from '@angular/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
     NumberService,
-    FileHandeler
+    FileHandeler,
+    Common
   ]
 })
 export class AppModule {}
