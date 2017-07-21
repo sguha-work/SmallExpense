@@ -17,7 +17,7 @@ export class SettingsPage {
       alert(" Folder deleted successfully");
       this.file.createDataDirectory();
     }, () => {
-      alert("failed")
+      alert("Folder deletion failed");
     });
   }
   

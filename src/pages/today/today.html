@@ -1,11 +1,30 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      Today
-    </ion-title>
-  </ion-navbar>
+        <ion-title>
+            Today
+        </ion-title>
+    </ion-navbar>
 </ion-header>
-<ion-content padding id="page3" style="background-color:#2E7A3C;"></ion-content>
+<ion-content padding id="page3" style="background-color:#2E7A3C;">
+    <h1>Here are the list of toda's expenses</h1>
+    <h4 style="display: none">No expenses found for today ({{model.date}})</h4>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let data of model.dataArray">
+            <td>{{data.time}}</td>
+            <td>{{data.reason}}</td>
+            <td>{{data.amount}}</td>
+            <td>{{data.description}}</td>
+            <td></td>
+        </tr>
+    </table>
+</ion-content>

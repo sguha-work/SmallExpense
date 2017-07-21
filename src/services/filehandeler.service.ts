@@ -12,21 +12,21 @@ export class FileHandeler {
     }
     private checkAndCreateDirectory() {
         this.file.checkDir(this.file.dataDirectory, rootFolderName).then((res) => {
-            alert("Directory exists");        
+            //alert("Directory exists");        
         }).catch(() => {
             this.file.createDir(this.file.dataDirectory, rootFolderName, false).then(()=>{
                 this.file.createDir(this.file.dataDirectory+"/"+rootFolderName, dataFolderName , false).then(()=>{
-                    alert("data directory created");
+                    //alert("data directory created");
                 }).catch(() => {
-                    alert("Initial data directory building failed");    
+                    //alert("Initial data directory building failed");    
                 });
                 this.file.createDir(this.file.dataDirectory+"/"+rootFolderName, configFolderName , false).then(()=>{
-                    alert(" config directory created");
+                    //alert(" config directory created");
                 }).catch(() => {
-                    alert("Initial config directory building failed");    
+                    //alert("Initial config directory building failed");    
                 });
             },()=>{
-                alert("Initial directory building failed");
+                //alert("Initial directory building failed");
             });
         });
         
@@ -50,25 +50,25 @@ export class FileHandeler {
     public writeFile(fileName: string, data: string, type: string, directoryName?: string): Promise<any> {
         if(type === "data") {
                 return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, this.getCurrentDataFileName()).then((res) => {
-                    alert("file already exists, merging");
+                    //alert("file already exists, merging");
                     let dataNew = JSON.parse(res);
                     dataNew[Date.now()] = JSON.parse(data);alert(data);alert(JSON.stringify(dataNew));
                     return this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
-                        alert("writing done "+fileName);
+                        //alert("writing done "+fileName);
                         return true;
                     }).catch(()=>{
-                        alert("unable to write file "+fileName);
+                        //alert("unable to write file "+fileName);
                         return false;
                     });        
                 }).catch(() => {
-                    alert("file not exists, creating");
+                    //alert("file not exists, creating");
                     let dataNew = {};
                     dataNew[Date.now()] = JSON.parse(data);alert(JSON.stringify(dataNew));
                     return this.file.writeFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
-                        alert("writing done "+fileName);
+                        //alert("writing done "+fileName);
                         return true;
                     }).catch(()=>{
-                        alert("unable to write file "+fileName);
+                        //alert("unable to write file "+fileName);
                         return false;
                     });
                 });
@@ -79,9 +79,9 @@ export class FileHandeler {
     }
     public createDataDirectory() {
         this.file.createDir(this.file.dataDirectory+"/"+rootFolderName, dataFolderName , false).then(()=>{
-            alert("data directory created");
+            //alert("data directory created");
         }).catch(() => {
-            alert("Initial data directory building failed");    
+            //alert("Initial data directory building failed");    
         });
     }
     public removeFolderContents(folderName?: string): Promise<any> {

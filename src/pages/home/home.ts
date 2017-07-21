@@ -77,33 +77,21 @@ export class HomePage implements AfterViewInit {
   }
 
   public submitInput() {
-    // alert("submitting");
-    // this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(()=>{
-    //   alert("success directory");
-    //   this.file.writeFile(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt", "hello").then(() => {
-    //     alert("success file");
-    //     this.file.readAsText(this.file.dataDirectory+"/SmallExpenseTracker", "hello.txt").then((data) =>{
-    //       alert(data);
-    //     }, () => {
-    //       alert("failed to read");
-    //     });
-    //   }, ()=>{
-    //     alert("failed file");
-    //   })
-    // }, ()=> {
-    //   alert("error directory");
-    // });
-    this.file.writeFile(this.file.getCurrentDataFileName(), JSON.stringify(this.model), "data").then((res) => {
-      if(res) {
-        alert("Succesfully submitted data");
-      } else {
-        alert("Data writing failed");
-      }
-      
-    }, () => {
-      alert("Data submit failed");
-    });
-    
+    if(this.model.description!=="") {
+      this.file.writeFile(this.file.getCurrentDataFileName(), JSON.stringify(this.model), "data").then((res) => {
+        if(res) {
+          alert("Succesfully submitted data");
+          this.resetInputs();
+        } else {
+          alert("Data submit failed");
+        }
+        
+      }, () => {
+        alert("Data submit failed");
+      });
+    } else {
+      alert("Nothing to submit");
+    }
   }
 
   ngAfterViewInit() {
