@@ -10,6 +10,7 @@ import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
 import { FileHandeler } from './../services/filehandeler.service';
 import { SettingsPage } from './../pages/settings/settings';
+import { Common } from './../services/common.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,7 +47,8 @@ import {HttpModule} from '@angular/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
     NumberService,
-    FileHandeler
+    FileHandeler,
+    Common
   ]
 })
 export class AppModule {}
