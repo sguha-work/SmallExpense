@@ -14,7 +14,7 @@ export class TodayPage {
   }
   getTodaysData() {
     this.file.readFile(this.file.getCurrentDataFileName()).then((res) => {
-      alert(JSON.stringify(res));
+      alert(res);
     }).catch(() => {
       alert("Unable to find any data");
     });

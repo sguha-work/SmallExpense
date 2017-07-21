@@ -156,7 +156,7 @@ var TodayPage = (function () {
     }
     TodayPage.prototype.getTodaysData = function () {
         this.file.readFile(this.file.getCurrentDataFileName()).then(function (res) {
-            alert(JSON.stringify(res));
+            alert(res);
         }).catch(function () {
             alert("Unable to find any data");
         });
@@ -320,9 +320,13 @@ var SettingsPage = (function () {
         this.file = file;
     }
     SettingsPage.prototype.removeAllLocalFilesFolders = function () {
+        var _this = this;
         this.file.removeFolderContents().then(function () {
             alert(" Folder deleted successfully");
-        }, function () { });
+            _this.file.createDataDirectory();
+        }, function () {
+            alert("failed");
+        });
     };
     return SettingsPage;
 }());
@@ -636,12 +640,12 @@ var FileHandeler = (function () {
             });
         });
     };
-    FileHandeler.prototype.checkIfDirectoryExists = function (directoryPath, directoryName) {
-        return this.file.checkDir(directoryPath, directoryName);
-    };
-    FileHandeler.prototype.writeData = function (filePath, fileName, data) {
-        return this.file.writeFile(filePath, fileName, data).then(function () { return true; }).catch(function () { return false; });
-    };
+    // private checkIfDirectoryExists(directoryPath: string, directoryName: string): Promise<any> {
+    //     return this.file.checkDir(directoryPath, directoryName);
+    // }
+    // private writeData(filePath: string, fileName: string, data: string): Promise<any> {
+    //     return this.file.writeFile(filePath, fileName, data).then(() => {return true;}).catch(() => {return false;});
+    // }
     FileHandeler.prototype.getCurrentDataFileName = function () {
         var today = new Date();
         var dateString;
@@ -649,21 +653,48 @@ var FileHandeler = (function () {
         return dateString;
     };
     FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName) {
+        var _this = this;
         if (type === "data") {
-            return this.writeData(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data).then(function () {
-                alert("writing done " + fileName);
-                return true;
+            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, this.getCurrentDataFileName()).then(function (res) {
+                alert("file already exists, merging");
+                var dataNew = JSON.parse(res);
+                dataNew[Date.now()] = JSON.parse(data);
+                alert(data);
+                alert(JSON.stringify(dataNew));
+                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    alert("writing done " + fileName);
+                    return true;
+                }).catch(function () {
+                    alert("unable to write file " + fileName);
+                    return false;
+                });
             }).catch(function () {
-                alert("unable to write file " + fileName);
-                return false;
+                alert("file not exists, creating");
+                var dataNew = {};
+                dataNew[Date.now()] = JSON.parse(data);
+                alert(JSON.stringify(dataNew));
+                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    alert("writing done " + fileName);
+                    return true;
+                }).catch(function () {
+                    alert("unable to write file " + fileName);
+                    return false;
+                });
             });
         }
     };
+    FileHandeler.prototype.createDataDirectory = function () {
+        this.file.createDir(this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
+            alert("data directory created");
+        }).catch(function () {
+            alert("Initial data directory building failed");
+        });
+    };
     FileHandeler.prototype.removeFolderContents = function (folderName) {
         if (typeof folderName === "undefined") {
-            folderName = rootFolderName;
+            folderName = dataFolderName;
         }
-        return this.file.removeRecursively(this.file.dataDirectory, folderName);
+        return this.file.removeRecursively(this.file.dataDirectory + "/" + rootFolderName, folderName);
     };
     FileHandeler.prototype.getFolderContents = function (folderName) {
         if (typeof folderName === "undefined") {

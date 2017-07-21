@@ -15,7 +15,10 @@ export class SettingsPage {
   removeAllLocalFilesFolders(): void{
     this.file.removeFolderContents().then(() => {
       alert(" Folder deleted successfully");
-    }, () => {});
+      this.file.createDataDirectory();
+    }, () => {
+      alert("failed")
+    });
   }
   
 }
