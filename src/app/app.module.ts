@@ -5,10 +5,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TodayPage } from '../pages/today/today';
 import { MonthPage } from '../pages/month/month';
-import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
 import { FileHandeler } from './../services/filehandeler.service';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +22,8 @@ import {HttpModule} from '@angular/http';
     HomePage,
     TodayPage,
     MonthPage,
-    TabsControllerPage
+    TabsControllerPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,

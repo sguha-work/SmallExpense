@@ -47,30 +47,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+var rootFolderName = "SmallExpenseTracker";
+var dataFolderName = "data";
+var configFolderName = "config";
 var FileHandeler = (function () {
     function FileHandeler(file) {
         this.file = file;
         this.checkAndCreateDirectory();
     }
     FileHandeler.prototype.checkAndCreateDirectory = function () {
-        this.file.createDir(this.file.dataDirectory, "SmallExpenseTracker", false).then(function () { }, function () {
-            alert("Initial directory building failed");
-        });
-    };
-    FileHandeler.prototype.writeFile = function (fileName, data, directoryName) {
         var _this = this;
-        var promise;
-        if (typeof directoryName === "undefined") {
-            promise = this.file.writeFile(this.file.dataDirectory + "/SmallExpenseTracker", fileName, data);
-            return promise;
-        }
-        else {
-            return this.file.createDir(this.file.dataDirectory, directoryName, false).then(function () {
-                promise = _this.file.writeFile(_this.file.dataDirectory + "/SmallExpenseTracker" + directoryName, fileName, data);
-                return promise;
-            }, function () {
-                alert("Directory building failed");
-            });
+        this.file.checkDir(this.file.dataDirectory, rootFolderName).then(function (res) {
+            if (!res) {
+                _this.file.createDir(_this.file.dataDirectory, rootFolderName, false).then(function () {
+                    _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false);
+                    _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, configFolderName, false);
+                }, function () {
+                    alert("Initial directory building failed");
+                });
+            }
+        }, function () { });
+    };
+    FileHandeler.prototype.checkIfDirectoryExists = function (directoryPath, directoryName) {
+        return this.file.checkDir(directoryPath, directoryName);
+    };
+    FileHandeler.prototype.writeData = function (filePath, fileName, data) {
+        return this.file.writeFile(filePath, fileName, data);
+    };
+    FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName) {
+        var _this = this;
+        if (type === "data") {
+            return this.checkIfDirectoryExists(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, directoryName).then(function (res) {
+                if (!res) {
+                    return _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, directoryName, false).then(function () {
+                        return _this.writeData(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data);
+                    }, function () { });
+                }
+                else {
+                    return _this.writeData(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data);
+                }
+            }, function () { });
         }
     };
     return FileHandeler;
@@ -278,16 +294,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_tag_service__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_number_service__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_filehandeler_service__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_http__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_settings_settings__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_file__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_http__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -315,11 +333,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_5__pages_today_today__["a" /* TodayPage */],
             __WEBPACK_IMPORTED_MODULE_6__pages_month_month__["a" /* MonthPage */],
-            __WEBPACK_IMPORTED_MODULE_7__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */]
+            __WEBPACK_IMPORTED_MODULE_7__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_settings_settings__["a" /* SettingsPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_14__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_15__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */])
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
@@ -331,9 +350,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_13__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_14__ionic_native_file__["a" /* File */],
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
             __WEBPACK_IMPORTED_MODULE_8__services_tag_service__["a" /* TagService */],
             __WEBPACK_IMPORTED_MODULE_9__services_number_service__["a" /* NumberService */],
@@ -384,14 +403,15 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Nav */]) === "function" && _a || Object)
 ], MyApp.prototype, "navCtrl", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/'<ion-menu [content]="mainContent">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Menu\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content id="side-menu21">\n    <button id="menu-button3" ion-button color="positive" block>\n      Tap me!\n    </button>\n    <button id="menu-button4" ion-button color="positive" block>\n      Tap me!\n    </button>\n    <button id="menu-button5" ion-button color="positive" block>\n      Tap me!\n    </button>\n    <button id="menu-button6" ion-button color="positive" block>\n      Tap me!\n    </button>\n    <button id="menu-button7" ion-button color="positive" block>\n      Tap me!\n    </button>\n  </ion-content>\n</ion-menu>\n\n<ion-nav #mainContent [root]="rootPage"></ion-nav>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/'<ion-menu [content]="mainContent">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title>\n                Menu\n            </ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content id="side-menu21">\n        <button id="menu-button3" ion-button color="positive" block icon-left>\n      <ion-icon name="settings"></ion-icon>\n      Settings\n    </button>\n        <button id="menu-button4" ion-button color="positive" block>\n      About\n    </button>\n        <button id="menu-button5" ion-button color="positive" block>\n      About Me\n    </button>\n\n    </ion-content>\n</ion-menu>\n\n<ion-nav #mainContent [root]="rootPage"></ion-nav>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
 ], MyApp);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -437,6 +457,41 @@ TabsControllerPage = __decorate([
 ], TabsControllerPage);
 
 //# sourceMappingURL=tabs-controller.js.map
+
+/***/ }),
+
+/***/ 272:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SettingsPage = (function () {
+    function SettingsPage(navCtrl) {
+        this.navCtrl = navCtrl;
+    }
+    return SettingsPage;
+}());
+SettingsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-settings',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\settings\settings.html"*/'<ion-content padding id="page5" style="background-color:#2E7A3C;">\n  <h1 id="settings-heading2" style="color:#000000;text-align:center;">\n    Settings\n  </h1>\n  <form id="settings-form2">\n    <button id="settings-button8" ion-button color="assertive" block>\n      Remove all local data\n    </button>\n  </form>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\settings\settings.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+], SettingsPage);
+
+//# sourceMappingURL=settings.js.map
 
 /***/ }),
 
@@ -505,7 +560,7 @@ var HomePage = (function () {
             this.model.time = Date.now();
         }
     };
-    HomePage.prototype.gateDate = function () {
+    HomePage.prototype.getDate = function () {
         var today = new Date();
         var dateString;
         dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
@@ -547,7 +602,7 @@ var HomePage = (function () {
         // }, ()=> {
         //   alert("error directory");
         // });
-        this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), this.gateDate()).then(function () {
+        this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), "data", this.getDate()).then(function () {
             alert("Succesfully submitted data");
         }, function () {
             alert("Data submit failed");
@@ -559,7 +614,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Small Expense Tracker\n\n    </h1>\n\n    <h4 id="home-heading1" style="color:#000000;">\n\n        Add an expense\n\n    </h4>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expense\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" onclick="return false;" [(ngModel)]="model.amount" readonly="true" placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap number to enter amount\n\n      </strong>\n\n        </p>\n\n    </div>\n\n    <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>\n\n      {{number.label}}\n\n    </button>\n\n    <button (click)="resetInputs()" ion-button color="assertive" block>\n\n      Tap me to reset\n\n    </button>\n\n    <ion-item id="home-textarea1">\n\n        <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>\n\n    </ion-item>\n\n    <button (click)="submitInput()" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar style="background-color: #2E7A3C">\n\n        <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content padding id="page2" style="background-color:#2E7A3C;">\n\n    <h1 id="home-heading1" style="color:#000000;">\n\n        Small Expense Tracker\n\n    </h1>\n\n    <h4 id="home-heading1" style="color:#000000;">\n\n        Add an expense\n\n    </h4>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap to select type of expense\n\n      </strong>\n\n        </p>\n\n    </div>\n\n\n\n\n\n    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">\n\n        {{tag.name}}\n\n        <ion-icon name="{{tag.icon}}" item-right></ion-icon>\n\n    </ion-item>\n\n\n\n    <ion-item id="home-input1" class="homeInputStyle">\n\n        <ion-input type="text" onclick="return false;" [(ngModel)]="model.amount" readonly="true" placeholder="Enter amount"></ion-input>\n\n    </ion-item>\n\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n        <p style="color:#000000;">\n\n            <strong>\n\n        Tap number to enter amount\n\n      </strong>\n\n        </p>\n\n    </div>\n\n    <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>\n\n      {{number.label}}\n\n    </button>\n\n    <button (click)="resetInputs()" ion-button color="assertive" block>\n\n      Tap me to reset\n\n    </button>\n\n    <ion-item id="home-textarea1">\n\n        <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>\n\n    </ion-item>\n\n    <button (click)="submitInput()" ion-button color="positive" block>\n\n      Tap me to submit\n\n    </button>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__services_tag_service__["a" /* TagService */], __WEBPACK_IMPORTED_MODULE_5__services_number_service__["a" /* NumberService */], __WEBPACK_IMPORTED_MODULE_3__services_filehandeler_service__["a" /* FileHandeler */]])
 ], HomePage);
