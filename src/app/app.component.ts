@@ -2,12 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
-
-import { HomePage } from '../pages/home/home';
-
-
+import * as $ from 'jquery';
+import { HomePage } from './../pages/home/home';
+import { SettingsPage } from './../pages/settings/settings';
+import { TodayPage } from './../pages/today/today';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,6 +21,21 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+  goToPage(pageName: string): void {
+    switch(pageName) {
+      case 'settings':
+        this.navCtrl.push(SettingsPage);
+      break;
+      case 'today':
+        this.navCtrl.push(TodayPage);
+      break;
+    }
+    this.closeMenu();
+    
+  }
+  closeMenu(): void {
+    $("#menu-button-close").trigger('click');
   }
   
 }

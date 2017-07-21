@@ -52,12 +52,7 @@ export class HomePage implements AfterViewInit {
     }
   }
 
-  private getDate(): string {
-    let today = new Date();
-    let dateString: string;
-    dateString = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
-    return dateString;
-  }
+  
 
   public tagClicked(event): void {
     $("ion-item[data-item='tag']").removeClass('active');
@@ -98,8 +93,13 @@ export class HomePage implements AfterViewInit {
     // }, ()=> {
     //   alert("error directory");
     // });
-    this.file.writeFile(Date.now().toString(), JSON.stringify(this.model), "data", this.getDate()).then(() => {
-      alert("Succesfully submitted data");
+    this.file.writeFile(this.file.getCurrentDataFileName(), JSON.stringify(this.model), "data").then((res) => {
+      if(res) {
+        alert("Succesfully submitted data");
+      } else {
+        alert("Data writing failed");
+      }
+      
     }, () => {
       alert("Data submit failed");
     });
