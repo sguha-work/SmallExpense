@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { FileHandeler } from './../../services/filehandeler.service';
 import { TagService } from './../../services/tag.service';
 import { NumberService } from './../../services/number.service';
+import { Expense } from './../../services/expense.service';
 
 @Component({
   selector: 'page-home',
@@ -17,7 +18,7 @@ export class HomePage implements AfterViewInit {
   public tagData: any;
   public numberData: any;
   private model: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler) {
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -76,12 +77,21 @@ export class HomePage implements AfterViewInit {
     this.model.description = "";
   }
 
+  private getTodaysTotalExpense() {
+    this.expense.getTodaysExpense().then((response) => {
+      this.model.todaysTotalExpense = response;
+    }, () => {
+      this.model.todaysTotalExpense = 0;
+    });
+  }
+
   public submitInput() {
     if(this.model.description!=="") {
       this.file.writeFile(this.file.getCurrentDataFileName(), JSON.stringify(this.model), "data").then((res) => {
         if(res) {
           alert("Succesfully submitted data");
           this.resetInputs();
+          this.getTodaysTotalExpense();
         } else {
           alert("Data submit failed");
         }
@@ -95,6 +105,6 @@ export class HomePage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+    this.getTodaysTotalExpense();
   }
 }

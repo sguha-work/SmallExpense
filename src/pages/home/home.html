@@ -3,25 +3,30 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
+        <h3 id="home-heading1" style="color:#000000;">
+            Small Expense Tracker
+        </h3>
     </ion-navbar>
 </ion-header>
 <ion-content padding id="page2" style="background-color:#2E7A3C;">
-    <h1 id="home-heading1" style="color:#000000;">
-        Small Expense Tracker
-    </h1>
-    <h4 id="home-heading1" style="color:#000000;">
-        Add an expense
-    </h4>
+
+
     <div id="home-markdown1" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">
+        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
             <strong>
         Tap to select type of expense
       </strong>
         </p>
     </div>
 
-
+    <div id="home-markdown1" class="show-list-numbers-and-dots">
+        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+            Today's expense &nbsp;
+            <strong style="color: red">
+        {{model.todaysTotalExpense}}
+      </strong> rupees so far.
+        </p>
+    </div>
     <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">
         {{tag.name}}
         <ion-icon name="{{tag.icon}}" item-right></ion-icon>
@@ -31,7 +36,7 @@
         <ion-input type="text" onclick="return false;" [(ngModel)]="model.amount" readonly="true" placeholder="Enter amount"></ion-input>
     </ion-item>
     <div id="home-markdown1" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">
+        <p style="color:#000000; margin:0;">
             <strong>
         Tap number to enter amount
       </strong>
@@ -40,14 +45,14 @@
     <button *ngFor="let number of numberData" (click)="numberClicked($event)" class="btn_number" ion-button color="positive" data-item="number" block>
       {{number.label}}
     </button>
-    <button (click)="resetInputs()" ion-button color="assertive" block>
-      Tap me to reset
-    </button>
+
     <ion-item id="home-textarea1">
         <ion-textarea [(ngModel)]="model.description" placeholder="Enter description if you want"></ion-textarea>
     </ion-item>
     <button (click)="submitInput()" ion-button color="positive" block>
       Tap me to submit
     </button>
-
+    <button (click)="resetInputs()" ion-button color="assertive" block>
+      Tap me to reset
+    </button>
 </ion-content>

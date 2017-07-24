@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 @Injectable()
-export class Common{
+export class Common {
     public convertTimeStampToTime(timeStamp: string): string {
         let date = new Date(parseInt(timeStamp));
         let hours = date.getHours();
@@ -25,5 +25,12 @@ export class Common{
         dataArray.push(data[keys[index]]);
       }
       return dataArray;
+    }
+
+    public getTodaysDate() {
+      let today = new Date();
+      let dateString: string;
+      dateString = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
+      return dateString;
     }
 }
