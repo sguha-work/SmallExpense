@@ -8,7 +8,21 @@ export class Expense {
 
     }
 
-    public getExpenseByDate(date: string): Promise<any> {
+    public getExpensesByDate(date: string): Promise<any> {
+        let expense: number;
+        let expenseFileName: string;
+        expenseFileName = date;
+        return new Promise((resolve, reject) => {
+            this.file.readFile(expenseFileName).then((res) => {
+                let dataArray = this.common.prepareArrayFromRawData(res);
+                resolve(dataArray);
+            }).catch(() => {
+                reject([]);
+            });
+        });
+    }
+
+    public getTotalExpenseByDate(date: string): Promise<any> {
         let expense: number;
         let expenseFileName: string;
         expenseFileName = date;
@@ -24,20 +38,16 @@ export class Expense {
                 reject(0);
             });
         });
-        // return this.file.readFile(expenseFileName).then((res) => {
-
-        // }).catch(() => {
-        //     expense
-        // });
-        
     }
     public getTodaysTotalExpense(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.getExpenseByDate(this.common.getTodaysDate()).then((response) => {
+            this.getTotalExpenseByDate(this.common.getTodaysDate()).then((response) => {
                 resolve(response);
             }, () => {
                 reject(0);
             });
         });
     }
+
+ 
 }

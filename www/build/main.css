@@ -25251,3 +25251,10 @@ page-today td {
   border: 1px solid black;
   text-align: center;
 }
+
+page-yesterday table,
+page-yesterday th,
+page-yesterday td {
+  border: 1px solid black;
+  text-align: center;
+}

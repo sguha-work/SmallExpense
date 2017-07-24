@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TodayPage } from '../pages/today/today';
+import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { MonthPage } from '../pages/month/month';
 import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
@@ -26,7 +27,8 @@ import { Expense } from './../services/expense.service';
     TodayPage,
     MonthPage,
     TabsControllerPage,
-    SettingsPage
+    SettingsPage,
+    YesterdayPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { Expense } from './../services/expense.service';
     TodayPage,
     MonthPage,
     SettingsPage,
-    TabsControllerPage
+    TabsControllerPage,
+    YesterdayPage
   ],
   providers: [
     StatusBar,

@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { HomePage } from './../pages/home/home';
 import { SettingsPage } from './../pages/settings/settings';
 import { TodayPage } from './../pages/today/today';
+import {YesterdayPage} from './../pages/yesterday/yesterday';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,6 +30,9 @@ export class MyApp {
       break;
       case 'today':
         this.navCtrl.push(TodayPage);
+      break;
+      case 'yesterday':
+        this.navCtrl.push(YesterdayPage);
       break;
     }
     this.closeMenu();

@@ -33,4 +33,12 @@ export class Common {
       dateString = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
       return dateString;
     }
+    public getYesterdaysDate() {
+      let today = new Date();
+      let yesterday = new Date(today);
+      let dateString: string;
+      yesterday.setDate(today.getDate() - 1);
+      dateString = (yesterday.getDate()).toString() + '-' + (yesterday.getMonth()+1).toString() + '-' + yesterday.getFullYear().toString();
+      return dateString;
+    }
 }
