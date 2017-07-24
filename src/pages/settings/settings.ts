@@ -23,5 +23,13 @@ export class SettingsPage {
     }
     
   }
+
+  setAlert(): void {
+    if(this.model.alertAmount){
+      alert(this.model.alertAmount);
+    } else {
+      alert("Provide amount and then press the button");
+    }
+  }
   
 }

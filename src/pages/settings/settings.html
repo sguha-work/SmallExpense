@@ -23,9 +23,9 @@
             </p>
         </div>
         <ion-item id="home-input1" class="homeInputStyle">
-            <ion-input type="text" name="alert" [(ngModel)]="model.alert" readonly="true" placeholder="Enter amount"></ion-input>
+            <ion-input type="text" name="alert" [(ngModel)]="model.alertAmount" placeholder="Enter amount"></ion-input>
         </ion-item>
-        <button id="settings-button8" (click)="removeAllLocalFilesFolders()" ion-button color="assertive" block>
+        <button id="settings-button8" (click)="setAlert()" ion-button color="assertive" block>
       Set alert
     </button>
     </form>
