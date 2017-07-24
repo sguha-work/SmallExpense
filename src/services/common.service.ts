@@ -41,4 +41,12 @@ export class Common {
       dateString = (yesterday.getDate()).toString() + '-' + (yesterday.getMonth()+1).toString() + '-' + yesterday.getFullYear().toString();
       return dateString;
     }
+    public prepareAlertFileData(amount: string): string {
+      let alertObject: any;
+      alertObject = {};
+      alertObject.alertAmount = amount;
+      let data: string;
+      data = JSON.stringify(alertObject);
+      return data;
+    }
 }

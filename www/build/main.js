@@ -7,12 +7,12 @@ webpackJsonp([0],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_filehandeler_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_tag_service__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_number_service__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_expense_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_expense_service__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -139,9 +139,9 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_expense_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_expense_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -333,6 +333,8 @@ NumberService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_alert_service__ = __webpack_require__(276);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -345,10 +347,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var SettingsPage = (function () {
-    function SettingsPage(navCtrl, file) {
+    function SettingsPage(navCtrl, file, common, alert) {
         this.navCtrl = navCtrl;
         this.file = file;
+        this.common = common;
+        this.alert = alert;
         this.model = {};
     }
     SettingsPage.prototype.removeAllLocalFilesFolders = function () {
@@ -364,7 +370,13 @@ var SettingsPage = (function () {
     };
     SettingsPage.prototype.setAlert = function () {
         if (this.model.alertAmount) {
-            alert(this.model.alertAmount);
+            var data_1;
+            data_1 = this.common.prepareAlertFileData(this.model.alertAmount);
+            this.alert.setAlertData(data_1).then(function () {
+                alert("Successfully set the alert of " + data_1 + " rupees");
+            }, function () {
+                alert("Setting alert failed");
+            });
         }
         else {
             alert("Provide amount and then press the button");
@@ -376,9 +388,10 @@ SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-settings',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\settings\settings.html"*/'<ion-header>\n    <ion-navbar style="background-color: #2E7A3C">\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page5" style="background-color:#2E7A3C;">\n    <h1 id="settings-heading2" style="color:#000000;text-align:center;">\n        Settings\n    </h1>\n    <form id="settings-form2">\n        <button id="settings-button8" (click)="removeAllLocalFilesFolders()" ion-button color="assertive" block>\n      Remove all local data\n    </button>\n    </form>\n    <form id="settings-form3">\n        <div id="home-markdown1" class="show-list-numbers-and-dots">\n            <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">\n                Set alert for daily expense limit\n\n            </p>\n        </div>\n        <ion-item id="home-input1" class="homeInputStyle">\n            <ion-input type="text" name="alert" [(ngModel)]="model.alertAmount" placeholder="Enter amount"></ion-input>\n        </ion-item>\n        <button id="settings-button8" (click)="setAlert()" ion-button color="assertive" block>\n      Set alert\n    </button>\n    </form>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\settings\settings.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_alert_service__["a" /* Alert */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_alert_service__["a" /* Alert */]) === "function" && _d || Object])
 ], SettingsPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=settings.js.map
 
 /***/ }),
@@ -390,9 +403,9 @@ SettingsPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YesterdayPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -525,14 +538,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_file__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__angular_http__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_common_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_expense_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_common_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_alert_service__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_expense_service__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -592,7 +607,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__services_number_service__["a" /* NumberService */],
             __WEBPACK_IMPORTED_MODULE_11__services_filehandeler_service__["a" /* FileHandeler */],
             __WEBPACK_IMPORTED_MODULE_17__services_common_service__["a" /* Common */],
-            __WEBPACK_IMPORTED_MODULE_18__services_expense_service__["a" /* Expense */]
+            __WEBPACK_IMPORTED_MODULE_19__services_expense_service__["a" /* Expense */],
+            __WEBPACK_IMPORTED_MODULE_18__services_alert_service__["a" /* Alert */]
         ]
     })
 ], AppModule);
@@ -610,7 +626,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_settings_settings__ = __webpack_require__(202);
@@ -721,6 +737,45 @@ TabsControllerPage = __decorate([
 
 /***/ }),
 
+/***/ 276:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Alert; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var alertFileName = "alert";
+var Alert = (function () {
+    function Alert(file) {
+        this.file = file;
+    }
+    Alert.prototype.setAlertData = function (data) {
+        return new Promise(function (resolve, reject) {
+        });
+    };
+    return Alert;
+}());
+Alert = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__["a" /* FileHandeler */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__["a" /* FileHandeler */]) === "function" && _a || Object])
+], Alert);
+
+var _a;
+//# sourceMappingURL=alert.service.js.map
+
+/***/ }),
+
 /***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -810,6 +865,34 @@ var FileHandeler = (function () {
                 });
             });
         }
+        if (type === "config") {
+            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName).then(function (res) {
+                //alert("file already exists, merging");
+                var dataNew = JSON.parse(res);
+                dataNew[Date.now()] = JSON.parse(data);
+                //alert(data);
+                //alert(JSON.stringify(dataNew));
+                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    //alert("writing done "+fileName);
+                    return true;
+                }).catch(function () {
+                    //alert("unable to write file "+fileName);
+                    return false;
+                });
+            }).catch(function () {
+                //alert("file not exists, creating");
+                var dataNew = {};
+                dataNew[Date.now()] = JSON.parse(data);
+                //alert(JSON.stringify(dataNew));
+                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    //alert("writing done "+fileName);
+                    return true;
+                }).catch(function () {
+                    //alert("unable to write file "+fileName);
+                    return false;
+                });
+            });
+        }
     };
     FileHandeler.prototype.createDataDirectory = function () {
         this.file.createDir(this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
@@ -841,20 +924,94 @@ var FileHandeler = (function () {
 }());
 FileHandeler = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_native_file__["a" /* File */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__ionic_native_file__["a" /* File */]) === "function" && _a || Object])
 ], FileHandeler);
 
+var _a;
 //# sourceMappingURL=filehandeler.service.js.map
 
 /***/ }),
 
-/***/ 51:
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Common; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var Common = (function () {
+    function Common() {
+    }
+    Common.prototype.convertTimeStampToTime = function (timeStamp) {
+        var date = new Date(parseInt(timeStamp));
+        var hours = date.getHours();
+        var hoursString;
+        if (hours > 12) {
+            hours = hours - 12;
+            hoursString = " PM";
+        }
+        else {
+            hoursString = " AM";
+        }
+        var minutes = "0" + date.getMinutes();
+        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + hoursString;
+        return formattedTime;
+    };
+    Common.prototype.prepareArrayFromRawData = function (rawData) {
+        var data = JSON.parse(rawData);
+        var keys = Object.keys(data);
+        var dataArray = [];
+        for (var index in keys) {
+            data[keys[index]].time = this.convertTimeStampToTime(data[keys[index]].time);
+            dataArray.push(data[keys[index]]);
+        }
+        return dataArray;
+    };
+    Common.prototype.getTodaysDate = function () {
+        var today = new Date();
+        var dateString;
+        dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
+        return dateString;
+    };
+    Common.prototype.getYesterdaysDate = function () {
+        var today = new Date();
+        var yesterday = new Date(today);
+        var dateString;
+        yesterday.setDate(today.getDate() - 1);
+        dateString = (yesterday.getDate()).toString() + '-' + (yesterday.getMonth() + 1).toString() + '-' + yesterday.getFullYear().toString();
+        return dateString;
+    };
+    Common.prototype.prepareAlertFileData = function (amount) {
+        var alertObject;
+        alertObject = {};
+        alertObject.alertAmount = amount;
+        var data;
+        data = JSON.stringify(alertObject);
+        return data;
+    };
+    return Common;
+}());
+Common = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
+], Common);
+
+//# sourceMappingURL=common.service.js.map
+
+/***/ }),
+
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Expense; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -922,71 +1079,6 @@ Expense = __decorate([
 ], Expense);
 
 //# sourceMappingURL=expense.service.js.map
-
-/***/ }),
-
-/***/ 52:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Common; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var Common = (function () {
-    function Common() {
-    }
-    Common.prototype.convertTimeStampToTime = function (timeStamp) {
-        var date = new Date(parseInt(timeStamp));
-        var hours = date.getHours();
-        var hoursString;
-        if (hours > 12) {
-            hours = hours - 12;
-            hoursString = " PM";
-        }
-        else {
-            hoursString = " AM";
-        }
-        var minutes = "0" + date.getMinutes();
-        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + hoursString;
-        return formattedTime;
-    };
-    Common.prototype.prepareArrayFromRawData = function (rawData) {
-        var data = JSON.parse(rawData);
-        var keys = Object.keys(data);
-        var dataArray = [];
-        for (var index in keys) {
-            data[keys[index]].time = this.convertTimeStampToTime(data[keys[index]].time);
-            dataArray.push(data[keys[index]]);
-        }
-        return dataArray;
-    };
-    Common.prototype.getTodaysDate = function () {
-        var today = new Date();
-        var dateString;
-        dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
-        return dateString;
-    };
-    Common.prototype.getYesterdaysDate = function () {
-        var today = new Date();
-        var yesterday = new Date(today);
-        var dateString;
-        yesterday.setDate(today.getDate() - 1);
-        dateString = (yesterday.getDate()).toString() + '-' + (yesterday.getMonth() + 1).toString() + '-' + yesterday.getFullYear().toString();
-        return dateString;
-    };
-    return Common;
-}());
-Common = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
-], Common);
-
-//# sourceMappingURL=common.service.js.map
 
 /***/ })
 

@@ -18,6 +18,7 @@ import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
 
 import { Common } from './../services/common.service';
+import { Alert } from './../services/alert.service';
 import { Expense } from './../services/expense.service';
 
 @NgModule({
@@ -54,7 +55,8 @@ import { Expense } from './../services/expense.service';
     NumberService,
     FileHandeler,
     Common,
-    Expense
+    Expense,
+    Alert
   ]
 })
 export class AppModule {}

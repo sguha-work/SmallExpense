@@ -79,6 +79,35 @@ export class FileHandeler {
                 
         }
         
+        if(type==="config") {
+             return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+configFolderName, fileName).then((res) => {
+                    //alert("file already exists, merging");
+                    let dataNew = JSON.parse(res);
+                    dataNew[Date.now()] = JSON.parse(data);
+                    //alert(data);
+                    //alert(JSON.stringify(dataNew));
+                    return this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+configFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
+                        //alert("writing done "+fileName);
+                        return true;
+                    }).catch(()=>{
+                        //alert("unable to write file "+fileName);
+                        return false;
+                    });        
+                }).catch(() => {
+                    //alert("file not exists, creating");
+                    let dataNew = {};
+                    dataNew[Date.now()] = JSON.parse(data);
+                    //alert(JSON.stringify(dataNew));
+                    return this.file.writeFile(this.file.dataDirectory+"/"+rootFolderName+"/"+configFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
+                        //alert("writing done "+fileName);
+                        return true;
+                    }).catch(()=>{
+                        //alert("unable to write file "+fileName);
+                        return false;
+                    });
+                });
+        }
+        
     }
     public createDataDirectory() {
         this.file.createDir(this.file.dataDirectory+"/"+rootFolderName, dataFolderName , false).then(()=>{
