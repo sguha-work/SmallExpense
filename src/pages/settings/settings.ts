@@ -7,18 +7,21 @@ import { FileHandeler } from './../../services/filehandeler.service';
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-
+  public model: any;
   constructor(public navCtrl: NavController, private file: FileHandeler) {
-    
+    this.model = {};
   }
 
   removeAllLocalFilesFolders(): void{
-    this.file.removeFolderContents().then(() => {
-      alert(" Folder deleted successfully");
-      this.file.createDataDirectory();
-    }, () => {
-      alert("Folder deletion failed");
-    });
+    if(confirm("")) {
+      this.file.removeFolderContents().then(() => {
+        alert(" Folder deleted successfully");
+        this.file.createDataDirectory();
+      }, () => {
+        alert("Folder deletion failed");
+      });
+    }
+    
   }
   
 }

@@ -9,7 +9,6 @@ export class Expense {
     }
 
     public getExpensesByDate(date: string): Promise<any> {
-        let expense: number;
         let expenseFileName: string;
         expenseFileName = date;
         return new Promise((resolve, reject) => {

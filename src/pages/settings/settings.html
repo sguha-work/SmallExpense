@@ -15,4 +15,18 @@
       Remove all local data
     </button>
     </form>
+    <form id="settings-form3">
+        <div id="home-markdown1" class="show-list-numbers-and-dots">
+            <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+                Set alert for daily expense limit
+
+            </p>
+        </div>
+        <ion-item id="home-input1" class="homeInputStyle">
+            <ion-input type="text" name="alert" [(ngModel)]="model.alert" readonly="true" placeholder="Enter amount"></ion-input>
+        </ion-item>
+        <button id="settings-button8" (click)="removeAllLocalFilesFolders()" ion-button color="assertive" block>
+      Set alert
+    </button>
+    </form>
 </ion-content>
