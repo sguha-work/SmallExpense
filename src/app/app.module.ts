@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AboutPage } from '../pages/about/about';
 import { TodayPage } from '../pages/today/today';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { MonthPage } from '../pages/month/month';
@@ -29,7 +30,8 @@ import { Expense } from './../services/expense.service';
     MonthPage,
     TabsControllerPage,
     SettingsPage,
-    YesterdayPage
+    YesterdayPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { Expense } from './../services/expense.service';
     MonthPage,
     SettingsPage,
     TabsControllerPage,
-    YesterdayPage
+    YesterdayPage,
+    AboutPage
   ],
   providers: [
     StatusBar,

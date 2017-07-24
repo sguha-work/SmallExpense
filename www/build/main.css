@@ -25205,6 +25205,13 @@ ion-navbar.toolbar {
   margin-right: 5%;
 }
 
+page-about table,
+page-about th,
+page-about td {
+  border: 1px solid black;
+  text-align: center;
+}
+
 page-home h1 {
   text-align: center;
 }
