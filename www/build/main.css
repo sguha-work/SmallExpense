@@ -25199,6 +25199,12 @@ ion-navbar.toolbar {
   }
 }
 
+.menuButton {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 page-home h1 {
   text-align: center;
 }
