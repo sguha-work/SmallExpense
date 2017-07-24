@@ -78,7 +78,7 @@ export class HomePage implements AfterViewInit {
   }
 
   private getTodaysTotalExpense() {
-    this.expense.getTodaysExpense().then((response) => {
+    this.expense.getTodaysTotalExpense().then((response) => {
       this.model.todaysTotalExpense = response;
     }, () => {
       this.model.todaysTotalExpense = 0;

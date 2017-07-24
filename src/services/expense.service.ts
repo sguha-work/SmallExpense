@@ -31,7 +31,7 @@ export class Expense {
         // });
         
     }
-    public getTodaysExpense(): Promise<any> {
+    public getTodaysTotalExpense(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.getExpenseByDate(this.common.getTodaysDate()).then((response) => {
                 resolve(response);

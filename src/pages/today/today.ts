@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AfterViewInit } from '@angular/core';
 import { FileHandeler } from './../../services/filehandeler.service';
 import { Common } from './../../services/common.service';
+import {Expense} from './../../services/expense.service';
 import * as $ from 'jquery';
 @Component({
   selector: 'page-today',
@@ -11,15 +12,16 @@ import * as $ from 'jquery';
 export class TodayPage  implements AfterViewInit {
 
   public model: any;
-  constructor(public navCtrl: NavController, private file: FileHandeler, private common: Common) {
+  constructor(public navCtrl: NavController, private file: FileHandeler, private common: Common, private expense: Expense) {
     this.model = {};
     this.model.date = this.file.getCurrentDataFileName();
     
   }
   ngAfterViewInit() {
+    this.getTotalExpenseOfToday();
     this.getTodaysData();
   }
-  getTodaysData() {
+  private getTodaysData() {
     this.model.dataArray = [];
     this.file.readFile(this.file.getCurrentDataFileName()).then((res) => {
       $("h4").hide();
@@ -29,6 +31,13 @@ export class TodayPage  implements AfterViewInit {
       this.model.dataArray = [];
       $("h4").show();
       $("table").hide();
+    });
+  }
+  private getTotalExpenseOfToday() {
+    this.expense.getTodaysTotalExpense().then((reponse) => {
+      this.model.todaysTotalExpense = reponse;
+    }, () => {
+      this.model.todaysTotalExpense = 0;
     });
   }
 }
