@@ -1,5 +1,5 @@
 {
-  "name": "SmallExpense",
-  "app_id": "",
-  "type": "ionic-angular"
+    "name": "SmallExpenseTracker",
+    "app_id": "",
+    "type": "ionic-angular"
 }
