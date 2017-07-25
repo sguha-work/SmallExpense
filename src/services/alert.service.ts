@@ -10,7 +10,21 @@ export class Alert {
 
     public setAlertData(data: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.file.writeFile(alertFileName, this.common.prepareAlertFileData(data), "config");
+            this.file.writeFile(alertFileName, this.common.prepareAlertFileData(data), "config").then(() => {
+                resolve();
+            }).catch(() => {
+                reject();
+            });
+        });
+    }
+
+    public checkIfAlertFileExists(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.readFile(alertFileName, "config").then((res) => {
+                resolve(res);
+            }).catch(() => {
+                reject();
+            });
         });
     }
 }

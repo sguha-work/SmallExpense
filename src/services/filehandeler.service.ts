@@ -128,7 +128,10 @@ export class FileHandeler {
         });
         
     }
-    public readFile(fileName: string): Promise<any> {
-        return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName);
+    public readFile(fileName: string, directoryName?: string): Promise<any> {
+        if(typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
     }
 }

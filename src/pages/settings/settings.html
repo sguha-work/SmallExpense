@@ -25,8 +25,11 @@
         <ion-item id="home-input1" class="homeInputStyle">
             <ion-input type="text" name="alert" [(ngModel)]="model.alertAmount" placeholder="Enter amount"></ion-input>
         </ion-item>
-        <button id="settings-button8" (click)="setAlert()" ion-button color="assertive" block>
+        <button id="settings-button8" (click)="setAlert()" ion-button color="positive" block>
       Set alert
+    </button>
+        <button (click)="clearAlert()" id="btn_clearAlert" ion-button color="assertive" style="display:none;background-color: #ef473a" block>
+      Tap me to clear alert
     </button>
     </form>
 </ion-content>

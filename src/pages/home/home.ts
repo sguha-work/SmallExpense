@@ -6,6 +6,7 @@ import { FileHandeler } from './../../services/filehandeler.service';
 import { TagService } from './../../services/tag.service';
 import { NumberService } from './../../services/number.service';
 import { Expense } from './../../services/expense.service';
+import { Alert } from './../../services/alert.service';
 
 @Component({
   selector: 'page-home',
@@ -18,7 +19,8 @@ export class HomePage implements AfterViewInit {
   public tagData: any;
   public numberData: any;
   private model: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense) {
+  private alert: any;
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense, private alertHandler: Alert) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -27,6 +29,7 @@ export class HomePage implements AfterViewInit {
       description: "",
       time: ""
     };
+    this.alert = {};
   }
 
   private loadNumbers() {
@@ -92,6 +95,7 @@ export class HomePage implements AfterViewInit {
           alert("Succesfully submitted data");
           this.resetInputs();
           this.getTodaysTotalExpense();
+          this.checkIfAlertExistsAndMakechanges();
         } else {
           alert("Data submit failed");
         }
@@ -104,7 +108,29 @@ export class HomePage implements AfterViewInit {
     }
   }
 
+  public checkIfAlertExistsAndMakechanges(): void {
+    this.alertHandler.checkIfAlertFileExists().then((response) => {
+      $("#div_alertDiv").show();
+      this.prepareAlertData(response);
+    }, () => {
+      $("#div_alertDiv").hide();
+    });
+  }
+
+  private prepareAlertData(textData: string): void {
+    let data = JSON.parse(textData);
+    this.alert.alertAmount = parseInt(data.alertAmount);
+    this.alert.safeAmount = parseInt(data.alertAmount) - parseInt(this.model.todaysTotalExpense);
+    if(this.alert.safeAmount<0) {
+      this.alert.extraSpent = this.alert.safeAmount*(-1);
+    } else {
+      this.alert.extraSpent = 0;
+    }
+    
+  }
+
   ngAfterViewInit() {
     this.getTodaysTotalExpense();
+    this.checkIfAlertExistsAndMakechanges();
   }
 }

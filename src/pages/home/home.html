@@ -21,6 +21,21 @@
       </strong> rupees so far.
         </p>
     </div>
+    <div id="div_alertDiv" class="show-list-numbers-and-dots">
+        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+            Daily expense limit is <strong style=" font-size: 20px;">{{alert.alertAmount}}</strong> rupees
+
+        </p>
+        <p *ngIf="!alert.extraSpent" style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+            You can still spent <strong style=" font-size: 20px;">{{alert.safeAmount}}</strong> rupees
+
+        </p>
+        <p *ngIf="alert.extraSpent" style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+            You spent <strong style="color: red; font-size: 20px;">{{alert.extraSpent}} </strong> rupees extra beyond limit
+
+        </p>
+
+    </div>
     <div id="home-markdown1" class="show-list-numbers-and-dots">
         <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
             <strong>
