@@ -30,6 +30,7 @@ export class HomePage implements AfterViewInit {
       time: ""
     };
     this.alert = {};
+    this.alert.safeAmount = 0;
   }
 
   private loadNumbers() {
@@ -122,8 +123,10 @@ export class HomePage implements AfterViewInit {
     this.alert.alertAmount = parseInt(data.alertAmount);
     this.alert.safeAmount = parseInt(data.alertAmount) - parseInt(this.model.todaysTotalExpense);
     if(this.alert.safeAmount<0) {
+      this.alert.showAlert = true;
       this.alert.extraSpent = this.alert.safeAmount*(-1);
     } else {
+      this.alert.showAlert = false;
       this.alert.extraSpent = 0;
     }
     

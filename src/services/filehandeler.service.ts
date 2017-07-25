@@ -32,14 +32,6 @@ export class FileHandeler {
         
     }
 
-    // private checkIfDirectoryExists(directoryPath: string, directoryName: string): Promise<any> {
-    //     return this.file.checkDir(directoryPath, directoryName);
-    // }
-
-    // private writeData(filePath: string, fileName: string, data: string): Promise<any> {
-    //     return this.file.writeFile(filePath, fileName, data).then(() => {return true;}).catch(() => {return false;});
-    // }
-
     public getCurrentDataFileName(): string {
         let today = new Date();
         let dateString: string;

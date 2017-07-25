@@ -26,11 +26,11 @@
             Daily expense limit is <strong style=" font-size: 20px;">{{alert.alertAmount}}</strong> rupees
 
 
-            <label *ngIf="!alert.extraSpent" style="color:#000000; margin: 0; padding: 0;">
+            <label *ngIf="!alert.showAlert" style="color:#000000; margin: 0; padding: 0;">
             You can still spent <strong style=" font-size: 20px;">{{alert.safeAmount}}</strong> rupees
 
             </label>
-            <label *ngIf="alert.extraSpent" style="color:#000000; margin: 0; padding: 0;">
+            <label *ngIf="alert.showAlert" style="color:#000000; margin: 0; padding: 0;">
                 You spent <strong style="color: red; font-size: 20px;">{{alert.extraSpent}} </strong> rupees extra beyond limit
 
             </label>
