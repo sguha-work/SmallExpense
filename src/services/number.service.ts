@@ -10,7 +10,7 @@ export class NumberService {
    constructor(public http: Http) {
    }
     public getNumberData() :Promise<Number[]> {
-        var promise = this.http.get("data/number.data.json").toPromise()
+        var promise = this.http.get("assets/data/number.data.json").toPromise()
             .then((response) => {
                 return response.json() as Number[];
             })
