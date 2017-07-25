@@ -27,4 +27,14 @@ export class Alert {
             });
         });
     }
+
+    public clearAlert(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.deleteFile(alertFileName, "config").then(() => {
+                resolve();
+            }).catch(() => {
+                reject();
+            });
+        });
+    }
 }

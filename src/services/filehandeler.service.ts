@@ -134,4 +134,10 @@ export class FileHandeler {
         }
         return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
     }
+    public deleteFile(fileName: string, directoryName?: string): Promise<any> {
+        if(typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return this.file.removeFile(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
+    }
 }

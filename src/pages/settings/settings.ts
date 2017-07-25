@@ -32,7 +32,7 @@ export class SettingsPage implements AfterViewInit {
       let data: string;
       data = this.model.alertAmount;
       this.alert.setAlertData(data).then(() => {
-        alert("Successfully set the alert of "+data+" rupees");
+        alert("Successfully set the alert of "+data+" rupees.  Close and reopen the app to get effect");
         this.checkIfAlertFileExistsAndMadeUICHanges();
       }, () => {
         alert("Setting alert failed");
@@ -59,7 +59,14 @@ export class SettingsPage implements AfterViewInit {
   }
 
   clearAlert() {
-
+    if(confirm("Do you really want to delete the alert?")) {
+      this.alert.clearAlert().then(() => {
+        alert("Alert removed. Close and reopen the app to get effect");
+        this.checkIfAlertFileExistsAndMadeUICHanges();
+      }, () => {
+        alert("Alert cannot be removed due to IO error");
+      });
+    }
   }
   
 }
