@@ -9,29 +9,27 @@
     <ion-content id="side-menu21">
         <button style="display:none" ion-button id="menu-button-close" (click)="closeMenu()" menuClose="left">Close Menu</button>
         <button class="menuButton" id="menu-button-today" (click)="goToPage('today')" ion-button color="positive" block icon-left>
-      <ion-icon name="clock"></ion-icon>
-      Today's Expenses
-    </button>
+         <ion-icon name="clock"></ion-icon>
+         Today's Expenses
+      </button>
         <button class="menuButton" id="menu-button-today" (click)="goToPage('yesterday')" ion-button color="positive" block icon-left>
-      <ion-icon name="clock"></ion-icon>
-      Yesterday's Expenses
-    </button>
+         <ion-icon name="clock"></ion-icon>
+         Yesterday's Expenses
+      </button>
         <button class="menuButton" id="menu-button-today" (click)="goToPage('history')" ion-button color="positive" block icon-left>
-      <ion-icon name="calender"></ion-icon>
-      History
-    </button>
+         <ion-icon name="calendar"></ion-icon>
+         History
+      </button>
         <button class="menuButton" id="menu-button-settings" (click)="goToPage('settings')" ion-button color="positive" block icon-left>
-      <ion-icon name="settings"></ion-icon>
-      Settings
-    </button>
+         <ion-icon name="settings"></ion-icon>
+         Settings
+      </button>
         <button class="menuButton" id="menu-button4" (click)="goToPage('about')" ion-button color="positive" block>
       About
-    </button>
+      </button>
         <button class="menuButton" id="menu-button5" (click)="goToPage('aboutme')" ion-button color="positive" block>
       About Me
-    </button>
-
+      </button>
     </ion-content>
 </ion-menu>
-
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

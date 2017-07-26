@@ -17,11 +17,11 @@
     <div id="div_data">
         <h1>Here are the list of expenses made on {{model.selectedDate}}</h1>
         <h4 style="display: none">No expenses found for {{model.selectedDate}}</h4>
-        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
-            Total expense on {{model.selectedDate}}
+        <p id="p_totalExpense" style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">
+            Total expense on {{model.selectedDate}} &nbsp;
             <strong style="color: red; font-size: 20px;">
-        {{model.data.totalExpense}}
-      </strong>
+         {{model.totalExpense}} &nbsp; rupees
+         </strong>
         </p>
         <table style="width:100%">
             <tr>
@@ -29,14 +29,12 @@
                 <th>Reason</th>
                 <th>Amount</th>
                 <th>Description</th>
-                <th>Action</th>
             </tr>
             <tr *ngFor="let data of model.dataArray">
-                <td style="width:15%">{{data.time}}</td>
-                <td style="width:15%">{{data.reason}}</td>
-                <td style="width:15%">{{data.amount}}</td>
-                <td style="width:40%">{{data.description}}</td>
-                <td style="width:15%"></td>
+                <td style="width:10%">{{data.time}}</td>
+                <td style="width:10%">{{data.reason}}</td>
+                <td style="width:10%">{{data.amount}}</td>
+                <td style="width:60%">{{data.description}}</td>
             </tr>
         </table>
     </div>
