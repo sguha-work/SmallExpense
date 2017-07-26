@@ -49,4 +49,11 @@ export class Common {
       data = JSON.stringify(alertObject);
       return data;
     }
+
+    public getSupprtedDateFromDateString(date: string): string {
+      let supportedDate: string;
+      let today = new Date(date);
+      supportedDate = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
+      return supportedDate;
+    }
 }
