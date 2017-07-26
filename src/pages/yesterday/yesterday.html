@@ -25,14 +25,12 @@
             <th>Reason</th>
             <th>Amount</th>
             <th>Description</th>
-            <th>Action</th>
         </tr>
         <tr *ngFor="let data of model.dataArray">
-            <td style="width:15%">{{data.time}}</td>
-            <td style="width:15%">{{data.reason}}</td>
-            <td style="width:15%">{{data.amount}}</td>
-            <td style="width:40%">{{data.description}}</td>
-            <td style="width:15%"></td>
+            <td style="width:10%">{{data.time}}</td>
+            <td style="width:10%">{{data.reason}}</td>
+            <td style="width:10%">{{data.amount}}</td>
+            <td style="width:60%">{{data.description}}</td>
         </tr>
     </table>
 </ion-content>
