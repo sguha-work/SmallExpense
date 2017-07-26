@@ -47,8 +47,10 @@ export class TodayPage  implements AfterViewInit {
   deleteEntry(event: any, keyId: string, time: string) {
     if(confirm("Are you sure to delete entry of "+time+"?")) {
       this.expense.deleteEntryFromToday(keyId).then(() => {
-        alert("Entry deleted. Close and start the app to get effect.");
         this.getTodaysData();
+        this.getTotalExpenseOfToday();
+        alert("Entry deleted. Close and start the app to get effect.");
+        
       }, () => {
         alert("Failed to delete entry");
       });

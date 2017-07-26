@@ -299,8 +299,9 @@ var TodayPage = (function () {
         var _this = this;
         if (confirm("Are you sure to delete entry of " + time + "?")) {
             this.expense.deleteEntryFromToday(keyId).then(function () {
-                alert("Entry deleted. Close and start the app to get effect.");
                 _this.getTodaysData();
+                _this.getTotalExpenseOfToday();
+                alert("Entry deleted. Close and start the app to get effect.");
             }, function () {
                 alert("Failed to delete entry");
             });
