@@ -8,11 +8,14 @@ export class Expense {
 
     }
 
-    public getExpensesByDate(date: string): Promise<any> {
+    public getExpensesByDate(date: string, requiredRaw?: boolean): Promise<any> {
         let expenseFileName: string;
         expenseFileName = date;
         return new Promise((resolve, reject) => {
             this.file.readFile(expenseFileName).then((res) => {
+                if(requiredRaw) {
+                    resolve(res);    
+                }
                 let dataArray = this.common.prepareArrayFromRawData(res);
                 resolve(dataArray);
             }).catch(() => {
@@ -38,6 +41,7 @@ export class Expense {
             });
         });
     }
+    
     public getTodaysTotalExpense(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.getTotalExpenseByDate(this.common.getTodaysDate()).then((response) => {
@@ -46,6 +50,42 @@ export class Expense {
                 reject(0);
             });
         });
+    }
+
+    public storeExpense(fileName: string, data: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.updateFile(fileName, data).then(() => {
+                resolve();
+            }, () => {
+                reject();
+            });
+        });
+    }
+
+    public deleteEntryFromToday(keyId: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.getExpensesByDate(this.common.getTodaysDate(), true).then((response) => {
+                let data = JSON.parse(response);
+                let keys = Object.keys(data);
+                let newData = {};
+                for(let index in keys) {
+                    if(keys[index].toString() !== keyId.toString()) {
+                        newData[keys[index]] = data[keys[index]];
+                    }                    
+                }
+                this.storeExpense(this.common.getTodaysDate(), JSON.stringify(newData)).then(() => {
+                    // data file updated
+                    resolve();
+                }, () => {
+                    // unable to update data file
+                    reject();
+                });
+            }, () => {
+                // unable to get data
+                reject();
+            });
+        });
+        
     }
 
  

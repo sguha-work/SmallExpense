@@ -32,7 +32,7 @@
             <td style="width:15%">{{data.reason}}</td>
             <td style="width:15%">{{data.amount}}</td>
             <td style="width:40%">{{data.description}}</td>
-            <td style="width:15%"><button (click)="deleteEntry($event, data.rawTime)" class="btn_action" ion-button color="positive" block>
+            <td style="width:15%"><button (click)="deleteEntry($event, data.rawTime, data.time)" class="btn_action" ion-button color="positive" block>
       X
     </button></td>
         </tr>

@@ -40,7 +40,14 @@ export class TodayPage  implements AfterViewInit {
       this.model.todaysTotalExpense = 0;
     });
   }
-  deleteEntry(event: any, keyId: string) {
-    alert(keyId);
+  deleteEntry(event: any, keyId: string, time: string) {
+    if(confirm("Are you sure to delete entry of "+time+"?")) {
+      this.expense.deleteEntryFromToday(keyId).then(() => {
+        alert("Entry deleted");
+        this.getTodaysData();
+      }, () => {
+        alert("Failed to delete entry");
+      });
+    }
   }
 }

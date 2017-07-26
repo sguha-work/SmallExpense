@@ -9,11 +9,11 @@ import { TodayPage } from './../pages/today/today';
 import {YesterdayPage} from './../pages/yesterday/yesterday';
 import {AboutPage} from './../pages/about/about';
 import {HistoryPage} from './../pages/history/history';
-
+import { AfterViewInit } from '@angular/core';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements AfterViewInit {
   @ViewChild(Nav) navCtrl: Nav;
   rootPage:any = HomePage;
   public nav: Nav;
@@ -23,6 +23,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+    });
+  }
+  ngAfterViewInit() {
+    $(".back-button-icon").click(()=>{
+      alert("hello");
     });
   }
   goToPage(pageName: string): void {

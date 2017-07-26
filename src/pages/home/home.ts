@@ -129,7 +129,9 @@ export class HomePage implements AfterViewInit {
       this.alert.showAlert = false;
       this.alert.extraSpent = 0;
     }
-    
+    if(isNaN(this.alert.safeAmount)) {
+      this.alert.safeAmount = 0;
+    }
   }
 
   ngAfterViewInit() {

@@ -142,6 +142,9 @@ var HomePage = (function () {
             this.alert.showAlert = false;
             this.alert.extraSpent = 0;
         }
+        if (isNaN(this.alert.safeAmount)) {
+            this.alert.safeAmount = 0;
+        }
     };
     HomePage.prototype.ngAfterViewInit = function () {
         this.getTodaysTotalExpense();
@@ -288,14 +291,22 @@ var TodayPage = (function () {
             _this.model.todaysTotalExpense = 0;
         });
     };
-    TodayPage.prototype.deleteEntry = function (event, keyId) {
-        alert(keyId);
+    TodayPage.prototype.deleteEntry = function (event, keyId, time) {
+        var _this = this;
+        if (confirm("Are you sure to delete entry of " + time + "?")) {
+            this.expense.deleteEntryFromToday(keyId).then(function () {
+                alert("Entry deleted");
+                _this.getTodaysData();
+            }, function () {
+                alert("Failed to delete entry");
+            });
+        }
     };
     return TodayPage;
 }());
 TodayPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-today',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Today ({{model.date}})\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">\n            Today\'s expense &nbsp;\n            <strong style="color: red; font-size: 20px;">\n        {{model.todaysTotalExpense}}\n      </strong> rupees so far.\n        </p>\n    </div>\n    <h1>Here are the list of today\'s expenses</h1>\n    <h4 style="display: none">No expenses found for today</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Time</th>\n            <th>Reason</th>\n            <th>Amount</th>\n            <th>Description</th>\n            <th>Delete</th>\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:15%">{{data.time}}</td>\n            <td style="width:15%">{{data.reason}}</td>\n            <td style="width:15%">{{data.amount}}</td>\n            <td style="width:40%">{{data.description}}</td>\n            <td style="width:15%"><button (click)="deleteEntry($event, data.rawTime)" class="btn_action" ion-button color="positive" block>\n      X\n    </button></td>\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/
+        selector: 'page-today',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Today ({{model.date}})\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n        <p style="color:#000000; margin: 0; margin-bottom: 3px; padding: 0;">\n            Today\'s expense &nbsp;\n            <strong style="color: red; font-size: 20px;">\n        {{model.todaysTotalExpense}}\n      </strong> rupees so far.\n        </p>\n    </div>\n    <h1>Here are the list of today\'s expenses</h1>\n    <h4 style="display: none">No expenses found for today</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Time</th>\n            <th>Reason</th>\n            <th>Amount</th>\n            <th>Description</th>\n            <th>Delete</th>\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:15%">{{data.time}}</td>\n            <td style="width:15%">{{data.reason}}</td>\n            <td style="width:15%">{{data.amount}}</td>\n            <td style="width:40%">{{data.description}}</td>\n            <td style="width:15%"><button (click)="deleteEntry($event, data.rawTime, data.time)" class="btn_action" ion-button color="positive" block>\n      X\n    </button></td>\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\today\today.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__["a" /* FileHandeler */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */], __WEBPACK_IMPORTED_MODULE_4__services_expense_service__["a" /* Expense */]])
 ], TodayPage);
@@ -933,6 +944,11 @@ var MyApp = (function () {
             splashScreen.hide();
         });
     }
+    MyApp.prototype.ngAfterViewInit = function () {
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".back-button-icon").click(function () {
+            alert("hello");
+        });
+    };
     MyApp.prototype.goToPage = function (pageName) {
         switch (pageName) {
             case 'settings':
@@ -1149,6 +1165,24 @@ var FileHandeler = (function () {
         dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
         return dateString;
     };
+    FileHandeler.prototype.updateFile = function (fileName, data, type) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (typeof type === "undefined") {
+                type = "data";
+            }
+            if (type === "data") {
+                _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data).then(function () {
+                    resolve();
+                }).catch(function () {
+                    reject();
+                });
+            }
+            else {
+                reject();
+            }
+        });
+    };
     FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName) {
         var _this = this;
         if (type === "data") {
@@ -1274,12 +1308,15 @@ var Expense = (function () {
         this.file = file;
         this.common = common;
     }
-    Expense.prototype.getExpensesByDate = function (date) {
+    Expense.prototype.getExpensesByDate = function (date, requiredRaw) {
         var _this = this;
         var expenseFileName;
         expenseFileName = date;
         return new Promise(function (resolve, reject) {
             _this.file.readFile(expenseFileName).then(function (res) {
+                if (requiredRaw) {
+                    resolve(res);
+                }
                 var dataArray = _this.common.prepareArrayFromRawData(res);
                 resolve(dataArray);
             }).catch(function () {
@@ -1312,6 +1349,41 @@ var Expense = (function () {
                 resolve(response);
             }, function () {
                 reject(0);
+            });
+        });
+    };
+    Expense.prototype.storeExpense = function (fileName, data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.file.updateFile(fileName, data).then(function () {
+                resolve();
+            }, function () {
+                reject();
+            });
+        });
+    };
+    Expense.prototype.deleteEntryFromToday = function (keyId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.getExpensesByDate(_this.common.getTodaysDate(), true).then(function (response) {
+                var data = JSON.parse(response);
+                var keys = Object.keys(data);
+                var newData = {};
+                for (var index in keys) {
+                    if (keys[index].toString() !== keyId.toString()) {
+                        newData[keys[index]] = data[keys[index]];
+                    }
+                }
+                _this.storeExpense(_this.common.getTodaysDate(), JSON.stringify(newData)).then(function () {
+                    // data file updated
+                    resolve();
+                }, function () {
+                    // unable to update data file
+                    reject();
+                });
+            }, function () {
+                // unable to get data
+                reject();
             });
         });
     };

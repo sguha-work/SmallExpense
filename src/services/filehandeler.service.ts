@@ -39,6 +39,23 @@ export class FileHandeler {
         return dateString;
     }
 
+    public updateFile(fileName: string, data: string, type?: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            if(typeof type === "undefined") {
+                type = "data";
+            }
+            if(type === "data") {
+                this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, data).then(() => {
+                    resolve();
+                }).catch(() => {
+                    reject();
+                });
+            } else {
+                reject();
+            }
+        });
+    }
+
     public writeFile(fileName: string, data: string, type: string, directoryName?: string): Promise<any> {
         if(type === "data") {
                 return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, this.getCurrentDataFileName()).then((res) => {
