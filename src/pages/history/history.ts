@@ -59,7 +59,6 @@ export class HistoryPage  implements AfterViewInit {
   }
   public dateSelected(date: any) {
     let supportedDate = this.common.getSupprtedDateFromDateString(date);
-    alert(supportedDate);
     this.model.selectedDate = supportedDate;
     this.getDataByDate(supportedDate);
   }
