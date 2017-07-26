@@ -28,8 +28,8 @@ export class TodayPage  implements AfterViewInit {
       $("table").show();
       this.model.dataArray = this.common.prepareArrayFromRawData(res);
       if(this.model.dataArray.length === 0) {
-        $("h4").hide();
-        $("table").show();
+        $("h4").show();
+        $("table").hide();
       }
     }).catch(() => {
       this.model.dataArray = [];
