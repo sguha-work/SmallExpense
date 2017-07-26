@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+         <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            History
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="page3" style="background-color:#2E7A3C;">
+    <div id="home-markdown1" class="show-list-numbers-and-dots">
+        <button class="menuButton" id="menu-button4" (click)="displayDatePicker()" ion-button color="positive" block>
+      Tap to select date and then press OK
+      </button>
+    </div>
+    <h1>Here are the list of today's expenses</h1>
+    <h4 style="display: none">No expenses found for today</h4>
+    <table style="width:100%">
+        <tr>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let data of model.dataArray">
+            <td style="width:15%">{{data.time}}</td>
+            <td style="width:15%">{{data.reason}}</td>
+            <td style="width:15%">{{data.amount}}</td>
+            <td style="width:40%">{{data.description}}</td>
+            <td style="width:15%"></td>
+        </tr>
+    </table>
+</ion-content>

@@ -25212,6 +25212,13 @@ page-about td {
   text-align: center;
 }
 
+page-history table,
+page-history th,
+page-history td {
+  border: 1px solid black;
+  text-align: center;
+}
+
 page-home h1 {
   text-align: center;
 }

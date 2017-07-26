@@ -12,11 +12,13 @@ import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
 import { FileHandeler } from './../services/filehandeler.service';
 import { SettingsPage } from './../pages/settings/settings';
+import { HistoryPage } from './../pages/history/history';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { Common } from './../services/common.service';
 import { Alert } from './../services/alert.service';
@@ -31,7 +33,8 @@ import { Expense } from './../services/expense.service';
     TabsControllerPage,
     SettingsPage,
     YesterdayPage,
-    AboutPage
+    AboutPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { Expense } from './../services/expense.service';
     SettingsPage,
     TabsControllerPage,
     YesterdayPage,
-    AboutPage
+    AboutPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
@@ -59,7 +63,8 @@ import { Expense } from './../services/expense.service';
     FileHandeler,
     Common,
     Expense,
-    Alert
+    Alert,
+    DatePicker
   ]
 })
 export class AppModule {}

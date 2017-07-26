@@ -8,6 +8,7 @@ import { SettingsPage } from './../pages/settings/settings';
 import { TodayPage } from './../pages/today/today';
 import {YesterdayPage} from './../pages/yesterday/yesterday';
 import {AboutPage} from './../pages/about/about';
+import {HistoryPage} from './../pages/history/history';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +38,9 @@ export class MyApp {
       break;
       case 'about':
         this.navCtrl.push(AboutPage);
+      break;
+      case 'history':
+        this.navCtrl.push(HistoryPage);
       break;
     }
     this.closeMenu();
