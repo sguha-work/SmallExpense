@@ -25266,6 +25266,15 @@ page-today td {
   text-align: center;
 }
 
+page-today .btn_action {
+  width: 18%;
+  margin: 2%;
+  float: left;
+  clear: none;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
 page-yesterday table,
 page-yesterday th,
 page-yesterday td {

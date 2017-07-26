@@ -21,6 +21,7 @@ export class Common {
       let keys = Object.keys(data);
       let dataArray = [];
       for(let index in keys) {
+        data[keys[index]].rawTime = data[keys[index]].time;
         data[keys[index]].time = this.convertTimeStampToTime(data[keys[index]].time);
         dataArray.push(data[keys[index]]);
       }

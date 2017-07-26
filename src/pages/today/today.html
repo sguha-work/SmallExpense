@@ -25,14 +25,16 @@
             <th>Reason</th>
             <th>Amount</th>
             <th>Description</th>
-            <th>Action</th>
+            <th>Delete</th>
         </tr>
         <tr *ngFor="let data of model.dataArray">
             <td style="width:15%">{{data.time}}</td>
             <td style="width:15%">{{data.reason}}</td>
             <td style="width:15%">{{data.amount}}</td>
             <td style="width:40%">{{data.description}}</td>
-            <td style="width:15%"></td>
+            <td style="width:15%"><button (click)="deleteEntry($event, data.rawTime)" class="btn_action" ion-button color="positive" block>
+      X
+    </button></td>
         </tr>
     </table>
 </ion-content>

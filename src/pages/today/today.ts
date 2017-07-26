@@ -40,4 +40,7 @@ export class TodayPage  implements AfterViewInit {
       this.model.todaysTotalExpense = 0;
     });
   }
+  deleteEntry(event: any, keyId: string) {
+    alert(keyId);
+  }
 }
