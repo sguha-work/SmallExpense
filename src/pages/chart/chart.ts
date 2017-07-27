@@ -30,7 +30,7 @@ export class ChartPage {
                 labels: labels,
                 datasets: [{
                     label: 'Expense',
-                    backgroundColor: "green",
+                    backgroundColor: "yellow",
                     data: data
                 }]
             },
