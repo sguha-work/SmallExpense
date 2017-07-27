@@ -807,7 +807,7 @@ var ChartPage = (function () {
                         labels: labels,
                         datasets: [{
                                 label: 'Expense',
-                                backgroundColor: "yellow",
+                                backgroundColor: "gray",
                                 data: data
                             }]
                     },
