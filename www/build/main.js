@@ -490,7 +490,7 @@ var SettingsPage = (function () {
     }
     SettingsPage.prototype.removeAllLocalFilesFolders = function () {
         var _this = this;
-        if (confirm("")) {
+        if (confirm("Do you really want to remove all data?")) {
             this.file.removeFolderContents().then(function () {
                 alert(" Folder deleted successfully");
                 _this.file.createDataDirectory();
@@ -788,40 +788,45 @@ var ChartPage = (function () {
     ChartPage.prototype.displayWeeklyChart = function () {
         var _this = this;
         this.expense.getTotalExpenseOfLast7DaysDatewise().then(function (response) {
-            var labels = [];
-            var data = [];
-            for (var index in response) {
-                labels.push(response[index].date);
-                data.push(parseInt(response[index].expense));
-            }
-            _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](__WEBPACK_IMPORTED_MODULE_4_jquery__("canvas")[0], {
-                type: 'bar',
-                scaleFontColor: 'black',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                            label: 'Expense',
-                            backgroundColor: "green",
-                            data: data
-                        }]
-                },
-                options: {
-                    scaleFontColor: 'black',
-                    responsive: true,
-                    scales: {
-                        xAxes: [{
-                                ticks: {
-                                    fontColor: "black",
-                                },
-                            }],
-                        yAxes: [{
-                                ticks: {
-                                    fontColor: "black",
-                                },
-                            }],
-                    }
+            if (response.length !== 0) {
+                var labels = [];
+                var data = [];
+                for (var index in response) {
+                    labels.push(response[index].date);
+                    data.push(parseInt(response[index].expense));
                 }
-            });
+                _this.barChart = new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"](__WEBPACK_IMPORTED_MODULE_4_jquery__("canvas")[0], {
+                    type: 'bar',
+                    scaleFontColor: 'black',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                                label: 'Expense',
+                                backgroundColor: "green",
+                                data: data
+                            }]
+                    },
+                    options: {
+                        scaleFontColor: 'black',
+                        responsive: true,
+                        scales: {
+                            xAxes: [{
+                                    ticks: {
+                                        fontColor: "black",
+                                    },
+                                }],
+                            yAxes: [{
+                                    ticks: {
+                                        fontColor: "black",
+                                    },
+                                }],
+                        }
+                    }
+                });
+            }
+            else {
+                alert("No data to display chart");
+            }
         }, function () {
             alert("get data error");
         });
@@ -1084,10 +1089,18 @@ var FileHandeler = (function () {
         });
     };
     FileHandeler.prototype.removeFolderContents = function (folderName) {
+        var _this = this;
         if (typeof folderName === "undefined") {
             folderName = dataFolderName;
         }
-        return this.file.removeRecursively(this.file.dataDirectory + "/" + rootFolderName, folderName);
+        return new Promise(function (resolve, reject) {
+            _this.file.removeRecursively(_this.file.dataDirectory + "/" + rootFolderName, folderName).then(function () {
+                _this.event.publish('file:data:updated');
+                resolve();
+            }, function () {
+                reject();
+            });
+        });
     };
     FileHandeler.prototype.getFolderContents = function (folderName) {
         if (typeof folderName === "undefined") {

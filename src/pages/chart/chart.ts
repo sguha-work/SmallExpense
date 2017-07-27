@@ -16,6 +16,7 @@ export class ChartPage {
 
   displayWeeklyChart() {
     this.expense.getTotalExpenseOfLast7DaysDatewise().then((response) => {
+      if(response.length !== 0) {
         let labels = [];
         let data = [];
         for(let index in response) {
@@ -50,6 +51,9 @@ export class ChartPage {
                 }
               }
         });
+      } else {
+        alert("No data to display chart");  
+      }
     }, () => {
       alert("get data error");
     });

@@ -16,7 +16,7 @@ export class SettingsPage implements AfterViewInit {
   }
 
   removeAllLocalFilesFolders(): void{
-    if(confirm("")) {
+    if(confirm("Do you really want to remove all data?")) {
       this.file.removeFolderContents().then(() => {
         alert(" Folder deleted successfully");
         this.file.createDataDirectory();

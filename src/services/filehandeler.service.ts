@@ -129,7 +129,14 @@ export class FileHandeler {
         if(typeof folderName === "undefined") {
             folderName = dataFolderName;
         }
-        return this.file.removeRecursively(this.file.dataDirectory+"/"+rootFolderName, folderName);
+        return new Promise((resolve, reject) => {
+            this.file.removeRecursively(this.file.dataDirectory+"/"+rootFolderName, folderName).then(() => {
+                this.event.publish('file:data:updated');
+                resolve();
+            }, () => {
+                reject();
+            });
+        });
     }
 
     public getFolderContents(folderName?: string): Promise<any>{
