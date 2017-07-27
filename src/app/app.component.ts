@@ -9,6 +9,7 @@ import { TodayPage } from './../pages/today/today';
 import {YesterdayPage} from './../pages/yesterday/yesterday';
 import {AboutPage} from './../pages/about/about';
 import {HistoryPage} from './../pages/history/history';
+import {ChartPage} from './../pages/chart/chart';
 import { AfterViewInit } from '@angular/core';
 @Component({
   templateUrl: 'app.html'
@@ -26,9 +27,7 @@ export class MyApp implements AfterViewInit {
     });
   }
   ngAfterViewInit() {
-    $(".back-button-icon").click(()=>{
-      alert("hello");
-    });
+    
   }
   goToPage(pageName: string): void {
     switch(pageName) {
@@ -47,6 +46,9 @@ export class MyApp implements AfterViewInit {
       case 'history':
         this.navCtrl.push(HistoryPage);
       break;
+      case 'chart':
+        this.navCtrl.push(ChartPage);
+      break;  
     }
     this.closeMenu();
     

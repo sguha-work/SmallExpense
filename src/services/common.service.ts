@@ -57,4 +57,17 @@ export class Common {
       supportedDate = (today.getDate()).toString() + '-' + (today.getMonth()+1).toString() + '-' + today.getFullYear().toString();
       return supportedDate;
     }
+
+    public getLast7Dates():any {
+      let datesArray = [];
+      for(let index=0; index<7; index++) {
+        let date = new Date();
+        let ts = date.getTime();
+        let obtainedDay = ts - (index * 24 * 60 * 60 * 1000);
+        date = new Date(obtainedDay);
+        let dateString = this.getSupprtedDateFromDateString(date.toString());
+        datesArray.push(dateString)
+      }
+      return datesArray;
+    }
 }

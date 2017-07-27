@@ -6,7 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { TodayPage } from '../pages/today/today';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
-import { MonthPage } from '../pages/month/month';
+import { ChartPage } from '../pages/chart/chart';
 import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
@@ -30,7 +30,7 @@ import { Expense } from './../services/expense.service';
     MyApp,
     HomePage,
     TodayPage,
-    MonthPage,
+    ChartPage,
     TabsControllerPage,
     SettingsPage,
     YesterdayPage,
@@ -47,7 +47,7 @@ import { Expense } from './../services/expense.service';
     MyApp,
     HomePage,
     TodayPage,
-    MonthPage,
+    ChartPage,
     SettingsPage,
     TabsControllerPage,
     YesterdayPage,

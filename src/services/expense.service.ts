@@ -88,5 +88,38 @@ export class Expense {
         
     }
 
+    public getTotalExpenseOfLast7DaysDatewise(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let datesArray = this.common.getLast7Dates();
+            let promiseArray = [];
+            let expensesArray = [];
+            for(let index = 0; index<datesArray.length; index++) {
+                promiseArray.push(new Promise((res, rej) => {
+                    this.getTotalExpenseByDate(datesArray[index]).then((data) => {
+                        // expenses found for the day
+                        if(parseInt(data) !== 0) {
+                            let exp = {
+                                date: "",
+                                expense: 0
+                            };
+                            exp.date = datesArray[index];
+                            exp.expense = parseInt(data);
+                            expensesArray.push(exp);
+                        }
+                        res();
+                    }, () => {;
+                        // expenses not found
+                        res();
+                    });
+                }));
+            }
+            Promise.all(promiseArray).then(() => {
+                resolve(expensesArray);
+            }).catch(()=>{
+                reject();
+            });
+        });
+    }
+
  
 }
