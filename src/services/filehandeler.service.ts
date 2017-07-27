@@ -1,5 +1,6 @@
 import { File } from '@ionic-native/file';
 import {Injectable} from '@angular/core';
+import { Events } from 'ionic-angular';
 
 const rootFolderName = "SmallExpenseTracker";
 const dataFolderName = "data";
@@ -7,7 +8,7 @@ const configFolderName = "config";
 
 @Injectable()
 export class FileHandeler {
-    constructor(private file: File) {
+    constructor(private file: File,private event: Events) {
         this.checkAndCreateDirectory()
     }
     private checkAndCreateDirectory() {
@@ -46,6 +47,7 @@ export class FileHandeler {
             }
             if(type === "data") {
                 this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, data).then(() => {
+                     this.event.publish('file:data:updated');
                     resolve();
                 }).catch(() => {
                     reject();
@@ -96,6 +98,7 @@ export class FileHandeler {
                     
                     return this.file.writeExistingFile(this.file.dataDirectory+"/"+rootFolderName+"/"+configFolderName, fileName, data).then(()=>{
                         //writing done
+                        this.event.publish('file:config:updated');
                         return true;
                     }).catch(()=>{
                         //unable to write
@@ -105,6 +108,7 @@ export class FileHandeler {
                     //file not exists, creating
                     return this.file.writeFile(this.file.dataDirectory+"/"+rootFolderName+"/"+configFolderName, fileName, data).then(()=>{
                         //writing done
+                        this.event.publish('file:config:updated');
                         return true;
                     }).catch(()=>{
                         //unable to write file

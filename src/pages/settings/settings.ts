@@ -32,7 +32,7 @@ export class SettingsPage implements AfterViewInit {
       let data: string;
       data = this.model.alertAmount;
       this.alert.setAlertData(data).then(() => {
-        alert("Successfully set the alert of "+data+" rupees.  Close and reopen the app to get effect");
+        alert("Successfully set the alert of "+data+" rupees.");
         this.checkIfAlertFileExistsAndMadeUICHanges();
       }, () => {
         alert("Setting alert failed");

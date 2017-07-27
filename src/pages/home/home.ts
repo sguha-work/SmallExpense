@@ -7,6 +7,7 @@ import { TagService } from './../../services/tag.service';
 import { NumberService } from './../../services/number.service';
 import { Expense } from './../../services/expense.service';
 import { Alert } from './../../services/alert.service';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -20,7 +21,7 @@ export class HomePage implements AfterViewInit {
   public numberData: any;
   private model: any;
   private alert: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense, private alertHandler: Alert) {
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense, private alertHandler: Alert, private event: Events) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -31,6 +32,17 @@ export class HomePage implements AfterViewInit {
     };
     this.alert = {};
     this.alert.safeAmount = 0;
+    this.event.subscribe('file:data:updated', () => {
+      this.refreshHomePageView();
+    });
+    this.event.subscribe('file:config:updated', () => {
+      this.refreshHomePageView();
+    });
+  }
+
+  private refreshHomePageView() {
+    this.getTodaysTotalExpense();
+    this.checkIfAlertExistsAndMakechanges();
   }
 
   private loadNumbers() {

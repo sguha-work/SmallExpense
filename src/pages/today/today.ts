@@ -49,7 +49,7 @@ export class TodayPage  implements AfterViewInit {
       this.expense.deleteEntryFromToday(keyId).then(() => {
         this.getTodaysData();
         this.getTotalExpenseOfToday();
-        alert("Entry deleted. Close and start the app to get effect.");
+        alert("Entry deleted.");
         
       }, () => {
         alert("Failed to delete entry");

@@ -13,6 +13,7 @@ import { NumberService } from './../services/number.service';
 import { FileHandeler } from './../services/filehandeler.service';
 import { SettingsPage } from './../pages/settings/settings';
 import { HistoryPage } from './../pages/history/history';
+import { Events } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -64,7 +65,8 @@ import { Expense } from './../services/expense.service';
     Common,
     Expense,
     Alert,
-    DatePicker
+    DatePicker,
+    Events
   ]
 })
 export class AppModule {}
