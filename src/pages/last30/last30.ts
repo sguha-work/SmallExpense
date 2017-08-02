@@ -5,10 +5,10 @@ import {Expense} from './../../services/expense.service';
 import {Common} from './../../services/common.service';
 import * as $ from 'jquery';
 @Component({
-  selector: 'page-month',
-  templateUrl: 'month.html'
+  selector: 'page-last30',
+  templateUrl: 'last30.html'
 })
-export class MonthPage  implements AfterViewInit {
+export class Last30Page  implements AfterViewInit {
 
   public model: any;
   constructor(public navCtrl: NavController, private expense: Expense, private common: Common) {

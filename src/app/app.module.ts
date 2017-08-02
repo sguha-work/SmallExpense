@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { TodayPage } from '../pages/today/today';
-import { MonthPage } from '../pages/month/month';
+import { Last30Page } from '../pages/last30/last30';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { ChartPage } from '../pages/chart/chart';
 import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
@@ -37,7 +37,7 @@ import { Expense } from './../services/expense.service';
     YesterdayPage,
     AboutPage,
     HistoryPage,
-    MonthPage
+    Last30Page
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,7 @@ import { Expense } from './../services/expense.service';
     YesterdayPage,
     AboutPage,
     HistoryPage,
-    MonthPage
+    Last30Page
   ],
   providers: [
     StatusBar,

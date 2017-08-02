@@ -10,7 +10,7 @@ import {YesterdayPage} from './../pages/yesterday/yesterday';
 import {AboutPage} from './../pages/about/about';
 import {HistoryPage} from './../pages/history/history';
 import {ChartPage} from './../pages/chart/chart';
-import { MonthPage } from '../pages/month/month';
+import { Last30Page } from '../pages/last30/last30';
 import { AfterViewInit } from '@angular/core';
 @Component({
   templateUrl: 'app.html'
@@ -51,8 +51,8 @@ export class MyApp implements AfterViewInit {
       case 'chart':
         this.navCtrl.push(ChartPage);
       break;  
-      case 'month':
-        this.navCtrl.push(MonthPage);
+      case 'last30':
+        this.navCtrl.push(Last30Page);
       break;
     }
     this.closeMenu();
