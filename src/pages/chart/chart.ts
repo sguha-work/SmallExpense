@@ -60,7 +60,6 @@ export class ChartPage {
       if(Object.keys(response).length === 0) {
         alert("No data found");  
       } else {
-        alert(JSON.stringify(response));
         let keys = Object.keys(response);
         let labels = [];
         let data = [];

@@ -11,6 +11,7 @@ import {AboutPage} from './../pages/about/about';
 import {HistoryPage} from './../pages/history/history';
 import {ChartPage} from './../pages/chart/chart';
 import { Last30Page } from '../pages/last30/last30';
+import { TagWisePage } from '../pages/tagwise/tagwise';
 import { AfterViewInit } from '@angular/core';
 @Component({
   templateUrl: 'app.html'
@@ -53,6 +54,9 @@ export class MyApp implements AfterViewInit {
       break;  
       case 'last30':
         this.navCtrl.push(Last30Page);
+      break;
+      case 'tagwise':
+        this.navCtrl.push(TagWisePage);
       break;
     }
     this.closeMenu();

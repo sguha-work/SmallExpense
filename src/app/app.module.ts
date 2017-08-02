@@ -8,6 +8,7 @@ import { TodayPage } from '../pages/today/today';
 import { Last30Page } from '../pages/last30/last30';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { ChartPage } from '../pages/chart/chart';
+import { TagWisePage } from '../pages/tagwise/tagwise';
 import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
@@ -37,7 +38,8 @@ import { Expense } from './../services/expense.service';
     YesterdayPage,
     AboutPage,
     HistoryPage,
-    Last30Page
+    Last30Page,
+    TagWisePage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { Expense } from './../services/expense.service';
     YesterdayPage,
     AboutPage,
     HistoryPage,
-    Last30Page
+    Last30Page,
+    TagWisePage
   ],
   providers: [
     StatusBar,

@@ -147,8 +147,7 @@ export class Expense {
         });
     }
 
-    public getTagWiseTotalExpenseOf7Days(): Promise<any> {
-        let dateArray = this.common.getLast7Dates();
+    private getTagWiseTotalExpense(dateArray: any): Promise<any> {
         return new Promise((resolve, reject) => {
             let promiseArray = [];
             let tagBasedData = {};
@@ -176,6 +175,16 @@ export class Expense {
                 reject();
             });
         });
+    }
+
+    public getTagWiseTotalExpenseOf30Days() {
+        let dateArray = this.common.getLast30Dates();
+        return this.getTagWiseTotalExpense(dateArray);
+    }
+
+    public getTagWiseTotalExpenseOf7Days(): Promise<any> {
+        let dateArray = this.common.getLast7Dates();
+        return this.getTagWiseTotalExpense(dateArray);
     }
  
 }
