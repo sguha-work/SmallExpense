@@ -70,4 +70,23 @@ export class Common {
       }
       return datesArray;
     }
+    public getLast30Dates():any {
+      let datesArray = [];
+      for(let index=0; index<30; index++) {
+        let date = new Date();
+        let ts = date.getTime();
+        let obtainedDay = ts - (index * 24 * 60 * 60 * 1000);
+        date = new Date(obtainedDay);
+        let dateString = this.getSupprtedDateFromDateString(date.toString());
+        datesArray.push(dateString)
+      }
+      return datesArray;
+    }
+    public getCurrentMonthName(): string {
+      let monthNames = ["January", "February", "March", "Aprill", "May", "Jun",
+      "July", "August", "Septembar", "October", "November", "December"
+      ];
+      let date = new Date();
+      return monthNames[date.getMonth()];
+    }
 }

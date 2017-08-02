@@ -25212,6 +25212,11 @@ page-about td {
   text-align: center;
 }
 
+page-chart canvas {
+  height: 700px;
+  width: 100%;
+}
+
 page-history table,
 page-history th,
 page-history td {
@@ -25257,6 +25262,21 @@ page-home .homeInputStyle {
 
 page-home .button-md-assertive {
   background-color: #ef473a;
+}
+
+page-month table,
+page-month th,
+page-month td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+page-month .btn_action {
+  width: 18%;
+  margin: 2%;
+  float: left;
+  clear: none;
+  background-color: transparent;
 }
 
 page-today table,
