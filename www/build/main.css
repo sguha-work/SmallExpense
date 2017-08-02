@@ -25213,7 +25213,7 @@ page-about td {
 }
 
 page-chart canvas {
-  height: 700px;
+  height: 500px !important;
   width: 100%;
 }
 
@@ -25262,6 +25262,21 @@ page-home .homeInputStyle {
 
 page-home .button-md-assertive {
   background-color: #ef473a;
+}
+
+page-last30 table,
+page-last30 th,
+page-last30 td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+page-last30 .btn_action {
+  width: 18%;
+  margin: 2%;
+  float: left;
+  clear: none;
+  background-color: transparent;
 }
 
 page-today table,

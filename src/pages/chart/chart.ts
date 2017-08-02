@@ -38,6 +38,7 @@ export class ChartPage {
                 }]
             },
               options: {
+                maintainAspectRatio: false,
                 scaleFontColor: 'black',
                 responsive: true,
                 title: {
