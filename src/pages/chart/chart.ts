@@ -15,18 +15,10 @@ export class ChartPage {
   constructor(public navCtrl: NavController,private expense: Expense,private common: Common) {
   }
 
-  displayWeeklyChart() {
-    let dates = this.common.getLast7Dates();
-    this.expense.getTotalExpenseOfLast7DaysDatewise().then((response) => {
-      if(response.length !== 0) {
-        let labels = [];
-        let data = [];
-        for(let index in response) {
-          labels.push(response[index].date);
-          data.push(parseInt(response[index].expense));
-        }
-        let title = "Weekly total expense chart from "+ dates[0] + " to "+dates[6];
-        this.barChart = new Chart($("canvas")[0], {
+  private drawChart(container: any, data: any, title: string, labels: any) {
+    $("canvas").hide();
+    $(container).show();
+    this.barChart = new Chart(container, {
             type: 'bar',
             scaleFontColor: 'black',
             data: {
@@ -60,6 +52,42 @@ export class ChartPage {
                 }
               }
         });
+  }
+
+  displayTagWeeklyChart() {
+    let dates = this.common.getLast7Dates();
+    this.expense.getTagWiseTotalExpenseOf7Days().then((response) => {
+      if(Object.keys(response).length === 0) {
+        alert("No data found");  
+      } else {
+        alert(JSON.stringify(response));
+        let keys = Object.keys(response);
+        let labels = [];
+        let data = [];
+        for(let index=0; index<keys.length; index++) {
+          labels.push(keys[index]);
+          data.push(parseInt(response[keys[index]]));
+        }
+        let title = "Last 7 days total expense chart from "+ dates[0] + " to "+dates[6];
+        this.drawChart($("#chart2")[0], data, title, labels);
+      }
+    }, () => {
+      alert("No data found");
+    });
+  }
+
+  displayWeeklyChart() {
+    let dates = this.common.getLast7Dates();
+    this.expense.getTotalExpenseOfLast7DaysDatewise().then((response) => {
+      if(response.length !== 0) {
+        let labels = [];
+        let data = [];
+        for(let index in response) {
+          labels.push(response[index].date);
+          data.push(parseInt(response[index].expense));
+        }
+        let title = "Last 7 days total expense chart from "+ dates[0] + " to "+dates[6];
+        this.drawChart($("#chart1")[0],data, title, labels);
       } else {
         alert("No data to display chart");  
       }

@@ -25213,8 +25213,8 @@ page-about td {
 }
 
 page-chart canvas {
-  height: 500px !important;
-  width: 100%;
+  height: 450px !important;
+  display: none;
 }
 
 page-history table,

@@ -121,7 +121,7 @@ export class Expense {
         });
     }
 
-    getDaywiseTotalExpenseOfLast30Days(): Promise<any> {
+    public getDaywiseTotalExpenseOfLast30Days(): Promise<any> {
         return new Promise((resolve, reject) => {
             let dateArray = this.common.getLast30Dates();
             let promiseArray = [];
@@ -141,6 +141,37 @@ export class Expense {
             }
             Promise.all(promiseArray).then(()=>{
                 resolve(finalArray);
+            }, () => {
+                reject();
+            });
+        });
+    }
+
+    public getTagWiseTotalExpenseOf7Days(): Promise<any> {
+        let dateArray = this.common.getLast7Dates();
+        return new Promise((resolve, reject) => {
+            let promiseArray = [];
+            let tagBasedData = {};
+            for(let index=0; index<dateArray.length; index++) {
+                promiseArray.push(new Promise((res, rej) => {
+                    this.getExpensesByDate(dateArray[index]).then((response) => {
+                        for(let i = 0; i<response.length; i++) {
+                            let tag = response[i].reason;
+                            let amount = response[i].amount;
+                            if(typeof tagBasedData[tag] === "undefined") {
+                                tagBasedData[tag] = parseInt(amount);
+                            } else {
+                                tagBasedData[tag] += parseInt(amount);
+                            }
+                        }
+                        res();
+                    }, () => {
+                        res();
+                    });
+                }));
+            }
+            Promise.all(promiseArray).then(() => {
+                resolve(tagBasedData);
             }, () => {
                 reject();
             });

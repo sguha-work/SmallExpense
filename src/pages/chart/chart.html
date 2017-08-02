@@ -13,6 +13,12 @@
       Display daywise expense chart (7 days)
     </button>
     <ion-card-content>
-        <canvas #lineCanvas></canvas>
+        <canvas id="chart1" #lineCanvas></canvas>
+    </ion-card-content>
+    <button (click)="displayTagWeeklyChart()" ion-button color="positive" block>
+      Display tagwise expense chart (7 days)
+    </button>
+    <ion-card-content>
+        <canvas id="chart2" #lineCanvas></canvas>
     </ion-card-content>
 </ion-content>

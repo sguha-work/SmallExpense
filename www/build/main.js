@@ -788,6 +788,67 @@ var ChartPage = (function () {
         this.expense = expense;
         this.common = common;
     }
+    ChartPage.prototype.drawChart = function (container, data, title, labels) {
+        __WEBPACK_IMPORTED_MODULE_5_jquery__("canvas").hide();
+        __WEBPACK_IMPORTED_MODULE_5_jquery__(container).show();
+        this.barChart = new __WEBPACK_IMPORTED_MODULE_4_chart_js__["Chart"](container, {
+            type: 'bar',
+            scaleFontColor: 'black',
+            data: {
+                labels: labels,
+                datasets: [{
+                        label: 'Expense',
+                        backgroundColor: "gray",
+                        data: data
+                    }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scaleFontColor: 'black',
+                responsive: true,
+                title: {
+                    display: true,
+                    text: title,
+                    fontColor: "black"
+                },
+                scales: {
+                    xAxes: [{
+                            ticks: {
+                                fontColor: "black",
+                            },
+                        }],
+                    yAxes: [{
+                            ticks: {
+                                fontColor: "black",
+                            },
+                        }],
+                }
+            }
+        });
+    };
+    ChartPage.prototype.displayTagWeeklyChart = function () {
+        var _this = this;
+        var dates = this.common.getLast7Dates();
+        this.expense.getTagWiseTotalExpenseOf7Days().then(function (response) {
+            if (Object.keys(response).length === 0) {
+                alert("No data found");
+            }
+            else {
+                alert(JSON.stringify(response));
+                var keys = Object.keys(response);
+                var labels = [];
+                var data = [];
+                for (var index = 0; index < keys.length; index++) {
+                    labels.push(keys[index]);
+                    data.push(parseInt(response[keys[index]]));
+                }
+                var title = "Last 7 days total expense chart from " + dates[0] + " to " + dates[6];
+                _this.drawChart(__WEBPACK_IMPORTED_MODULE_5_jquery__("#chart2")[0], data, title, labels);
+            }
+        }, function () {
+            alert("No data found");
+        });
+    };
     ChartPage.prototype.displayWeeklyChart = function () {
         var _this = this;
         var dates = this.common.getLast7Dates();
@@ -799,41 +860,8 @@ var ChartPage = (function () {
                     labels.push(response[index].date);
                     data.push(parseInt(response[index].expense));
                 }
-                var title = "Weekly total expense chart from " + dates[0] + " to " + dates[6];
-                _this.barChart = new __WEBPACK_IMPORTED_MODULE_4_chart_js__["Chart"](__WEBPACK_IMPORTED_MODULE_5_jquery__("canvas")[0], {
-                    type: 'bar',
-                    scaleFontColor: 'black',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                                label: 'Expense',
-                                backgroundColor: "gray",
-                                data: data
-                            }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        scaleFontColor: 'black',
-                        responsive: true,
-                        title: {
-                            display: true,
-                            text: title,
-                            fontColor: "black"
-                        },
-                        scales: {
-                            xAxes: [{
-                                    ticks: {
-                                        fontColor: "black",
-                                    },
-                                }],
-                            yAxes: [{
-                                    ticks: {
-                                        fontColor: "black",
-                                    },
-                                }],
-                        }
-                    }
-                });
+                var title = "Last 7 days total expense chart from " + dates[0] + " to " + dates[6];
+                _this.drawChart(__WEBPACK_IMPORTED_MODULE_5_jquery__("#chart1")[0], data, title, labels);
             }
             else {
                 alert("No data to display chart");
@@ -846,7 +874,7 @@ var ChartPage = (function () {
 }());
 ChartPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-chart',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\chart\chart.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Chart\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page4" style="background-color:#2E7A3C;">\n    <button (click)="displayWeeklyChart()" ion-button color="positive" block>\n      Display daywise expense chart (7 days)\n    </button>\n    <ion-card-content>\n        <canvas #lineCanvas></canvas>\n    </ion-card-content>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\chart\chart.html"*/
+        selector: 'page-chart',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\chart\chart.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Chart\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page4" style="background-color:#2E7A3C;">\n    <button (click)="displayWeeklyChart()" ion-button color="positive" block>\n      Display daywise expense chart (7 days)\n    </button>\n    <ion-card-content>\n        <canvas id="chart1" #lineCanvas></canvas>\n    </ion-card-content>\n    <button (click)="displayTagWeeklyChart()" ion-button color="positive" block>\n      Display tagwise expense chart (7 days)\n    </button>\n    <ion-card-content>\n        <canvas id="chart2" #lineCanvas></canvas>\n    </ion-card-content>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\chart\chart.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_expense_service__["a" /* Expense */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]])
 ], ChartPage);
@@ -1136,6 +1164,41 @@ var Expense = (function () {
             });
         });
     };
+    Expense.prototype.getTagWiseTotalExpenseOf7Days = function () {
+        var _this = this;
+        var dateArray = this.common.getLast7Dates();
+        return new Promise(function (resolve, reject) {
+            var promiseArray = [];
+            var tagBasedData = {};
+            var _loop_3 = function (index) {
+                promiseArray.push(new Promise(function (res, rej) {
+                    _this.getExpensesByDate(dateArray[index]).then(function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            var tag = response[i].reason;
+                            var amount = response[i].amount;
+                            if (typeof tagBasedData[tag] === "undefined") {
+                                tagBasedData[tag] = parseInt(amount);
+                            }
+                            else {
+                                tagBasedData[tag] += parseInt(amount);
+                            }
+                        }
+                        res();
+                    }, function () {
+                        res();
+                    });
+                }));
+            };
+            for (var index = 0; index < dateArray.length; index++) {
+                _loop_3(index);
+            }
+            Promise.all(promiseArray).then(function () {
+                resolve(tagBasedData);
+            }, function () {
+                reject();
+            });
+        });
+    };
     return Expense;
 }());
 Expense = __decorate([
@@ -1180,9 +1243,15 @@ var Last30Page = (function () {
         this.model = {};
         this.model.dataArray = [];
         this.model.presentMont = this.common.getCurrentMonthName();
+        this.model.totalExpense = 0;
     }
     Last30Page.prototype.ngAfterViewInit = function () {
         this.getDaywiseTotalExpenseOfLast30Days();
+    };
+    Last30Page.prototype.getTotalExpenseOfLast30Days = function (dataArray) {
+        for (var index = 0; index < dataArray.length; index++) {
+            this.model.totalExpense += parseInt(dataArray[index].expense);
+        }
     };
     Last30Page.prototype.getDaywiseTotalExpenseOfLast30Days = function () {
         var _this = this;
@@ -1192,6 +1261,7 @@ var Last30Page = (function () {
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
             }
             else {
+                _this.getTotalExpenseOfLast30Days(response);
                 _this.model.dataArray = response;
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
@@ -1205,7 +1275,7 @@ var Last30Page = (function () {
 }());
 Last30Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-last30',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last30\last30.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Lst 30 day\'s total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <h1>Here are the list of day wise total expenses</h1>\n    <h4 style="display: none">No data found</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Date </th>\n            <th>Total Expenses</th>\n\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:50%">{{data.date}}</td>\n            <td style="width:50%">{{data.expense}}</td>\n\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last30\last30.html"*/
+        selector: 'page-last30',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last30\last30.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Lst 30 day\'s total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <h1>Here are the list of daywise total expenses</h1>\n    <h4 style="display: none">No data found</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Date </th>\n            <th>Total Expenses (Rupees)</th>\n\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:50%">{{data.date}}</td>\n            <td style="width:50%">{{data.expense}}</td>\n\n        </tr>\n    </table>\n    <br>\n    <br>\n    <table>\n        <tr>\n            <th>\n                Total Expense of last 30 days (Rupees)\n            </th>\n        </tr>\n        <tr>\n            <td>\n                {{model.totalExpense}}\n            </td>\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last30\last30.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_expense_service__["a" /* Expense */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]])
 ], Last30Page);
