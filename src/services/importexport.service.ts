@@ -5,14 +5,31 @@ import {FileHandeler} from './filehandeler.service';
 @Injectable()
 export class ImportExport {
     
-    private email: string;
+    private emailId: string;
     
-    constructor(public http: Http, private file: FileHandeler) {
-        this.email = "sguha1988.life@gmail.com";
+    constructor(public http: Http, private file: FileHandeler, private email: EmailComposer) {
+        this.emailId = "sguha1988.life@gmail.com";
+    }
+
+    private sendDataAsEmail(data: string, email?: string) {
+        let emailObject = {
+            to: (typeof email === "undefined")?this.emailId:email,
+            cc: '',
+            bcc: [],
+            attachments: [
+            ],
+            subject: 'Backup data',
+            body: data,
+            isHtml: true
+            };
+
+            // Send a text message using default options
+            this.email.open(emailObject);
     }
 
     private backUpToGoogleDrive(data: string, fileName?: string): Promise<any> {
         return new Promise((resolve, reject) => {
+            this.sendDataAsEmail(data);    
             resolve(data);
         });
     }
