@@ -24,6 +24,7 @@ import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
 import { DatePicker } from '@ionic-native/date-picker';
 import { EmailComposer } from '@ionic-native/email-composer';
+import {ImportExport} from './../services/importexport.service';
 
 import { Common } from './../services/common.service';
 import { Alert } from './../services/alert.service';
@@ -69,6 +70,7 @@ import { Expense } from './../services/expense.service';
     SplashScreen,
     File,
     EmailComposer,
+    ImportExport,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
     NumberService,

@@ -158,6 +158,19 @@ export class FileHandeler {
         }
         return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
     }
+    public readFileContent(fileName: string, directoryName?: string): Promise<any> {
+        if(typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return new Promise((resolve, reject) => {
+            this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName).then((dataFromFile) => {
+                resolve(dataFromFile);
+            }).catch(() => {
+                reject();
+            });
+        });
+        
+    }
     public deleteFile(fileName: string, directoryName?: string): Promise<any> {
         if(typeof directoryName === "undefined") {
             directoryName = dataFolderName;
