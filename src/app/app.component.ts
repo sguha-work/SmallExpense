@@ -13,6 +13,7 @@ import {ChartPage} from './../pages/chart/chart';
 import { Last30Page } from '../pages/last30/last30';
 import { TagWisePage } from '../pages/tagwise/tagwise';
 import { AfterViewInit } from '@angular/core';
+import { ImportExportPage } from '../pages/importexport/importexport';
 @Component({
   templateUrl: 'app.html'
 })
@@ -57,6 +58,9 @@ export class MyApp implements AfterViewInit {
       break;
       case 'tagwise':
         this.navCtrl.push(TagWisePage);
+      break;
+      case 'importexport':
+        this.navCtrl.push(ImportExportPage);
       break;
     }
     this.closeMenu();

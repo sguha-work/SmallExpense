@@ -143,10 +143,12 @@ export class FileHandeler {
         if(typeof folderName === "undefined") {
             folderName = "data";
         }
-        return this.file.resolveDirectoryUrl(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName).then((res) => {
-            return res.getDirectory(folderName, {create:false});
-        }).catch(() => {
-            return false;
+        return new Promise((resolve, reject) => {
+            this.file.listDir(this.file.dataDirectory + "/" + rootFolderName + "/", folderName).then((response) => {
+                resolve(response)
+            }).catch(() => {
+                reject();
+            });
         });
         
     }

@@ -9,6 +9,7 @@ import { Last30Page } from '../pages/last30/last30';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { ChartPage } from '../pages/chart/chart';
 import { TagWisePage } from '../pages/tagwise/tagwise';
+import { ImportExportPage } from '../pages/importexport/importexport';
 import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
 import { TagService } from './../services/tag.service';
 import { NumberService } from './../services/number.service';
@@ -22,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {File} from '@ionic-native/file';
 import {HttpModule} from '@angular/http';
 import { DatePicker } from '@ionic-native/date-picker';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { Common } from './../services/common.service';
 import { Alert } from './../services/alert.service';
@@ -39,7 +41,8 @@ import { Expense } from './../services/expense.service';
     AboutPage,
     HistoryPage,
     Last30Page,
-    TagWisePage
+    TagWisePage,
+    ImportExportPage
   ],
   imports: [
     BrowserModule,
@@ -58,12 +61,14 @@ import { Expense } from './../services/expense.service';
     AboutPage,
     HistoryPage,
     Last30Page,
-    TagWisePage
+    TagWisePage,
+    ImportExportPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     File,
+    EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TagService,
     NumberService,

@@ -25264,6 +25264,21 @@ page-home .button-md-assertive {
   background-color: #ef473a;
 }
 
+page-importexport table,
+page-importexport th,
+page-importexport td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+page-importexport .btn_action {
+  width: 18%;
+  margin: 2%;
+  float: left;
+  clear: none;
+  background-color: transparent;
+}
+
 page-last30 table,
 page-last30 th,
 page-last30 td {
