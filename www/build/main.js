@@ -7,12 +7,12 @@ webpackJsonp([0],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_tag_service__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_number_service__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_expense_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_expense_service__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_alert_service__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -182,7 +182,7 @@ HomePage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Alert; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -251,9 +251,9 @@ Alert = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -346,20 +346,7 @@ webpackEmptyAsyncContext.id = 116;
 
 /***/ }),
 
-/***/ 157:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 157;
-
-/***/ }),
-
-/***/ 17:
+/***/ 15:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -470,6 +457,19 @@ Common = __decorate([
 
 /***/ }),
 
+/***/ 157:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 157;
+
+/***/ }),
+
 /***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -572,9 +572,9 @@ NumberService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_alert_service__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -671,9 +671,9 @@ SettingsPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YesterdayPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -779,10 +779,10 @@ AboutPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_expense_service__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_date_picker__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -872,11 +872,11 @@ HistoryPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js__ = __webpack_require__(404);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -993,13 +993,13 @@ ChartPage = __decorate([
 
 /***/ }),
 
-/***/ 24:
+/***/ 22:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Expense; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1163,12 +1163,41 @@ var Expense = (function () {
             });
         });
     };
+    Expense.prototype.getDaywiseTotalExpenseOfLast7Days = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var dateArray = _this.common.getLast7Dates();
+            var promiseArray = [];
+            var finalArray = [];
+            var _loop_3 = function (index) {
+                promiseArray.push(new Promise(function (res, rej) {
+                    _this.getTotalExpenseByDate(dateArray[index]).then(function (response) {
+                        finalArray.push({
+                            date: dateArray[index],
+                            expense: response
+                        });
+                        res();
+                    }, function () {
+                        res();
+                    });
+                }));
+            };
+            for (var index = 0; index < dateArray.length; index++) {
+                _loop_3(index);
+            }
+            Promise.all(promiseArray).then(function () {
+                resolve(finalArray);
+            }, function () {
+                reject();
+            });
+        });
+    };
     Expense.prototype.getTagWiseTotalExpense = function (dateArray) {
         var _this = this;
         return new Promise(function (resolve, reject) {
             var promiseArray = [];
             var tagBasedData = {};
-            var _loop_3 = function (index) {
+            var _loop_4 = function (index) {
                 promiseArray.push(new Promise(function (res, rej) {
                     _this.getExpensesByDate(dateArray[index]).then(function (response) {
                         for (var i = 0; i < response.length; i++) {
@@ -1188,7 +1217,7 @@ var Expense = (function () {
                 }));
             };
             for (var index = 0; index < dateArray.length; index++) {
-                _loop_3(index);
+                _loop_4(index);
             }
             Promise.all(promiseArray).then(function () {
                 resolve(tagBasedData);
@@ -1223,9 +1252,9 @@ Expense = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Last30Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1294,12 +1323,12 @@ Last30Page = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TagWisePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Last7Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1315,103 +1344,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TagWisePage = (function () {
-    function TagWisePage(navCtrl, expense, common) {
+var Last7Page = (function () {
+    function Last7Page(navCtrl, expense, common) {
         this.navCtrl = navCtrl;
         this.expense = expense;
         this.common = common;
         this.model = {};
         this.model.dataArray = [];
-        this.model.dataLength = 0;
         this.model.presentMont = this.common.getCurrentMonthName();
         this.model.totalExpense = 0;
     }
-    TagWisePage.prototype.ngAfterViewInit = function () {
-        __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
-        __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
-        __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+    Last7Page.prototype.ngAfterViewInit = function () {
+        this.getDaywiseTotalExpenseOfLast7Days();
     };
-    TagWisePage.prototype.tagWiseDisplay = function (noOfDays) {
-        this.model.dataLength = noOfDays;
-        if ((noOfDays).toString() === "7") {
-            this.getTagWiseTotalExpenseOfLast7Days();
-        }
-        if ((noOfDays).toString() === "30") {
-            this.getTagWiseTotalExpenseOfLast30Days();
+    Last7Page.prototype.getTotalExpenseOfLast30Days = function (dataArray) {
+        for (var index = 0; index < dataArray.length; index++) {
+            this.model.totalExpense += parseInt(dataArray[index].expense);
         }
     };
-    TagWisePage.prototype.getTagWiseTotalExpenseOfLast30Days = function () {
+    Last7Page.prototype.getDaywiseTotalExpenseOfLast7Days = function () {
         var _this = this;
-        this.expense.getTagWiseTotalExpenseOf30Days().then(function (response) {
-            if (!Object.keys(response).length) {
+        this.expense.getDaywiseTotalExpenseOfLast7Days().then(function (response) {
+            if (!response.length) {
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
             }
             else {
-                var keys = Object.keys(response);
-                var data = [];
-                for (var index = 0; index < keys.length; index++) {
-                    var obj = {
-                        "tag": "",
-                        "amount": 0
-                    };
-                    obj.tag = keys[index];
-                    obj.amount = response[keys[index]];
-                    data.push(obj);
-                }
-                _this.model.dataArray = data;
+                _this.getTotalExpenseOfLast30Days(response);
+                _this.model.dataArray = response;
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
                 __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").show();
             }
         }, function () {
             __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
             __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
         });
     };
-    TagWisePage.prototype.getTagWiseTotalExpenseOfLast7Days = function () {
-        var _this = this;
-        this.expense.getTagWiseTotalExpenseOf7Days().then(function (response) {
-            if (!Object.keys(response).length) {
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
-            }
-            else {
-                var keys = Object.keys(response);
-                var data = [];
-                for (var index = 0; index < keys.length; index++) {
-                    var obj = {
-                        "tag": "",
-                        "amount": 0
-                    };
-                    obj.tag = keys[index];
-                    obj.amount = response[keys[index]];
-                    data.push(obj);
-                }
-                _this.model.dataArray = data;
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
-                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").show();
-            }
-        }, function () {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
-            __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
-        });
-    };
-    return TagWisePage;
+    return Last7Page;
 }());
-TagWisePage = __decorate([
+Last7Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-tagwise',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\tagwise\tagwise.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Tagwise total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <button id="menu-button4" (click)="tagWiseDisplay(7)" ion-button color="positive" block>\n      tagwisedisplay of 7 days\n      </button>\n    <button id="menu-button4" (click)="tagWiseDisplay(30)" ion-button color="positive" block>\n      tagwisedisplay of 30 days\n      </button>\n\n    <h4 style="display: none">No data found</h4>\n    <h1>Here are the list of tagwise total expenses(last {{model.dataLength}} days)</h1>\n    <table style="width:100%">\n        <tr>\n            <th>Tagname </th>\n            <th>Total Expenses</th>\n\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:50%">{{data.tag}}</td>\n            <td style="width:50%">{{data.amount}}</td>\n\n        </tr>\n    </table>\n    <br>\n    <br>\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\tagwise\tagwise.html"*/
+        selector: 'page-last7',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last7\last7.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Last 7 day\'s total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <h1>Here are the list of daywise total expenses</h1>\n    <h4 style="display: none">No data found</h4>\n    <table style="width:100%">\n        <tr>\n            <th>Date </th>\n            <th>Total Expenses (Rupees)</th>\n\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:50%">{{data.date}}</td>\n            <td style="width:50%">{{data.expense}}</td>\n\n        </tr>\n    </table>\n    <br>\n    <br>\n    <table>\n        <tr>\n            <th>\n                Total Expense of last 7 days (Rupees)\n            </th>\n        </tr>\n        <tr>\n            <td>\n                {{model.totalExpense}}\n            </td>\n        </tr>\n    </table>\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\last7\last7.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_expense_service__["a" /* Expense */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]])
-], TagWisePage);
+], Last7Page);
 
-//# sourceMappingURL=tagwise.js.map
+//# sourceMappingURL=last7.js.map
 
 /***/ }),
 
@@ -1620,12 +1598,137 @@ FileHandeler = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TagWisePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var TagWisePage = (function () {
+    function TagWisePage(navCtrl, expense, common) {
+        this.navCtrl = navCtrl;
+        this.expense = expense;
+        this.common = common;
+        this.model = {};
+        this.model.dataArray = [];
+        this.model.dataLength = 0;
+        this.model.presentMont = this.common.getCurrentMonthName();
+        this.model.totalExpense = 0;
+    }
+    TagWisePage.prototype.ngAfterViewInit = function () {
+        __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
+        __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
+        __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+    };
+    TagWisePage.prototype.tagWiseDisplay = function (noOfDays) {
+        this.model.dataLength = noOfDays;
+        if ((noOfDays).toString() === "7") {
+            this.getTagWiseTotalExpenseOfLast7Days();
+        }
+        if ((noOfDays).toString() === "30") {
+            this.getTagWiseTotalExpenseOfLast30Days();
+        }
+    };
+    TagWisePage.prototype.getTagWiseTotalExpenseOfLast30Days = function () {
+        var _this = this;
+        this.expense.getTagWiseTotalExpenseOf30Days().then(function (response) {
+            if (!Object.keys(response).length) {
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+            }
+            else {
+                var keys = Object.keys(response);
+                var data = [];
+                for (var index = 0; index < keys.length; index++) {
+                    var obj = {
+                        "tag": "",
+                        "amount": 0
+                    };
+                    obj.tag = keys[index];
+                    obj.amount = response[keys[index]];
+                    data.push(obj);
+                }
+                _this.model.dataArray = data;
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").show();
+            }
+        }, function () {
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+        });
+    };
+    TagWisePage.prototype.getTagWiseTotalExpenseOfLast7Days = function () {
+        var _this = this;
+        this.expense.getTagWiseTotalExpenseOf7Days().then(function (response) {
+            if (!Object.keys(response).length) {
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+            }
+            else {
+                var keys = Object.keys(response);
+                var data = [];
+                for (var index = 0; index < keys.length; index++) {
+                    var obj = {
+                        "tag": "",
+                        "amount": 0
+                    };
+                    obj.tag = keys[index];
+                    obj.amount = response[keys[index]];
+                    data.push(obj);
+                }
+                _this.model.dataArray = data;
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").hide();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("table").show();
+                __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").show();
+            }
+        }, function () {
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h4").show();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("table").hide();
+            __WEBPACK_IMPORTED_MODULE_4_jquery__("h1").hide();
+        });
+    };
+    return TagWisePage;
+}());
+TagWisePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-tagwise',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\tagwise\tagwise.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Tagwise total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <button id="menu-button4" (click)="tagWiseDisplay(7)" ion-button color="positive" block>\n      tagwisedisplay of 7 days\n      </button>\n    <button id="menu-button4" (click)="tagWiseDisplay(30)" ion-button color="positive" block>\n      tagwisedisplay of 30 days\n      </button>\n\n    <h4 style="display: none">No data found</h4>\n    <h1>Here are the list of tagwise total expenses(last {{model.dataLength}} days)</h1>\n    <table style="width:100%">\n        <tr>\n            <th>Tagname </th>\n            <th>Total Expenses</th>\n\n        </tr>\n        <tr *ngFor="let data of model.dataArray">\n            <td style="width:50%">{{data.tag}}</td>\n            <td style="width:50%">{{data.amount}}</td>\n\n        </tr>\n    </table>\n    <br>\n    <br>\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\tagwise\tagwise.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_expense_service__["a" /* Expense */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */]])
+], TagWisePage);
+
+//# sourceMappingURL=tagwise.js.map
+
+/***/ }),
+
+/***/ 331:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImportExportPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_importexport_service__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_expense_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_importexport_service__ = __webpack_require__(332);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1672,14 +1775,14 @@ ImportExportPage = __decorate([
 
 /***/ }),
 
-/***/ 331:
+/***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImportExport; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filehandeler_service__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1750,6 +1853,8 @@ var ImportExport = (function () {
                     }
                     Promise.all(promiseArray).then(function () {
                         exportObject.data = data;
+                        // getting config data
+                        _this.file.getFolderContents("config");
                         // backup logic to google drive goes here
                         _this.backUpToGoogleDrive(JSON.stringify(exportObject)).then(function (response) {
                             resolve(response);
@@ -1774,13 +1879,13 @@ ImportExport = __decorate([
 
 /***/ }),
 
-/***/ 333:
+/***/ 334:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(353);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1788,7 +1893,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 352:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1796,37 +1901,39 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_today_today__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_last30_last30__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_yesterday_yesterday__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_chart_chart__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tagwise_tagwise__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_importexport_importexport__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_controller_tabs_controller__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_tag_service__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_number_service__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_filehandeler_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_settings_settings__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_history_history__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_file__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_date_picker__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_email_composer__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_importexport_service__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_common_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_alert_service__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_expense_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_last7_last7__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_yesterday_yesterday__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_chart_chart__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tagwise_tagwise__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_importexport_importexport__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_controller_tabs_controller__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_tag_service__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_number_service__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_filehandeler_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_settings_settings__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_history_history__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_status_bar__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_file__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_http__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_date_picker__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_email_composer__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_importexport_service__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_common_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_alert_service__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_expense_service__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1867,19 +1974,20 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_6__pages_today_today__["a" /* TodayPage */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_chart_chart__["a" /* ChartPage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_settings_settings__["a" /* SettingsPage */],
-            __WEBPACK_IMPORTED_MODULE_8__pages_yesterday_yesterday__["a" /* YesterdayPage */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_chart_chart__["a" /* ChartPage */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_settings_settings__["a" /* SettingsPage */],
+            __WEBPACK_IMPORTED_MODULE_9__pages_yesterday_yesterday__["a" /* YesterdayPage */],
             __WEBPACK_IMPORTED_MODULE_5__pages_about_about__["a" /* AboutPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_history_history__["a" /* HistoryPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_history_history__["a" /* HistoryPage */],
             __WEBPACK_IMPORTED_MODULE_7__pages_last30_last30__["a" /* Last30Page */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_tagwise_tagwise__["a" /* TagWisePage */],
-            __WEBPACK_IMPORTED_MODULE_11__pages_importexport_importexport__["a" /* ImportExportPage */]
+            __WEBPACK_IMPORTED_MODULE_8__pages_last7_last7__["a" /* Last7Page */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_tagwise_tagwise__["a" /* TagWisePage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_importexport_importexport__["a" /* ImportExportPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_21__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_22__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */])
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
@@ -1887,30 +1995,31 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_6__pages_today_today__["a" /* TodayPage */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_chart_chart__["a" /* ChartPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_settings_settings__["a" /* SettingsPage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */],
-            __WEBPACK_IMPORTED_MODULE_8__pages_yesterday_yesterday__["a" /* YesterdayPage */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_chart_chart__["a" /* ChartPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_settings_settings__["a" /* SettingsPage */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_tabs_controller_tabs_controller__["a" /* TabsControllerPage */],
+            __WEBPACK_IMPORTED_MODULE_9__pages_yesterday_yesterday__["a" /* YesterdayPage */],
             __WEBPACK_IMPORTED_MODULE_5__pages_about_about__["a" /* AboutPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_history_history__["a" /* HistoryPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_history_history__["a" /* HistoryPage */],
             __WEBPACK_IMPORTED_MODULE_7__pages_last30_last30__["a" /* Last30Page */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_tagwise_tagwise__["a" /* TagWisePage */],
-            __WEBPACK_IMPORTED_MODULE_11__pages_importexport_importexport__["a" /* ImportExportPage */]
+            __WEBPACK_IMPORTED_MODULE_8__pages_last7_last7__["a" /* Last7Page */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_tagwise_tagwise__["a" /* TagWisePage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_importexport_importexport__["a" /* ImportExportPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_20__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_23__ionic_native_email_composer__["a" /* EmailComposer */],
-            __WEBPACK_IMPORTED_MODULE_24__services_importexport_service__["a" /* ImportExport */],
+            __WEBPACK_IMPORTED_MODULE_19__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_20__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_21__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_24__ionic_native_email_composer__["a" /* EmailComposer */],
+            __WEBPACK_IMPORTED_MODULE_25__services_importexport_service__["a" /* ImportExport */],
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_13__services_tag_service__["a" /* TagService */],
-            __WEBPACK_IMPORTED_MODULE_14__services_number_service__["a" /* NumberService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_filehandeler_service__["a" /* FileHandeler */],
-            __WEBPACK_IMPORTED_MODULE_25__services_common_service__["a" /* Common */],
-            __WEBPACK_IMPORTED_MODULE_27__services_expense_service__["a" /* Expense */],
-            __WEBPACK_IMPORTED_MODULE_26__services_alert_service__["a" /* Alert */],
-            __WEBPACK_IMPORTED_MODULE_22__ionic_native_date_picker__["a" /* DatePicker */],
+            __WEBPACK_IMPORTED_MODULE_14__services_tag_service__["a" /* TagService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_number_service__["a" /* NumberService */],
+            __WEBPACK_IMPORTED_MODULE_16__services_filehandeler_service__["a" /* FileHandeler */],
+            __WEBPACK_IMPORTED_MODULE_26__services_common_service__["a" /* Common */],
+            __WEBPACK_IMPORTED_MODULE_28__services_expense_service__["a" /* Expense */],
+            __WEBPACK_IMPORTED_MODULE_27__services_alert_service__["a" /* Alert */],
+            __WEBPACK_IMPORTED_MODULE_23__ionic_native_date_picker__["a" /* DatePicker */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]
         ]
     })
@@ -1920,7 +2029,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1929,7 +2038,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_settings_settings__ = __webpack_require__(204);
@@ -1939,8 +2048,9 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_history_history__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_chart_chart__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_last30_last30__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tagwise_tagwise__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_importexport_importexport__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_last7_last7__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tagwise_tagwise__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_importexport_importexport__ = __webpack_require__(331);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1950,6 +2060,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2000,11 +2111,14 @@ var MyApp = (function () {
             case 'last30':
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_12__pages_last30_last30__["a" /* Last30Page */]);
                 break;
+            case 'last7':
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__pages_last7_last7__["a" /* Last7Page */]);
+                break;
             case 'tagwise':
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__pages_tagwise_tagwise__["a" /* TagWisePage */]);
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_14__pages_tagwise_tagwise__["a" /* TagWisePage */]);
                 break;
             case 'importexport':
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_14__pages_importexport_importexport__["a" /* ImportExportPage */]);
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_15__pages_importexport_importexport__["a" /* ImportExportPage */]);
                 break;
         }
         this.closeMenu();
@@ -2019,7 +2133,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
 ], MyApp.prototype, "navCtrl", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/'<ion-menu [content]="mainContent">\n\n    <ion-header>\n\n        <ion-toolbar>\n\n            <ion-title>\n\n                Menu\n\n            </ion-title>\n\n        </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content id="side-menu21">\n\n        <button style="display:none" ion-button id="menu-button-close" (click)="closeMenu()" menuClose="left">Close Menu</button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'today\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="clock"></ion-icon>\n\n         Today\'s Expenses\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'yesterday\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="clock"></ion-icon>\n\n         Yesterday\'s Expenses\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'history\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         History\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'last30\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         Last 30 daily total expense \n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'tagwise\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         Tagwise total expense \n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'chart\')" ion-button color="positive" block icon-left>\n\n                Chart\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'importexport\')" ion-button color="positive" block icon-left>\n\n                Import / Export\n\n      </button>\n\n        <button class="menuButton" id="menu-button-settings" (click)="goToPage(\'settings\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="settings"></ion-icon>\n\n         Settings\n\n      </button>\n\n        <button class="menuButton" id="menu-button4" (click)="goToPage(\'about\')" ion-button color="positive" block>\n\n      About\n\n      </button>\n\n        <button class="menuButton" id="menu-button5" (click)="goToPage(\'aboutme\')" ion-button color="positive" block>\n\n      About Me\n\n      </button>\n\n    </ion-content>\n\n</ion-menu>\n\n<ion-nav #mainContent [root]="rootPage"></ion-nav>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/'<ion-menu [content]="mainContent">\n\n    <ion-header>\n\n        <ion-toolbar>\n\n            <ion-title>\n\n                Menu\n\n            </ion-title>\n\n        </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content id="side-menu21">\n\n        <button style="display:none" ion-button id="menu-button-close" (click)="closeMenu()" menuClose="left">Close Menu</button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'today\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="clock"></ion-icon>\n\n         Today\'s Expenses\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'yesterday\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="clock"></ion-icon>\n\n         Yesterday\'s Expenses\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'history\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         History\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'last7\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         Last 7 daily total expense \n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'last30\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         Last 30 daily total expense \n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'tagwise\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="calendar"></ion-icon>\n\n         Tagwise total expense \n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'chart\')" ion-button color="positive" block icon-left>\n\n                Chart\n\n      </button>\n\n        <button class="menuButton" id="menu-button-today" (click)="goToPage(\'importexport\')" ion-button color="positive" block icon-left>\n\n                Import / Export\n\n      </button>\n\n        <button class="menuButton" id="menu-button-settings" (click)="goToPage(\'settings\')" ion-button color="positive" block icon-left>\n\n         <ion-icon name="settings"></ion-icon>\n\n         Settings\n\n      </button>\n\n        <button class="menuButton" id="menu-button4" (click)="goToPage(\'about\')" ion-button color="positive" block>\n\n      About\n\n      </button>\n\n        <button class="menuButton" id="menu-button5" (click)="goToPage(\'aboutme\')" ion-button color="positive" block>\n\n      About Me\n\n      </button>\n\n    </ion-content>\n\n</ion-menu>\n\n<ion-nav #mainContent [root]="rootPage"></ion-nav>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
@@ -2028,7 +2142,7 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 434:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -2277,11 +2391,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 434;
+webpackContext.id = 435;
 
 /***/ }),
 
-/***/ 451:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2324,5 +2438,5 @@ TabsControllerPage = __decorate([
 
 /***/ })
 
-},[333]);
+},[334]);
 //# sourceMappingURL=main.js.map

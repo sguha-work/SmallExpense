@@ -60,6 +60,9 @@ export class ImportExport {
                     }
                     Promise.all(promiseArray).then(() => {
                         exportObject.data = data;
+
+                        // getting config data
+                        this.file.getFolderContents("config")
                         // backup logic to google drive goes here
                         this.backUpToGoogleDrive(JSON.stringify(exportObject)).then((response) => {
                             resolve(response);

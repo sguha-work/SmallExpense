@@ -6,6 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { TodayPage } from '../pages/today/today';
 import { Last30Page } from '../pages/last30/last30';
+import { Last7Page } from '../pages/last7/last7';
 import { YesterdayPage } from '../pages/yesterday/yesterday';
 import { ChartPage } from '../pages/chart/chart';
 import { TagWisePage } from '../pages/tagwise/tagwise';
@@ -42,6 +43,7 @@ import { Expense } from './../services/expense.service';
     AboutPage,
     HistoryPage,
     Last30Page,
+    Last7Page,
     TagWisePage,
     ImportExportPage
   ],
@@ -62,6 +64,7 @@ import { Expense } from './../services/expense.service';
     AboutPage,
     HistoryPage,
     Last30Page,
+    Last7Page,
     TagWisePage,
     ImportExportPage
   ],

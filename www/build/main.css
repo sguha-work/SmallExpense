@@ -25294,6 +25294,21 @@ page-last30 .btn_action {
   background-color: transparent;
 }
 
+page-last30 table,
+page-last30 th,
+page-last30 td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+page-last30 .btn_action {
+  width: 18%;
+  margin: 2%;
+  float: left;
+  clear: none;
+  background-color: transparent;
+}
+
 page-tagwise table,
 page-tagwise th,
 page-tagwise td {

@@ -147,6 +147,32 @@ export class Expense {
         });
     }
 
+    public getDaywiseTotalExpenseOfLast7Days(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let dateArray = this.common.getLast7Dates();
+            let promiseArray = [];
+            let finalArray = [];
+            for(let index=0; index<dateArray.length; index++) {
+                promiseArray.push(new Promise((res, rej) => {
+                    this.getTotalExpenseByDate(dateArray[index]).then((response) => {
+                        finalArray.push({
+                            date: dateArray[index],
+                            expense: response
+                        });
+                        res();
+                    }, () => {
+                        res();
+                    });
+                }))
+            }
+            Promise.all(promiseArray).then(()=>{
+                resolve(finalArray);
+            }, () => {
+                reject();
+            });
+        });
+    }
+
     private getTagWiseTotalExpense(dateArray: any): Promise<any> {
         return new Promise((resolve, reject) => {
             let promiseArray = [];

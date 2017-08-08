@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            Last 7 day's total expenses
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="page3" style="background-color:#2E7A3C;">
+    <div id="home-markdown1" class="show-list-numbers-and-dots">
+
+    </div>
+    <h1>Here are the list of daywise total expenses</h1>
+    <h4 style="display: none">No data found</h4>
+    <table style="width:100%">
+        <tr>
+            <th>Date </th>
+            <th>Total Expenses (Rupees)</th>
+
+        </tr>
+        <tr *ngFor="let data of model.dataArray">
+            <td style="width:50%">{{data.date}}</td>
+            <td style="width:50%">{{data.expense}}</td>
+
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>
+                Total Expense of last 7 days (Rupees)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                {{model.totalExpense}}
+            </td>
+        </tr>
+    </table>
+</ion-content>
