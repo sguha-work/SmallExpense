@@ -34,48 +34,106 @@ export class ImportExport {
         });
     }
 
-    public export(): Promise<any> {
-        let exportObject: any;
-        let data: any;
+    private prepareConfigObject(): Promise<any> {
         
-        exportObject = {};
-        data = {};
-
-        return new Promise((resolve, reject) => {
-            this.file.getFolderContents().then((fileArray) => {
+        return (new Promise((resolve, reject) => {
+            this.file.getFolderContents("config").then((fileArray) => {
                 if(typeof fileArray === "undefined" || fileArray.length === 0) {
-                    reject();
+                    reject({});
                 } else {
                     let promiseArray = [];
+                    let dataObject = {};
                     for(let index=0; index<fileArray.length; index++) {
                         promiseArray.push(new Promise((res, rej) => {
-                            this.file.readFileContent(fileArray[index].name).then((dataFromFile) => {
-                                data[fileArray[index].name] = JSON.parse(dataFromFile);
+                            this.file.readFileContent(fileArray[index].name, "config").then((dataFromFile) => {
+                                dataObject[fileArray[index].name] = JSON.parse(dataFromFile);
                                 res();
                             }, () => {
-                                data[fileArray[index].name] = {};
+                                dataObject[fileArray[index].name] = {};
                                 res();
                             });
                         }));
                     }
                     Promise.all(promiseArray).then(() => {
-                        exportObject.data = data;
-
-                        // getting config data
-                        this.file.getFolderContents("config")
-                        // backup logic to google drive goes here
-                        this.backUpToGoogleDrive(JSON.stringify(exportObject)).then((response) => {
-                            resolve(response);
-                        }, () => {
-                            reject();
-                        });
-                    }, () => {});
+                        resolve(dataObject)
+                    }, () => {
+                        resolve(dataObject);
+                    });
                 }
-                
+            });
+        }));
+    
+    }
+
+    private prepareDataObject(): Promise<any> {
+        return (new Promise((resolve, reject) => {
+            this.file.getFolderContents().then((fileArray) => {
+                if(typeof fileArray === "undefined" || fileArray.length === 0) {
+                    reject({});
+                } else {
+                    let promiseArray = [];
+                    let dataObject = {};
+                    for(let index=0; index<fileArray.length; index++) {
+                        promiseArray.push(new Promise((res, rej) => {
+                            this.file.readFileContent(fileArray[index].name).then((dataFromFile) => {
+                                dataObject[fileArray[index].name] = JSON.parse(dataFromFile);
+                                res();
+                            }, () => {
+                                dataObject[fileArray[index].name] = {};
+                                res();
+                            });
+                        }));
+                    }
+                    Promise.all(promiseArray).then(() => {
+                        resolve(dataObject)
+                    }, () => {
+                        resolve(dataObject);
+                    });
+                }
+            });
+        }));
+    }
+
+    private prepareExportObject() {
+        let exportObject = {
+            data: {},
+            config: {}
+        };
+        exportObject.data = {};
+        return new Promise((resolve, reject) => {
+            this.prepareDataObject().then((response) => {
+                exportObject.data = response;
+                this.prepareConfigObject().then((response) => {
+                    exportObject.config = response;
+                    resolve(exportObject);
+                }, () => {
+                    exportObject.config = response;
+                    resolve(exportObject);
+                });
             }, () => {
-                reject();
+                resolve(exportObject);
+            });
+        });
+    }
+
+    public export(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.prepareExportObject().then((response) => {
+                this.backUpToGoogleDrive(JSON.stringify(response)).then(() => {
+                    resolve();
+                }, () => {
+                    reject();
+                });
+            }, (response)=>{
+                this.backUpToGoogleDrive(JSON.stringify(response)).then(() => {
+                    resolve(response);
+                }, () => {
+                    reject();
+                });
             });
         });
         
     }
+
+    
 }

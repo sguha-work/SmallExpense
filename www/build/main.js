@@ -1824,26 +1824,23 @@ var ImportExport = (function () {
             resolve(data);
         });
     };
-    ImportExport.prototype.export = function () {
+    ImportExport.prototype.prepareConfigObject = function () {
         var _this = this;
-        var exportObject;
-        var data;
-        exportObject = {};
-        data = {};
-        return new Promise(function (resolve, reject) {
-            _this.file.getFolderContents().then(function (fileArray) {
+        return (new Promise(function (resolve, reject) {
+            _this.file.getFolderContents("config").then(function (fileArray) {
                 if (typeof fileArray === "undefined" || fileArray.length === 0) {
-                    reject();
+                    reject({});
                 }
                 else {
                     var promiseArray = [];
+                    var dataObject_1 = {};
                     var _loop_1 = function (index) {
                         promiseArray.push(new Promise(function (res, rej) {
-                            _this.file.readFileContent(fileArray[index].name).then(function (dataFromFile) {
-                                data[fileArray[index].name] = JSON.parse(dataFromFile);
+                            _this.file.readFileContent(fileArray[index].name, "config").then(function (dataFromFile) {
+                                dataObject_1[fileArray[index].name] = JSON.parse(dataFromFile);
                                 res();
                             }, function () {
-                                data[fileArray[index].name] = {};
+                                dataObject_1[fileArray[index].name] = {};
                                 res();
                             });
                         }));
@@ -1852,19 +1849,84 @@ var ImportExport = (function () {
                         _loop_1(index);
                     }
                     Promise.all(promiseArray).then(function () {
-                        exportObject.data = data;
-                        // getting config data
-                        _this.file.getFolderContents("config");
-                        // backup logic to google drive goes here
-                        _this.backUpToGoogleDrive(JSON.stringify(exportObject)).then(function (response) {
-                            resolve(response);
-                        }, function () {
-                            reject();
-                        });
-                    }, function () { });
+                        resolve(dataObject_1);
+                    }, function () {
+                        resolve(dataObject_1);
+                    });
                 }
+            });
+        }));
+    };
+    ImportExport.prototype.prepareDataObject = function () {
+        var _this = this;
+        return (new Promise(function (resolve, reject) {
+            _this.file.getFolderContents().then(function (fileArray) {
+                if (typeof fileArray === "undefined" || fileArray.length === 0) {
+                    reject({});
+                }
+                else {
+                    var promiseArray = [];
+                    var dataObject_2 = {};
+                    var _loop_2 = function (index) {
+                        promiseArray.push(new Promise(function (res, rej) {
+                            _this.file.readFileContent(fileArray[index].name).then(function (dataFromFile) {
+                                dataObject_2[fileArray[index].name] = JSON.parse(dataFromFile);
+                                res();
+                            }, function () {
+                                dataObject_2[fileArray[index].name] = {};
+                                res();
+                            });
+                        }));
+                    };
+                    for (var index = 0; index < fileArray.length; index++) {
+                        _loop_2(index);
+                    }
+                    Promise.all(promiseArray).then(function () {
+                        resolve(dataObject_2);
+                    }, function () {
+                        resolve(dataObject_2);
+                    });
+                }
+            });
+        }));
+    };
+    ImportExport.prototype.prepareExportObject = function () {
+        var _this = this;
+        var exportObject = {
+            data: {},
+            config: {}
+        };
+        exportObject.data = {};
+        return new Promise(function (resolve, reject) {
+            _this.prepareDataObject().then(function (response) {
+                exportObject.data = response;
+                _this.prepareConfigObject().then(function (response) {
+                    exportObject.config = response;
+                    resolve(exportObject);
+                }, function () {
+                    exportObject.config = response;
+                    resolve(exportObject);
+                });
             }, function () {
-                reject();
+                resolve(exportObject);
+            });
+        });
+    };
+    ImportExport.prototype.export = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.prepareExportObject().then(function (response) {
+                _this.backUpToGoogleDrive(JSON.stringify(response)).then(function () {
+                    resolve();
+                }, function () {
+                    reject();
+                });
+            }, function (response) {
+                _this.backUpToGoogleDrive(JSON.stringify(response)).then(function () {
+                    resolve(response);
+                }, function () {
+                    reject();
+                });
             });
         });
     };
