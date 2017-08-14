@@ -20,11 +20,13 @@ export class ImportExportPage  implements AfterViewInit {
   ngAfterViewInit() {
   }
   
-  public import() {
-
+  public importFromDatabaseManually() {
+    alert("Import functionality handle itself autometically");
+    this.impexp.import();
   }
 
   public export() {
+    
     this.impexp.export().then((response) => {
       alert("Backup done successfully");
     }, () => {

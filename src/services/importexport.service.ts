@@ -146,5 +146,25 @@ export class ImportExport {
         
     }
 
+    createLocalFilesFromData(data: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+        });
+    }
+
+    public import(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.sim.getUserSIM1Number().then((sim1Number) => {
+                this.db.getFromDatabase(sim1Number).then((response) => {
+                    this.createLocalFilesFromData(response);
+                }, (error) => {
+                    alert("cant get from database");
+                });
+            }, () => {
+                reject();
+            });
+        });
+    }
+
     
 }

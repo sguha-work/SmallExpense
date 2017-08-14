@@ -18,5 +18,15 @@ export class Database {
        });
        
    }
+
+   public getFromDatabase(key: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.db.database.ref('/'+key).once('value').then((data) => {
+            resolve(data);
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+   }
    
 }
