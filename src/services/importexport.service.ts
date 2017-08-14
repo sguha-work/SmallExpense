@@ -148,7 +148,10 @@ export class ImportExport {
 
     createLocalFilesFromData(data: string): Promise<any> {
         return new Promise((resolve, reject) => {
-
+            let objectedData = JSON.parse(data);
+            let configData = objectedData.config;
+            let expenseData = objectedData.data;
+            
         });
     }
 

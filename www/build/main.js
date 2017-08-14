@@ -1842,6 +1842,9 @@ var ImportExport = (function () {
     };
     ImportExport.prototype.createLocalFilesFromData = function (data) {
         return new Promise(function (resolve, reject) {
+            var objectedData = JSON.parse(data);
+            var configData = objectedData.config;
+            var expenseData = objectedData.data;
         });
     };
     ImportExport.prototype.import = function () {
