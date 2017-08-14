@@ -8,9 +8,9 @@ export class Database {
    constructor(private db: AngularFireDatabase) {
    }
 
-   public writeToDatabase(data: any): Promise<any> {
+   public writeToDatabase(key: string, data: any): Promise<any> {
        return new Promise((resolve, reject) => {
-        this.db.database.ref('data/').set(data).then(() => {
+        this.db.database.ref('/'+key).set(data).then(() => {
             resolve();
         }).catch((error) => {
             reject();

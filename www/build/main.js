@@ -1719,9 +1719,7 @@ var ImportExport = (function () {
         return new Promise(function (resolve, reject) {
             //this.sendDataAsEmail(data);    
             _this.sim.getUserSIM1Number().then(function (sim1Number) {
-                var dataForDatabase = {};
-                dataForDatabase[sim1Number] = JSON.parse(data);
-                _this.db.writeToDatabase(dataForDatabase).then(function () {
+                _this.db.writeToDatabase(sim1Number, JSON.parse(data)).then(function () {
                     resolve();
                 }, function () {
                     reject();
@@ -1870,10 +1868,10 @@ var Database = (function () {
     function Database(db) {
         this.db = db;
     }
-    Database.prototype.writeToDatabase = function (data) {
+    Database.prototype.writeToDatabase = function (key, data) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.db.database.ref('data/').set(data).then(function () {
+            _this.db.database.ref('/' + key).set(data).then(function () {
                 resolve();
             }).catch(function (error) {
                 reject();

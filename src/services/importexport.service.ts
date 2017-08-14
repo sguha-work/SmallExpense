@@ -34,9 +34,7 @@ export class ImportExport {
         return new Promise((resolve, reject) => {
             //this.sendDataAsEmail(data);    
             this.sim.getUserSIM1Number().then((sim1Number) => {
-                let dataForDatabase = {};
-                dataForDatabase[sim1Number] = JSON.parse(data);
-                this.db.writeToDatabase(dataForDatabase).then(() => {
+                this.db.writeToDatabase(sim1Number, JSON.parse(data)).then(() => {
                     resolve();
                 }, () => {
                     reject();
