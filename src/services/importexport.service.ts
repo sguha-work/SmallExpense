@@ -2,12 +2,15 @@ import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer';
 import {FileHandeler} from './filehandeler.service';
+import {Database} from './database.service';
+import { SimService } from './sim.service';
+
 @Injectable()
 export class ImportExport {
     
     private emailId: string;
     
-    constructor(public http: Http, private file: FileHandeler, private email: EmailComposer) {
+    constructor(public http: Http, private file: FileHandeler, private email: EmailComposer, private db: Database, private sim: SimService) {
         this.emailId = "sguha1988.life@gmail.com";
     }
 
@@ -27,10 +30,20 @@ export class ImportExport {
             this.email.open(emailObject);
     }
 
-    private backUpToGoogleDrive(data: string, fileName?: string): Promise<any> {
+    private backUpToDatabase(data: string, fileName?: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.sendDataAsEmail(data);    
-            resolve(data);
+            //this.sendDataAsEmail(data);    
+            this.sim.getUserSIM1Number().then((sim1Number) => {
+                let dataForDatabase = {};
+                dataForDatabase[sim1Number] = JSON.parse(data);
+                this.db.writeToDatabase(dataForDatabase).then(() => {
+                    resolve();
+                }, () => {
+                    reject();
+                });
+            }, () => {
+                reject();
+            });
         });
     }
 
@@ -119,14 +132,14 @@ export class ImportExport {
     public export(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.prepareExportObject().then((response) => {
-                this.backUpToGoogleDrive(JSON.stringify(response)).then(() => {
+                this.backUpToDatabase(JSON.stringify(response)).then(() => {
                     resolve();
                 }, () => {
                     reject();
                 });
             }, (response)=>{
-                this.backUpToGoogleDrive(JSON.stringify(response)).then(() => {
-                    resolve(response);
+                this.backUpToDatabase(JSON.stringify(response)).then(() => {
+                    resolve(JSON.stringify(response));
                 }, () => {
                     reject();
                 });

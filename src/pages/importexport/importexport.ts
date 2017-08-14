@@ -26,7 +26,7 @@ export class ImportExportPage  implements AfterViewInit {
 
   public export() {
     this.impexp.export().then((response) => {
-      alert(response);
+      alert("Backup done successfully");
     }, () => {
       alert("Error");
     });

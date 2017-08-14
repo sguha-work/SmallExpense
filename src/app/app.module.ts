@@ -18,6 +18,10 @@ import { FileHandeler } from './../services/filehandeler.service';
 import { SettingsPage } from './../pages/settings/settings';
 import { HistoryPage } from './../pages/history/history';
 import { Events } from 'ionic-angular';
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule  } from 'angularfire2/database';
+import { Sim } from '@ionic-native/sim';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,8 +32,19 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import {ImportExport} from './../services/importexport.service';
 
 import { Common } from './../services/common.service';
+import { SimService } from './../services/sim.service';
+import { Database } from './../services/database.service';
 import { Alert } from './../services/alert.service';
 import { Expense } from './../services/expense.service';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyBZHzcC2PPcrtdaNa6kRoPiEfEAo0vQrKc",
+    authDomain: "smallexpense.firebaseapp.com",
+    databaseURL: "https://smallexpense.firebaseio.com",
+    projectId: "smallexpense",
+    storageBucket: "smallexpense.appspot.com",
+    messagingSenderId: "961696648886"
+};
 
 @NgModule({
   declarations: [
@@ -50,7 +65,10 @@ import { Expense } from './../services/expense.service';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -79,10 +97,13 @@ import { Expense } from './../services/expense.service';
     NumberService,
     FileHandeler,
     Common,
+    Database,
     Expense,
     Alert,
     DatePicker,
-    Events
+    Events,
+    Sim,
+    SimService
   ]
 })
 export class AppModule {}

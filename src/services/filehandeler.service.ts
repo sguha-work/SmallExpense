@@ -30,7 +30,17 @@ export class FileHandeler {
                 //alert("Initial directory building failed");
             });
         });
+
+
         
+    }
+
+    private createEmailFile() {
+        this.readFile("user", "config").then(() => {
+
+        }).catch(() => {
+            
+        });
     }
 
     public getCurrentDataFileName(): string {

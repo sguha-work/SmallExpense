@@ -8,6 +8,7 @@ import { NumberService } from './../../services/number.service';
 import { Expense } from './../../services/expense.service';
 import { Alert } from './../../services/alert.service';
 import { Events } from 'ionic-angular';
+import { SimService } from './../../services/sim.service';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +22,7 @@ export class HomePage implements AfterViewInit {
   public numberData: any;
   private model: any;
   private alert: any;
-  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense, private alertHandler: Alert, private event: Events) {
+  constructor(public navCtrl: NavController, private tagService: TagService, private numberService: NumberService, private file: FileHandeler, private expense: Expense, private alertHandler: Alert, private event: Events, private sim: SimService) {
     this.loadTags();
     this.loadNumbers();
     this.model = {
@@ -38,6 +39,13 @@ export class HomePage implements AfterViewInit {
     this.event.subscribe('file:config:updated', () => {
       this.refreshHomePageView();
     });
+    this.checkAndCreateSimInfoFileIfNotExists();
+  }
+
+  public checkAndCreateSimInfoFileIfNotExists() {
+    setTimeout(() => {
+      this.sim.checkAndPrepareSimInfoIfNotExists();
+    }, 2000);
   }
 
   private refreshHomePageView() {
