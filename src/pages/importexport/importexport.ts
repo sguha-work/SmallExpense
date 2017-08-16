@@ -21,8 +21,11 @@ export class ImportExportPage  implements AfterViewInit {
   }
   
   public importFromDatabaseManually() {
-    alert("Import functionality handle itself autometically");
-    this.impexp.import();
+    this.impexp.import().then(() => {
+      alert("import done");
+    }, () => {
+      alert("import failed");
+    });
   }
 
   public export() {

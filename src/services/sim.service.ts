@@ -30,7 +30,6 @@ export class SimService {
            // good, user file exists
        }).catch(() => {
             this.sim.requestReadPermission().then(() => {
-                alert("We need to have sim1 phone number to backup your database. We will not disclose. Please allow permission");
                 this.getSimInfo().then((phoneNumber) => {
                     let user = {};
                     user["phoneNumber"] = phoneNumber;

@@ -146,11 +146,80 @@ export class ImportExport {
         
     }
 
-    createLocalFilesFromData(data: string): Promise<any> {
+    private writeConfigFiles(data: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            let objectedData = JSON.parse(data);
-            let configData = objectedData.config;
-            let expenseData = objectedData.data;
+            let promiseArray = [];
+            let keys = Object.keys(data);
+            for(let index=0; index<keys.length; index++) {
+                if(keys[index] !== "user") {
+                    let promise: any;
+                    promise = new Promise((res, rej) => {
+                        this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "config", "config", true).then(() => {
+                            // file write success
+                            res();
+                        }).catch(() => {
+                            // file write failed moving to next file
+                            res();
+                        });
+                    });
+                    promiseArray.push(promise); 
+                }
+                
+            }
+            Promise.all(promiseArray).then(() => {
+                // all config file write done
+                resolve();
+            }).catch(() => {
+                // not all config file written, moving on to next
+                resolve();
+            });
+        
+        });
+    }
+
+    private writeDataFiles(data: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+                let promiseArray = [];
+                let keys = Object.keys(data);
+                for(let index=0; index<keys.length; index++) {
+                    let promise: any;
+                    promise = new Promise((res, rej) => {
+                        this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "data","data", true).then(() => {
+                            // file write success
+                            res();
+                        }).catch(() => {
+                            // file write failed moving to next file
+                            res();
+                        });
+                    });
+                    promiseArray.push(promise);
+                }
+                Promise.all(promiseArray).then(() => {
+                    // all data file write done
+                    resolve();
+                }).catch(() => {
+                    // not all data file written, moving on to next
+                    resolve();
+                });
+            
+        });
+    }
+
+    createLocalFilesFromData(data: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let configData = data.config;
+            let expenseData = data.data;
+            this.writeConfigFiles(configData).then(() => {
+                this.writeDataFiles(expenseData).then(() => {
+                    resolve();
+                }, () => {
+                    // data file write failed
+                    resolve();
+                });
+            }, () => {
+                // config file write failed
+                resolve();
+            });
             
         });
     }
@@ -159,9 +228,15 @@ export class ImportExport {
         return new Promise((resolve, reject) => {
             this.sim.getUserSIM1Number().then((sim1Number) => {
                 this.db.getFromDatabase(sim1Number).then((response) => {
-                    this.createLocalFilesFromData(response);
+                    this.createLocalFilesFromData(response).then(() => {
+                        // file creation done
+                        resolve();
+                    }, () => {
+                        // file creation failed
+                        reject();
+                    });
                 }, (error) => {
-                    alert("cant get from database");
+                     reject();
                 });
             }, () => {
                 reject();

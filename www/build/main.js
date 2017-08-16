@@ -1646,7 +1646,11 @@ var ImportExportPage = (function () {
     };
     ImportExportPage.prototype.importFromDatabaseManually = function () {
         alert("Import functionality handle itself autometically");
-        this.impexp.import();
+        this.impexp.import().then(function () {
+            alert("import done");
+        }, function () {
+            alert("import failed");
+        });
     };
     ImportExportPage.prototype.export = function () {
         this.impexp.export().then(function (response) {
@@ -1837,11 +1841,86 @@ var ImportExport = (function () {
             });
         });
     };
-    ImportExport.prototype.createLocalFilesFromData = function (data) {
+    ImportExport.prototype.writeConfigFiles = function (data) {
+        var _this = this;
         return new Promise(function (resolve, reject) {
-            var objectedData = JSON.parse(data);
-            var configData = objectedData.config;
-            var expenseData = objectedData.data;
+            var promiseArray = [];
+            var keys = Object.keys(data);
+            var _loop_3 = function (index) {
+                if (keys[index] !== "user") {
+                    var promise = void 0;
+                    promise = new Promise(function (res, rej) {
+                        _this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "config").then(function () {
+                            // file write success
+                            res();
+                        }).catch(function () {
+                            // file write failed moving to next file
+                            res();
+                        });
+                    });
+                    promiseArray.push(promise);
+                }
+            };
+            for (var index = 0; index < keys.length; index++) {
+                _loop_3(index);
+            }
+            Promise.all(promiseArray).then(function () {
+                // all config file write done
+                resolve();
+            }).catch(function () {
+                // not all config file written, moving on to next
+                resolve();
+            });
+        });
+    };
+    ImportExport.prototype.writeDataFiles = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var promiseArray = [];
+            var keys = Object.keys(data);
+            var _loop_4 = function (index) {
+                var promise = void 0;
+                promise = new Promise(function (res, rej) {
+                    _this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "data", "data", true).then(function () {
+                        // file write success
+                        alert(keys[index] + " ddone");
+                        res();
+                    }).catch(function () {
+                        // file write failed moving to next file
+                        alert(keys[index] + " dfailed");
+                        res();
+                    });
+                });
+                promiseArray.push(promise);
+            };
+            for (var index = 0; index < keys.length; index++) {
+                _loop_4(index);
+            }
+            Promise.all(promiseArray).then(function () {
+                // all data file write done
+                resolve();
+            }).catch(function () {
+                // not all data file written, moving on to next
+                resolve();
+            });
+        });
+    };
+    ImportExport.prototype.createLocalFilesFromData = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var configData = data.config;
+            var expenseData = data.data;
+            _this.writeConfigFiles(configData).then(function () {
+                _this.writeDataFiles(expenseData).then(function () {
+                    resolve();
+                }, function () {
+                    // data file write failed
+                    resolve();
+                });
+            }, function () {
+                // config file write failed
+                resolve();
+            });
         });
     };
     ImportExport.prototype.import = function () {
@@ -1849,9 +1928,15 @@ var ImportExport = (function () {
         return new Promise(function (resolve, reject) {
             _this.sim.getUserSIM1Number().then(function (sim1Number) {
                 _this.db.getFromDatabase(sim1Number).then(function (response) {
-                    _this.createLocalFilesFromData(response);
+                    _this.createLocalFilesFromData(response).then(function () {
+                        // file creation done
+                        resolve();
+                    }, function () {
+                        // file creation failed
+                        reject();
+                    });
                 }, function (error) {
-                    alert("cant get from database");
+                    reject();
                 });
             }, function () {
                 reject();
@@ -1905,7 +1990,7 @@ var Database = (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.db.database.ref('/' + key).once('value').then(function (data) {
-                resolve(data);
+                resolve(data.val());
             }).catch(function (error) {
                 reject(error);
             });
@@ -2002,8 +2087,11 @@ var FileHandeler = (function () {
             }
         });
     };
-    FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName) {
+    FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName, isImporting) {
         var _this = this;
+        if (typeof isImporting === "undefined") {
+            isImporting = false;
+        }
         if (type === "data") {
             return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, this.getCurrentDataFileName()).then(function (res) {
                 //alert("file already exists, merging");
@@ -2023,8 +2111,12 @@ var FileHandeler = (function () {
                 //alert("file not exists, creating");
                 var dataNew = {};
                 var parsedData = JSON.parse(data);
-                dataNew[parsedData.time] = parsedData;
-                //alert(JSON.stringify(dataNew));
+                if (isImporting) {
+                    dataNew = parsedData;
+                }
+                else {
+                    dataNew[parsedData.time] = parsedData;
+                }
                 return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
                     //alert("writing done "+fileName);
                     return true;

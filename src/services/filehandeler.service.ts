@@ -68,7 +68,10 @@ export class FileHandeler {
         });
     }
 
-    public writeFile(fileName: string, data: string, type: string, directoryName?: string): Promise<any> {
+    public writeFile(fileName: string, data: string, type: string, directoryName?: string, isImporting?: boolean): Promise<any> {
+        if(typeof isImporting === "undefined") {
+            isImporting = false;
+        }
         if(type === "data") {
                 return this.file.readAsText(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, this.getCurrentDataFileName()).then((res) => {
                     //alert("file already exists, merging");
@@ -88,8 +91,11 @@ export class FileHandeler {
                     //alert("file not exists, creating");
                     let dataNew = {};
                     let parsedData = JSON.parse(data);
-                    dataNew[parsedData.time] = parsedData;
-                    //alert(JSON.stringify(dataNew));
+                    if(isImporting) {
+                        dataNew = parsedData;
+                    } else {
+                        dataNew[parsedData.time] = parsedData;
+                    }
                     return this.file.writeFile(this.file.dataDirectory+"/"+rootFolderName+"/"+dataFolderName, fileName, JSON.stringify(dataNew)).then(()=>{
                         //alert("writing done "+fileName);
                         return true;
