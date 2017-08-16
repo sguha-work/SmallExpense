@@ -129,19 +129,31 @@ export class ImportExport {
 
     public export(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.prepareExportObject().then((response) => {
-                this.backUpToDatabase(JSON.stringify(response)).then(() => {
-                    resolve();
-                }, () => {
+            this.file.getFolderContents("data").then((res) => {
+                if(!res.length) {
                     reject();
-                });
-            }, (response)=>{
-                this.backUpToDatabase(JSON.stringify(response)).then(() => {
-                    resolve(JSON.stringify(response));
-                }, () => {
-                    reject();
-                });
+                } else {
+                    // data present in local so can be exported
+                    this.prepareExportObject().then((response) => {
+                        this.backUpToDatabase(JSON.stringify(response)).then(() => {
+                            resolve();
+                        }, () => {
+                            reject();
+                        });
+                    }, (response)=>{
+                        this.backUpToDatabase(JSON.stringify(response)).then(() => {
+                            resolve(JSON.stringify(response));
+                        }, () => {
+                            reject();
+                        });
+                    });
+                }
+                
+            }, () => {
+                // nothing to export
+                reject();
             });
+            
         });
         
     }
@@ -226,21 +238,32 @@ export class ImportExport {
 
     public import(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.sim.getUserSIM1Number().then((sim1Number) => {
-                this.db.getFromDatabase(sim1Number).then((response) => {
-                    this.createLocalFilesFromData(response).then(() => {
-                        // file creation done
-                        resolve();
+            this.file.getFolderContents("data").then((res) => {
+                if(!res.length) {
+                     // no data file present locally, import can be made
+                    this.sim.getUserSIM1Number().then((sim1Number) => {
+                        this.db.getFromDatabase(sim1Number).then((response) => {
+                            this.createLocalFilesFromData(response).then(() => {
+                                // file creation done
+                                resolve();
+                            }, () => {
+                                // file creation failed
+                                reject();
+                            });
+                        }, (error) => {
+                            reject();
+                        });
                     }, () => {
-                        // file creation failed
                         reject();
                     });
-                }, (error) => {
-                     reject();
-                });
+                } else {
+                    // data folder not empty cannot import
+                    reject();
+                }
             }, () => {
-                reject();
+               
             });
+            
         });
     }
 

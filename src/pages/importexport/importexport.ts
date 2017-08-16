@@ -22,18 +22,18 @@ export class ImportExportPage  implements AfterViewInit {
   
   public importFromDatabaseManually() {
     this.impexp.import().then(() => {
-      alert("import done");
+      alert("Import done");
     }, () => {
-      alert("import failed");
+      alert("Import failed. No internet / no data in databse / local directory not empty");
     });
   }
 
   public export() {
     
     this.impexp.export().then((response) => {
-      alert("Backup done successfully");
+      alert("Export done successfully");
     }, () => {
-      alert("Error");
+      alert("Export failed. No internet / nothing to export ");
     });
   }
   

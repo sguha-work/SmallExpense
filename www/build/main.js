@@ -299,7 +299,6 @@ var SimService = (function () {
             // good, user file exists
         }).catch(function () {
             _this.sim.requestReadPermission().then(function () {
-                alert("We need to have sim1 phone number to backup your database. We will not disclose. Please allow permission");
                 _this.getSimInfo().then(function (phoneNumber) {
                     var user = {};
                     user["phoneNumber"] = phoneNumber;
@@ -1645,18 +1644,17 @@ var ImportExportPage = (function () {
     ImportExportPage.prototype.ngAfterViewInit = function () {
     };
     ImportExportPage.prototype.importFromDatabaseManually = function () {
-        alert("Import functionality handle itself autometically");
         this.impexp.import().then(function () {
-            alert("import done");
+            alert("Import done");
         }, function () {
-            alert("import failed");
+            alert("Import failed. No internet / no data in databse / local directory not empty");
         });
     };
     ImportExportPage.prototype.export = function () {
         this.impexp.export().then(function (response) {
-            alert("Backup done successfully");
+            alert("Export done successfully");
         }, function () {
-            alert("Error");
+            alert("Export failed. No internet / nothing to export ");
         });
     };
     return ImportExportPage;
@@ -1826,18 +1824,29 @@ var ImportExport = (function () {
     ImportExport.prototype.export = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.prepareExportObject().then(function (response) {
-                _this.backUpToDatabase(JSON.stringify(response)).then(function () {
-                    resolve();
-                }, function () {
+            _this.file.getFolderContents("data").then(function (res) {
+                if (!res.length) {
                     reject();
-                });
-            }, function (response) {
-                _this.backUpToDatabase(JSON.stringify(response)).then(function () {
-                    resolve(JSON.stringify(response));
-                }, function () {
-                    reject();
-                });
+                }
+                else {
+                    // data present in local so can be exported
+                    _this.prepareExportObject().then(function (response) {
+                        _this.backUpToDatabase(JSON.stringify(response)).then(function () {
+                            resolve();
+                        }, function () {
+                            reject();
+                        });
+                    }, function (response) {
+                        _this.backUpToDatabase(JSON.stringify(response)).then(function () {
+                            resolve(JSON.stringify(response));
+                        }, function () {
+                            reject();
+                        });
+                    });
+                }
+            }, function () {
+                // nothing to export
+                reject();
             });
         });
     };
@@ -1850,7 +1859,7 @@ var ImportExport = (function () {
                 if (keys[index] !== "user") {
                     var promise = void 0;
                     promise = new Promise(function (res, rej) {
-                        _this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "config").then(function () {
+                        _this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "config", "config", true).then(function () {
                             // file write success
                             res();
                         }).catch(function () {
@@ -1883,11 +1892,9 @@ var ImportExport = (function () {
                 promise = new Promise(function (res, rej) {
                     _this.file.writeFile(keys[index], JSON.stringify(data[keys[index]]), "data", "data", true).then(function () {
                         // file write success
-                        alert(keys[index] + " ddone");
                         res();
                     }).catch(function () {
                         // file write failed moving to next file
-                        alert(keys[index] + " dfailed");
                         res();
                     });
                 });
@@ -1926,20 +1933,30 @@ var ImportExport = (function () {
     ImportExport.prototype.import = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.sim.getUserSIM1Number().then(function (sim1Number) {
-                _this.db.getFromDatabase(sim1Number).then(function (response) {
-                    _this.createLocalFilesFromData(response).then(function () {
-                        // file creation done
-                        resolve();
+            _this.file.getFolderContents("data").then(function (res) {
+                if (!res.length) {
+                    // no data file present locally, import can be made
+                    _this.sim.getUserSIM1Number().then(function (sim1Number) {
+                        _this.db.getFromDatabase(sim1Number).then(function (response) {
+                            _this.createLocalFilesFromData(response).then(function () {
+                                // file creation done
+                                resolve();
+                            }, function () {
+                                // file creation failed
+                                reject();
+                            });
+                        }, function (error) {
+                            reject();
+                        });
                     }, function () {
-                        // file creation failed
                         reject();
                     });
-                }, function (error) {
+                }
+                else {
+                    // data folder not empty cannot import
                     reject();
-                });
+                }
             }, function () {
-                reject();
             });
         });
     };
