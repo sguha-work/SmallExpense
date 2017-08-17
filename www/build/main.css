@@ -25239,10 +25239,12 @@ page-home .active {
 }
 
 page-home .activity {
-  width: 48%;
+  width: 31%;
   float: left;
   margin: 1%;
   border-top: 0px !important;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 page-home .btn_number {

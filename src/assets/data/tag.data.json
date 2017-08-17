@@ -1,25 +1,49 @@
 [{
         "name": "Travel",
-        "icon": "car"
+        "icon": ""
     },
     {
-        "name": "Petrol/Gas",
+        "name": "Petrol",
         "icon": ""
     },
     {
         "name": "Medic",
-        "icon": "medkit"
+        "icon": ""
     },
     {
-        "name": "lunch/Dinner",
-        "icon": "restaurant"
+        "name": "lunch",
+        "icon": ""
+    }, {
+        "name": "Dinner",
+        "icon": ""
     },
     {
         "name": "Smoking",
-        "icon": "no-smoking"
+        "icon": ""
     },
     {
         "name": "Misc",
         "icon": ""
+    },
+    {
+        "name": "Misc 2",
+        "icon": ""
+    },
+    {
+        "name": "Misc 3",
+        "icon": ""
+    },
+    {
+        "name": "Misc 4",
+        "icon": ""
+    },
+    {
+        "name": "Misc 5",
+        "icon": ""
+    },
+    {
+        "name": "Misc 6",
+        "icon": ""
     }
+
 ]

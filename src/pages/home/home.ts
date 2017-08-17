@@ -154,6 +154,10 @@ export class HomePage implements AfterViewInit {
     }
   }
 
+  public changeTagTitle(tagName: string) {
+    alert(tagName);
+  }
+
   ngAfterViewInit() {
     this.getTodaysTotalExpense();
     this.checkIfAlertExistsAndMakechanges();

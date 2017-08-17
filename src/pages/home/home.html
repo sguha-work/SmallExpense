@@ -43,7 +43,7 @@
       </strong>
         </p>
     </div>
-    <ion-item (click)="tagClicked($event)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">
+    <ion-item (click)="tagClicked($event)" (press)="changeTagTitle(tag.name)" *ngFor="let tag of tagData" class="activity" color="positive" data-item="tag">
         {{tag.name}}
         <ion-icon name="{{tag.icon}}" item-right></ion-icon>
     </ion-item>
