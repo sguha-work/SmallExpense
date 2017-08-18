@@ -157,7 +157,15 @@ export class HomePage implements AfterViewInit {
   }
 
   public changeTagTitle(tagName: string) {
-    alert(tagName);
+    let newTagName = window.prompt("Enter new tag name. Previous was "+tagName);
+    if(newTagName.trim() !== "" && newTagName.toLowerCase() !== tagName.toLowerCase()) {
+      this.tagService.updateTagName(tagName, newTagName).then(() => {
+        alert("Tag updated");
+        this.loadTags();
+      }, () => {
+        alert("Tag updation failed");
+      });
+    }
   }
 
   ngAfterViewInit() {

@@ -172,7 +172,16 @@ var HomePage = (function () {
         }
     };
     HomePage.prototype.changeTagTitle = function (tagName) {
-        alert(tagName);
+        var _this = this;
+        var newTagName = window.prompt("Enter new tag name. Previous was " + tagName);
+        if (newTagName.trim() !== "" && newTagName.toLowerCase() !== tagName.toLowerCase()) {
+            this.tagService.updateTagName(tagName, newTagName).then(function () {
+                alert("Tag updated");
+                _this.loadTags();
+            }, function () {
+                alert("Tag updation failed");
+            });
+        }
     };
     HomePage.prototype.ngAfterViewInit = function () {
         this.getTodaysTotalExpense();
@@ -618,6 +627,27 @@ var TagService = (function () {
     };
     TagService.prototype.errorHandler = function (error) {
         return Promise.reject(error);
+    };
+    TagService.prototype.updateTagName = function (oldTagName, newTagName) {
+        var _this = this;
+        newTagName = newTagName.charAt(0).toUpperCase() + newTagName.slice(1).toLowerCase();
+        return new Promise(function (resolve, reject) {
+            _this.file.readFile("tag-data-json", "config").then(function (response) {
+                var presentTagData = JSON.parse(response);
+                for (var index = 0; index < presentTagData.length; index++) {
+                    if (presentTagData[index].name === oldTagName) {
+                        presentTagData[index].name = newTagName;
+                    }
+                }
+                _this.file.writeFile("tag-data-json", JSON.stringify(presentTagData), "config", "config").then(function () {
+                    resolve();
+                }).catch(function () {
+                    reject();
+                });
+            }).catch(function () {
+                reject();
+            });
+        });
     };
     return TagService;
 }());

@@ -9,8 +9,9 @@ export interface Tag {
 @Injectable()
 export class TagService {
 
-   constructor(public http: Http, private file: FileHandeler) {
-   }
+    constructor(public http: Http, private file: FileHandeler) {
+
+    }
     public getTagData() :Promise<Tag[]> {
         return new Promise((resolve, reject) => {
             this.file.readFile("tag-data-json", "config").then((response) => {
@@ -32,7 +33,30 @@ export class TagService {
             });
         });
     }
+
     private errorHandler(error: any): Promise<any> {
         return Promise.reject(error);
     }
+
+    public updateTagName(oldTagName: string, newTagName: string): Promise<any> {
+        newTagName = newTagName.charAt(0).toUpperCase() + newTagName.slice(1).toLowerCase()
+        return new Promise((resolve, reject) => {
+            this.file.readFile("tag-data-json", "config").then((response) => {
+                let presentTagData = JSON.parse(response);
+                for(let index=0; index<presentTagData.length; index++) {
+                    if(presentTagData[index].name === oldTagName) {
+                        presentTagData[index].name = newTagName;
+                    }
+                }
+                this.file.writeFile("tag-data-json", JSON.stringify(presentTagData), "config", "config").then(() => {
+                    resolve();
+                }).catch(() => {
+                    reject();
+                });
+            }).catch(() => {
+                reject();
+            });
+        });
+    }
+
 }
