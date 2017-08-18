@@ -9,7 +9,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_tag_service__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_number_service__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_expense_service__ = __webpack_require__(29);
@@ -86,6 +86,8 @@ var HomePage = (function () {
         this.tagService.getTagData().then(function (data) {
             _this.tagData = data;
         }, function () {
+            alert("Error occured");
+        }).catch(function () {
             alert("Error occured");
         });
     };
@@ -194,7 +196,7 @@ HomePage = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Alert; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -263,7 +265,7 @@ Alert = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SimService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_sim__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filehandeler_service__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -344,7 +346,7 @@ SimService = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TodayPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_expense_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(28);
@@ -573,6 +575,7 @@ Common = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filehandeler_service__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -585,17 +588,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TagService = (function () {
-    function TagService(http) {
+    function TagService(http, file) {
         this.http = http;
+        this.file = file;
     }
     TagService.prototype.getTagData = function () {
-        var promise = this.http.get("assets/data/tag.data.json").toPromise()
-            .then(function (response) {
-            return response.json();
-        })
-            .catch(this.errorHandler);
-        return promise;
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.file.readFile("tag-data-json", "config").then(function (response) {
+                // file exists returning data from file
+                resolve(JSON.parse(response));
+            }, function () {
+                // file not exists, returning default data and creating the file
+                _this.http.get("assets/data/tag.data.json").toPromise().then(function (response) {
+                    _this.file.writeFile("tag-data-json", JSON.stringify(response.json()), "config", "config").then(function () {
+                        // file write done
+                        resolve(response.json());
+                    }, function () {
+                        // unable to write file
+                        reject();
+                    });
+                }).catch(function () {
+                    reject();
+                });
+            });
+        });
     };
     TagService.prototype.errorHandler = function (error) {
         return Promise.reject(error);
@@ -604,7 +623,7 @@ var TagService = (function () {
 }());
 TagService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_3__filehandeler_service__["a" /* FileHandeler */]])
 ], TagService);
 
 //# sourceMappingURL=tag.service.js.map
@@ -665,7 +684,7 @@ NumberService = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_common_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_alert_service__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(28);
@@ -1092,7 +1111,7 @@ ChartPage = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Expense; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1336,6 +1355,219 @@ Expense = __decorate([
 ], Expense);
 
 //# sourceMappingURL=expense.service.js.map
+
+/***/ }),
+
+/***/ 33:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileHandeler; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_file__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var rootFolderName = "SmallExpenseTracker";
+var dataFolderName = "data";
+var configFolderName = "config";
+var FileHandeler = (function () {
+    function FileHandeler(file, event) {
+        this.file = file;
+        this.event = event;
+        this.checkAndCreateDirectory();
+    }
+    FileHandeler.prototype.checkAndCreateDirectory = function () {
+        var _this = this;
+        this.file.checkDir(this.file.dataDirectory, rootFolderName).then(function (res) {
+            //alert("Directory exists");        
+        }).catch(function () {
+            _this.file.createDir(_this.file.dataDirectory, rootFolderName, false).then(function () {
+                _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
+                    //alert("data directory created");
+                }).catch(function () {
+                    //alert("Initial data directory building failed");    
+                });
+                _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, configFolderName, false).then(function () {
+                    //alert(" config directory created");
+                }).catch(function () {
+                    //alert("Initial config directory building failed");    
+                });
+            }, function () {
+                //alert("Initial directory building failed");
+            });
+        });
+    };
+    FileHandeler.prototype.createEmailFile = function () {
+        this.readFile("user", "config").then(function () {
+        }).catch(function () {
+        });
+    };
+    FileHandeler.prototype.getCurrentDataFileName = function () {
+        var today = new Date();
+        var dateString;
+        dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
+        return dateString;
+    };
+    FileHandeler.prototype.updateFile = function (fileName, data, type) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (typeof type === "undefined") {
+                type = "data";
+            }
+            if (type === "data") {
+                _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data).then(function () {
+                    _this.event.publish('file:data:updated');
+                    resolve();
+                }).catch(function () {
+                    reject();
+                });
+            }
+            else {
+                reject();
+            }
+        });
+    };
+    FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName, isImporting) {
+        var _this = this;
+        if (typeof isImporting === "undefined") {
+            isImporting = false;
+        }
+        if (type === "data") {
+            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, this.getCurrentDataFileName()).then(function (res) {
+                //alert("file already exists, merging");
+                var dataNew = JSON.parse(res);
+                var parsedData = JSON.parse(data);
+                dataNew[parsedData.time] = parsedData;
+                //alert(data);
+                //alert(JSON.stringify(dataNew));
+                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    //alert("writing done "+fileName);
+                    return true;
+                }).catch(function () {
+                    //alert("unable to write file "+fileName);
+                    return false;
+                });
+            }).catch(function () {
+                //alert("file not exists, creating");
+                var dataNew = {};
+                var parsedData = JSON.parse(data);
+                if (isImporting) {
+                    dataNew = parsedData;
+                }
+                else {
+                    dataNew[parsedData.time] = parsedData;
+                }
+                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
+                    //alert("writing done "+fileName);
+                    return true;
+                }).catch(function () {
+                    //alert("unable to write file "+fileName);
+                    return false;
+                });
+            });
+        }
+        if (type === "config") {
+            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName).then(function (res) {
+                //file exists overwriting
+                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, data).then(function () {
+                    //writing done
+                    _this.event.publish('file:config:updated');
+                    return true;
+                }).catch(function () {
+                    //unable to write
+                    return false;
+                });
+            }).catch(function () {
+                //file not exists, creating
+                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, data).then(function () {
+                    //writing done
+                    _this.event.publish('file:config:updated');
+                    return true;
+                }).catch(function () {
+                    //unable to write file
+                    return false;
+                });
+            });
+        }
+    };
+    FileHandeler.prototype.createDataDirectory = function () {
+        this.file.createDir(this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
+            //alert("data directory created");
+        }).catch(function () {
+            //alert("Initial data directory building failed");    
+        });
+    };
+    FileHandeler.prototype.removeFolderContents = function (folderName) {
+        var _this = this;
+        if (typeof folderName === "undefined") {
+            folderName = dataFolderName;
+        }
+        return new Promise(function (resolve, reject) {
+            _this.file.removeRecursively(_this.file.dataDirectory + "/" + rootFolderName, folderName).then(function () {
+                _this.event.publish('file:data:updated');
+                resolve();
+            }, function () {
+                reject();
+            });
+        });
+    };
+    FileHandeler.prototype.getFolderContents = function (folderName) {
+        var _this = this;
+        if (typeof folderName === "undefined") {
+            folderName = "data";
+        }
+        return new Promise(function (resolve, reject) {
+            _this.file.listDir(_this.file.dataDirectory + "/" + rootFolderName + "/", folderName).then(function (response) {
+                resolve(response);
+            }).catch(function () {
+                reject();
+            });
+        });
+    };
+    FileHandeler.prototype.readFile = function (fileName, directoryName) {
+        if (typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
+    };
+    FileHandeler.prototype.readFileContent = function (fileName, directoryName) {
+        var _this = this;
+        if (typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return new Promise(function (resolve, reject) {
+            _this.file.readAsText(_this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName).then(function (dataFromFile) {
+                resolve(dataFromFile);
+            }).catch(function () {
+                reject();
+            });
+        });
+    };
+    FileHandeler.prototype.deleteFile = function (fileName, directoryName) {
+        if (typeof directoryName === "undefined") {
+            directoryName = dataFolderName;
+        }
+        return this.file.removeFile(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
+    };
+    return FileHandeler;
+}());
+FileHandeler = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]])
+], FileHandeler);
+
+//# sourceMappingURL=filehandeler.service.js.map
 
 /***/ }),
 
@@ -1681,7 +1913,7 @@ ImportExportPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__database_service__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sim_service__ = __webpack_require__(138);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2027,219 +2259,6 @@ Database = __decorate([
 
 /***/ }),
 
-/***/ 39:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileHandeler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_file__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var rootFolderName = "SmallExpenseTracker";
-var dataFolderName = "data";
-var configFolderName = "config";
-var FileHandeler = (function () {
-    function FileHandeler(file, event) {
-        this.file = file;
-        this.event = event;
-        this.checkAndCreateDirectory();
-    }
-    FileHandeler.prototype.checkAndCreateDirectory = function () {
-        var _this = this;
-        this.file.checkDir(this.file.dataDirectory, rootFolderName).then(function (res) {
-            //alert("Directory exists");        
-        }).catch(function () {
-            _this.file.createDir(_this.file.dataDirectory, rootFolderName, false).then(function () {
-                _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
-                    //alert("data directory created");
-                }).catch(function () {
-                    //alert("Initial data directory building failed");    
-                });
-                _this.file.createDir(_this.file.dataDirectory + "/" + rootFolderName, configFolderName, false).then(function () {
-                    //alert(" config directory created");
-                }).catch(function () {
-                    //alert("Initial config directory building failed");    
-                });
-            }, function () {
-                //alert("Initial directory building failed");
-            });
-        });
-    };
-    FileHandeler.prototype.createEmailFile = function () {
-        this.readFile("user", "config").then(function () {
-        }).catch(function () {
-        });
-    };
-    FileHandeler.prototype.getCurrentDataFileName = function () {
-        var today = new Date();
-        var dateString;
-        dateString = (today.getDate()).toString() + '-' + (today.getMonth() + 1).toString() + '-' + today.getFullYear().toString();
-        return dateString;
-    };
-    FileHandeler.prototype.updateFile = function (fileName, data, type) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            if (typeof type === "undefined") {
-                type = "data";
-            }
-            if (type === "data") {
-                _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, data).then(function () {
-                    _this.event.publish('file:data:updated');
-                    resolve();
-                }).catch(function () {
-                    reject();
-                });
-            }
-            else {
-                reject();
-            }
-        });
-    };
-    FileHandeler.prototype.writeFile = function (fileName, data, type, directoryName, isImporting) {
-        var _this = this;
-        if (typeof isImporting === "undefined") {
-            isImporting = false;
-        }
-        if (type === "data") {
-            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, this.getCurrentDataFileName()).then(function (res) {
-                //alert("file already exists, merging");
-                var dataNew = JSON.parse(res);
-                var parsedData = JSON.parse(data);
-                dataNew[parsedData.time] = parsedData;
-                //alert(data);
-                //alert(JSON.stringify(dataNew));
-                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
-                    //alert("writing done "+fileName);
-                    return true;
-                }).catch(function () {
-                    //alert("unable to write file "+fileName);
-                    return false;
-                });
-            }).catch(function () {
-                //alert("file not exists, creating");
-                var dataNew = {};
-                var parsedData = JSON.parse(data);
-                if (isImporting) {
-                    dataNew = parsedData;
-                }
-                else {
-                    dataNew[parsedData.time] = parsedData;
-                }
-                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + dataFolderName, fileName, JSON.stringify(dataNew)).then(function () {
-                    //alert("writing done "+fileName);
-                    return true;
-                }).catch(function () {
-                    //alert("unable to write file "+fileName);
-                    return false;
-                });
-            });
-        }
-        if (type === "config") {
-            return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName).then(function (res) {
-                //file exists overwriting
-                return _this.file.writeExistingFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, data).then(function () {
-                    //writing done
-                    _this.event.publish('file:config:updated');
-                    return true;
-                }).catch(function () {
-                    //unable to write
-                    return false;
-                });
-            }).catch(function () {
-                //file not exists, creating
-                return _this.file.writeFile(_this.file.dataDirectory + "/" + rootFolderName + "/" + configFolderName, fileName, data).then(function () {
-                    //writing done
-                    _this.event.publish('file:config:updated');
-                    return true;
-                }).catch(function () {
-                    //unable to write file
-                    return false;
-                });
-            });
-        }
-    };
-    FileHandeler.prototype.createDataDirectory = function () {
-        this.file.createDir(this.file.dataDirectory + "/" + rootFolderName, dataFolderName, false).then(function () {
-            //alert("data directory created");
-        }).catch(function () {
-            //alert("Initial data directory building failed");    
-        });
-    };
-    FileHandeler.prototype.removeFolderContents = function (folderName) {
-        var _this = this;
-        if (typeof folderName === "undefined") {
-            folderName = dataFolderName;
-        }
-        return new Promise(function (resolve, reject) {
-            _this.file.removeRecursively(_this.file.dataDirectory + "/" + rootFolderName, folderName).then(function () {
-                _this.event.publish('file:data:updated');
-                resolve();
-            }, function () {
-                reject();
-            });
-        });
-    };
-    FileHandeler.prototype.getFolderContents = function (folderName) {
-        var _this = this;
-        if (typeof folderName === "undefined") {
-            folderName = "data";
-        }
-        return new Promise(function (resolve, reject) {
-            _this.file.listDir(_this.file.dataDirectory + "/" + rootFolderName + "/", folderName).then(function (response) {
-                resolve(response);
-            }).catch(function () {
-                reject();
-            });
-        });
-    };
-    FileHandeler.prototype.readFile = function (fileName, directoryName) {
-        if (typeof directoryName === "undefined") {
-            directoryName = dataFolderName;
-        }
-        return this.file.readAsText(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
-    };
-    FileHandeler.prototype.readFileContent = function (fileName, directoryName) {
-        var _this = this;
-        if (typeof directoryName === "undefined") {
-            directoryName = dataFolderName;
-        }
-        return new Promise(function (resolve, reject) {
-            _this.file.readAsText(_this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName).then(function (dataFromFile) {
-                resolve(dataFromFile);
-            }).catch(function () {
-                reject();
-            });
-        });
-    };
-    FileHandeler.prototype.deleteFile = function (fileName, directoryName) {
-        if (typeof directoryName === "undefined") {
-            directoryName = dataFolderName;
-        }
-        return this.file.removeFile(this.file.dataDirectory + "/" + rootFolderName + "/" + directoryName, fileName);
-    };
-    return FileHandeler;
-}());
-FileHandeler = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]])
-], FileHandeler);
-
-//# sourceMappingURL=filehandeler.service.js.map
-
-/***/ }),
-
 /***/ 415:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2276,7 +2295,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_controller_tabs_controller__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_tag_service__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_number_service__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_filehandeler_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_filehandeler_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_settings_settings__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_history_history__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angularfire2__ = __webpack_require__(591);

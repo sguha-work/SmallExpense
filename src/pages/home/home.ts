@@ -66,6 +66,8 @@ export class HomePage implements AfterViewInit {
       this.tagData = data;
     }, ()=>{
       alert("Error occured");
+    }).catch(() => {
+      alert("Error occured");
     }); 
   }
 
