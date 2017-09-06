@@ -1095,7 +1095,7 @@ var ChartPage = (function () {
                     labels.push(keys[index]);
                     data.push(parseInt(response[keys[index]]));
                 }
-                var title = "Last 7 days total expense chart from " + dates[0] + " to " + dates[6];
+                var title = "Last 7 days tagwise expense chart from " + dates[0] + " to " + dates[6];
                 _this.drawChart(__WEBPACK_IMPORTED_MODULE_5_jquery__("#chart2")[0], data, title, labels);
             }
         }, function () {
@@ -1926,7 +1926,7 @@ var ImportExportPage = (function () {
 }());
 ImportExportPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-importexport',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\importexport\importexport.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Tagwise total expenses\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <button id="menu-button4" (click)="importFromDatabaseManually()" ion-button color="positive" block>\n      Import from database\n      </button>\n    <button id="menu-button4" (click)="export()" ion-button color="positive" block>\n      Backup to database\n      </button>\n\n\n    <br>\n    <br>\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\importexport\importexport.html"*/
+        selector: 'page-importexport',template:/*ion-inline-start:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\importexport\importexport.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n        <ion-title>\n            Import Export\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding id="page3" style="background-color:#2E7A3C;">\n    <div id="home-markdown1" class="show-list-numbers-and-dots">\n\n    </div>\n    <button id="menu-button4" (click)="importFromDatabaseManually()" ion-button color="positive" block>\n      Import from database\n      </button>\n    <button id="menu-button4" (click)="export()" ion-button color="positive" block>\n      Backup to database\n      </button>\n\n\n    <br>\n    <br>\n\n</ion-content>'/*ion-inline-end:"C:\sahasrangshu\OTHERS\SmallExpense\src\pages\importexport\importexport.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_expense_service__["a" /* Expense */], __WEBPACK_IMPORTED_MODULE_3__services_common_service__["a" /* Common */], __WEBPACK_IMPORTED_MODULE_4__services_importexport_service__["a" /* ImportExport */]])
 ], ImportExportPage);

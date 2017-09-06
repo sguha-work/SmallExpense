@@ -25296,14 +25296,14 @@ page-last30 .btn_action {
   background-color: transparent;
 }
 
-page-last30 table,
-page-last30 th,
-page-last30 td {
+page-last7 table,
+page-last7 th,
+page-last7 td {
   border: 1px solid black;
   text-align: center;
 }
 
-page-last30 .btn_action {
+page-last7 .btn_action {
   width: 18%;
   margin: 2%;
   float: left;

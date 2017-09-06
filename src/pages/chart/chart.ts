@@ -67,7 +67,7 @@ export class ChartPage {
           labels.push(keys[index]);
           data.push(parseInt(response[keys[index]]));
         }
-        let title = "Last 7 days total expense chart from "+ dates[0] + " to "+dates[6];
+        let title = "Last 7 days tagwise expense chart from "+ dates[0] + " to "+dates[6];
         this.drawChart($("#chart2")[0], data, title, labels);
       }
     }, () => {
