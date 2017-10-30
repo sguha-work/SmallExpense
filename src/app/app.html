@@ -1,53 +1,28 @@
 <ion-menu [content]="mainContent">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>
-                Menu
-            </ion-title>
-        </ion-toolbar>
-    </ion-header>
-    <ion-content id="side-menu21">
-        <button style="display:none" ion-button id="menu-button-close" (click)="closeMenu()" menuClose="left">Close Menu</button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('today')" ion-button color="positive" block icon-left>
-         <ion-icon name="clock"></ion-icon>
-         Today's Expenses
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('yesterday')" ion-button color="positive" block icon-left>
-         <ion-icon name="clock"></ion-icon>
-         Yesterday's Expenses
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('history')" ion-button color="positive" block icon-left>
-         <ion-icon name="calendar"></ion-icon>
-         History
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('last7')" ion-button color="positive" block icon-left>
-         <ion-icon name="calendar"></ion-icon>
-         Last 7 daily total expense 
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('last30')" ion-button color="positive" block icon-left>
-         <ion-icon name="calendar"></ion-icon>
-         Last 30 daily total expense 
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('tagwise')" ion-button color="positive" block icon-left>
-         <ion-icon name="calendar"></ion-icon>
-         Tagwise total expense 
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('chart')" ion-button color="positive" block icon-left>
-                Chart
-      </button>
-        <button class="menuButton" id="menu-button-today" (click)="goToPage('importexport')" ion-button color="positive" block icon-left>
-                Import / Export
-      </button>
-        <button class="menuButton" id="menu-button-settings" (click)="goToPage('settings')" ion-button color="positive" block icon-left>
-         <ion-icon name="settings"></ion-icon>
-         Settings
-      </button>
-        <button class="menuButton" id="menu-button4" (click)="goToPage('about')" ion-button color="positive" block>
-      About
-      </button>
-        <button class="menuButton" id="menu-button5" (click)="goToPage('aboutme')" ion-button color="positive" block>
-      About Me
-      </button>
-    </ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Menu
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="side-menu21">
+    <button id="menu-button4" ion-button color="positive" block>
+      Tap me!
+    </button>
+    <button id="menu-button5" ion-button color="positive" block>
+      Tap me!
+    </button>
+    <button id="menu-button6" ion-button color="positive" block>
+      Tap me!
+    </button>
+    <button id="menu-button7" ion-button color="positive" block>
+      Tap me!
+    </button>
+    <button id="menu-button8" ion-button color="positive" block menuClose="" on-click="goToSignUp()">
+      Tap me!
+    </button>
+  </ion-content>
 </ion-menu>
+
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

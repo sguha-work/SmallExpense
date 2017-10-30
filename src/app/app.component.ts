@@ -2,27 +2,21 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import * as $ from 'jquery';
-import { HomePage } from './../pages/home/home';
-import { SettingsPage } from './../pages/settings/settings';
-import { TodayPage } from './../pages/today/today';
-import {YesterdayPage} from './../pages/yesterday/yesterday';
-import {AboutPage} from './../pages/about/about';
-import {HistoryPage} from './../pages/history/history';
-import {ChartPage} from './../pages/chart/chart';
-import { Last30Page } from '../pages/last30/last30';
-import { Last7Page } from '../pages/last7/last7';
-import { TagWisePage } from '../pages/tagwise/tagwise';
-import { AfterViewInit } from '@angular/core';
-import { ImportExportPage } from '../pages/importexport/importexport';
+
+import { SignUpPage } from '../pages/sign-up/sign-up';
+
+
+import { HomeTabDefaultPagePage } from '../pages/home-tab-default-page/home-tab-default-page';
+
+
+
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp implements AfterViewInit {
+export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
-  rootPage:any = HomePage;
-  public nav: Nav;
-  public presentMonth: string;
+    rootPage:any = HomeTabDefaultPagePage;
+
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -31,47 +25,8 @@ export class MyApp implements AfterViewInit {
       splashScreen.hide();
     });
   }
-  ngAfterViewInit() {
-    
+  goToSignUp(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(SignUpPage);
   }
-  goToPage(pageName: string): void {
-    switch(pageName) {
-      case 'settings':
-        this.navCtrl.push(SettingsPage);
-      break;
-      case 'today':
-        this.navCtrl.push(TodayPage);
-      break;
-      case 'yesterday':
-        this.navCtrl.push(YesterdayPage);
-      break;
-      case 'about':
-        this.navCtrl.push(AboutPage);
-      break;
-      case 'history':
-        this.navCtrl.push(HistoryPage);
-      break;
-      case 'chart':
-        this.navCtrl.push(ChartPage);
-      break;  
-      case 'last30':
-        this.navCtrl.push(Last30Page);
-      break;
-      case 'last7':
-        this.navCtrl.push(Last7Page);
-      break;
-      case 'tagwise':
-        this.navCtrl.push(TagWisePage);
-      break;
-      case 'importexport':
-        this.navCtrl.push(ImportExportPage);
-      break;
-    }
-    this.closeMenu();
-    
-  }
-  closeMenu(): void {
-    $("#menu-button-close").trigger('click');
-  }
-  
 }
